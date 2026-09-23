@@ -1,0 +1,21 @@
+# openapi-generator writes a whole npm package: package.json, tsconfig, README
+# and git plumbing, as well as src/. Everything listed here is ours, and would
+# otherwise be overwritten on every hourly run, taking the release version, the
+# exports map and the TypeScript pin with it.
+#
+# Everything else under src/ is generated.
+
+package.json
+tsconfig.json
+tsconfig.esm.json
+README.md
+.gitignore
+.npmignore
+git_push.sh
+
+# One markdown file per model and API. Nothing reads them, and they would be
+# 1,200 files of diff in every release commit.
+docs/**
+
+# Written by `make build`, not by the generator.
+src/version.ts

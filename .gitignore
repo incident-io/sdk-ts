@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+*.tgz
+
+# Written by `make build` from package.json, so the User-Agent always names
+# the version being built.
+src/version.ts
+
+# Generated API reference. openapi-generator writes ~1,200 markdown files
+# there; .openapi-generator-ignore stops it, this catches a manual run.
+docs/

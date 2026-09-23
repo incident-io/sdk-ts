@@ -1,0 +1,22 @@
+{
+  // The ESM build, and the config editors pick up. See tsconfig.cjs.json for
+  // the CommonJS build and the Makefile's build target for how they combine.
+  "compilerOptions": {
+    "strict": true,
+    // Node 20, our floor, runs ES2022 natively.
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    // The generated client names fetch's own types (RequestInit, Response,
+    // Blob). DOM is where TypeScript declares them, and it keeps the package
+    // usable in a browser too.
+    "lib": ["es2022", "dom"],
+    // Nothing in src/ may depend on Node's types: a consumer without
+    // @types/node would fail to compile against our declarations.
+    "types": [],
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist/esm"
+  },
+  "include": ["src"]
+}

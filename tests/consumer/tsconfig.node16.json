@@ -1,0 +1,8 @@
+{
+  // Node's own resolution, as a modern Node project uses it. Covers both
+  // halves of the exports map: readme.ts is an ES module here, because
+  // package.json says so, and readme.cts is CommonJS.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "module": "node16", "moduleResolution": "node16" },
+  "files": ["readme.ts", "readme.cts"]
+}

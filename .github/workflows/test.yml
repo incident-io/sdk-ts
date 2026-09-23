@@ -1,0 +1,66 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  # Every Node the README promises. The tests run against the built package,
+  # through its exports map, on each of them. The Node 24 leg also compiles the
+  # README against the oldest TypeScript we support, which a green build here
+  # otherwise says nothing about: everything else compiles with the pinned
+  # 6.0.3. One make invocation, so the pack both targets depend on runs once.
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: make test ${{ matrix.node == 24 && 'consumer' || '' }}
+
+  # Two checks on the generator, sharing one runner and one cached jar.
+  #
+  # template-drift: a post-generation pass anchors on the text the generator
+  # emits, so it fails loudly when that changes. This catches the other half:
+  # the generator changing the template our anchors come from, including
+  # renaming or splitting the file, which would leave the pass matching
+  # nothing.
+  #
+  # generate-drift: fail if the committed client is out of date with the
+  # committed schema, i.e. someone changed openapi.json or scripts/ without
+  # re-running the generator. Regenerates from the committed schema, not the
+  # live one, so this stays a check on the commit rather than a second copy of
+  # the sync job.
+  generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      # ~30MB from Maven Central, fetched by the Makefile into /tmp. Without
+      # this every pull request pulls it, so a Maven Central blip reddens
+      # unrelated PRs. Keyed on the Makefile because that is where
+      # OPENAPI_GENERATOR_VERSION lives.
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: /tmp/openapi-generator-cli-*.jar
+          key: openapi-generator-${{ hashFiles('Makefile') }}
+      - run: make template-drift
+      - run: make generate
+      - name: Check for drift
+        run: |
+          # --porcelain, not `git diff --quiet`: the latter ignores untracked
+          # files, so a new model or endpoint would pass unnoticed.
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated client is out of date. Run 'make generate' and commit the result."
+            git status --porcelain
+            exit 1
+          fi

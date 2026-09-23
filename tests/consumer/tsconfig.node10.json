@@ -1,0 +1,7 @@
+{
+  // An older CommonJS project, which ignores the exports map and reads the
+  // top-level "types" field instead.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "module": "commonjs", "moduleResolution": "node" },
+  "files": ["readme.cts"]
+}

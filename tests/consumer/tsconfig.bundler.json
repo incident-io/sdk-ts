@@ -1,0 +1,6 @@
+{
+  // A project built with a bundler, such as Vite or esbuild.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "module": "esnext", "moduleResolution": "bundler" },
+  "files": ["readme.ts"]
+}

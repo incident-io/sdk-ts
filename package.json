@@ -1,0 +1,46 @@
+{
+  "name": "@incident-io/sdk",
+  "version": "0.0.0",
+  "description": "TypeScript SDK for the incident.io API",
+  "license": "MIT",
+  "author": "incident.io <support@incident.io>",
+  "homepage": "https://api-docs.incident.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incident-io/sdk-ts.git"
+  },
+  "bugs": "https://github.com/incident-io/sdk-ts/issues",
+  "keywords": ["incident.io", "incident", "on-call", "alerting", "api", "sdk"],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "files": ["dist"],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepack": "make build"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@types/node": "20.19.43",
+    "typescript": "6.0.3"
+  }
+}

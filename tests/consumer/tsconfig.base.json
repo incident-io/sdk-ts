@@ -1,0 +1,11 @@
+{
+  // What every consumer check shares. Each tsconfig.<mode>.json extends this
+  // with the module resolution a kind of consumer project uses.
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "types": []
+  }
+}

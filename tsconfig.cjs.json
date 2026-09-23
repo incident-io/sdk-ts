@@ -1,0 +1,21 @@
+{
+  // The CommonJS build. Declarations are emitted again rather than shared with
+  // the ESM build: a .d.ts is read as ESM or CJS by the package.json nearest
+  // to it, so sharing one set types require() callers as if they had imported
+  // an ES module.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    // commonjs output only pairs with node10 resolution, which TypeScript 6
+    // deprecates and 7 removes. It only governs how our own relative imports
+    // resolve, which is the same under either. When the TypeScript pin moves
+    // to 7, this build has to move to module: node16 over .cts sources, or be
+    // dropped in favour of require(esm), which Node supports from 20.19.
+    "moduleResolution": "node10",
+    "ignoreDeprecations": "6.0",
+    // The ESM build just type-checked the same source, so this one only
+    // emits. Same output, about a fifth of the time.
+    "noCheck": true,
+    "outDir": "dist/cjs"
+  }
+}

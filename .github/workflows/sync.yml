@@ -1,0 +1,536 @@
+name: sync
+
+# Runs hourly once enabled. When the schema hasn't changed the job exits in
+# seconds, which is what makes that affordable.
+#
+# Do not rename this file. npm's trusted-publishing binding is registered
+# against the repo and this exact filename, so a rename breaks publishing.
+on:
+  # Disabled until the package exists on npm: trusted publishing cannot create
+  # it, so the first publish has to be done by hand. Uncomment to start the
+  # hourly loop. Avoid minute 0, which is GitHub's most contended scheduling
+  # slot.
+  # schedule:
+  #   - cron: "29 * * * *" # hourly
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Which part of the version to bump"
+        type: choice
+        options: [minor, major]
+        default: minor
+      acknowledge_breaking:
+        description: "Publish even though a gate reports a breaking change"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Regenerate and verify, but don't tag, release or publish"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # commit + tag + create release
+  issues: write # open an issue when something needs a human
+  id-token: write # npm trusted publishing (job-scoped, hence one job)
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    # cancel-in-progress is false, so a hung run holds the group until it dies,
+    # and the default is six hours. A real run is a few minutes. A timeout is a
+    # cancellation, which the stuck-release reporter also covers.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # need full history + tags to read the last version
+
+      # Goes to a scratch path because oasdiff needs both versions to compare;
+      # writing straight over openapi.json would lose the old one.
+      - name: Fetch latest public schema
+        run: make fetch OUT=openapi.json.new
+
+      # Otherwise an empty or truncated body reads to oasdiff as every path
+      # removed, and the run files "Breaking API change detected" over a bad
+      # proxy response.
+      - name: Check the fetched schema is a schema
+        run: |
+          make check-schema FILE=openapi.json.new \
+            || (echo "::error::The fetched schema is not usable; leaving the committed one alone." && exit 1)
+
+      - name: Exit early if schema unchanged
+        id: changed
+        run: |
+          if diff -q openapi.json openapi.json.new >/dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Schema unchanged; nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Nothing below needs a toolchain until the schema has actually changed,
+      # and most runs stop above.
+      #
+      # Node 24 because trusted publishing needs npm 11.5.1 or later, and
+      # Node 24 is the LTS that bundles it. No dependency cache: npm and
+      # setup-node both advise against one in a workflow that publishes.
+      - if: steps.changed.outputs.changed == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - if: steps.changed.outputs.changed == 'true'
+        # The generator jar (~30MB from Maven Central) and oasdiff (from GitHub
+        # releases), both fetched by the Makefile into /tmp. Cached so that a
+        # blip on either host does not fail a release and file an issue. Keyed
+        # on the Makefile because that is where both versions are pinned.
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: |
+            /tmp/openapi-generator-cli-*.jar
+            /tmp/oasdiff-*
+          key: release-tools-${{ hashFiles('Makefile') }}
+
+      - name: Check for breaking changes
+        if: steps.changed.outputs.changed == 'true'
+        id: breaking
+        run: |
+          set -euo pipefail
+          # The Makefile holds the pin and downloads the binary.
+          oasdiff="$(make -s print-oasdiff)"
+
+          # First release: nothing to compare against. Without this, oasdiff
+          # is handed one missing file, exits non-zero, and the run is filed
+          # as a stuck release.
+          if [ ! -f openapi.json ]; then
+            echo "breaking=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # oasdiff-severity.txt adjusts rules in both directions; it takes no
+          # comments of its own.
+          #
+          # Down to WARN: an added response enum value, because the generated
+          # client passes unknown values through, and a tightened request
+          # minimum, because the generator emits no range validation. Left at
+          # ERR these halt about a quarter of real schema changes.
+          #
+          # Up to ERR: a removed operationId or component schema. Neither
+          # changes the wire contract, so oasdiff rates them info, but both
+          # rename something consumers import.
+          report="$("$oasdiff" breaking openapi.json openapi.json.new \
+            --severity-levels oasdiff-severity.txt --fail-on ERR 2>&1)" && rc=0 || rc=$?
+          echo "$report"
+
+          # 1 means it found breaking changes. Anything else means it couldn't
+          # do the comparison at all (a truncated fetch, an HTML error page),
+          # which is not a breaking change and mustn't be filed as one.
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 1 ]; then
+            echo "::error::oasdiff exited $rc without comparing the schemas."
+            exit 1
+          fi
+
+          if [ "$rc" -ne 0 ]; then
+            echo "breaking=true" >> "$GITHUB_OUTPUT"
+            { echo "report<<OASDIFF_EOF"; echo "$report"; echo "OASDIFF_EOF"; } >> "$GITHUB_OUTPUT"
+          else
+            echo "breaking=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # A human dispatch with acknowledge_breaking skips this. The step below
+      # requires bump: major alongside it, and still runs before any version is
+      # decided, so an acknowledged break cannot ship as a minor.
+      - name: Halt on breaking change
+        if: steps.changed.outputs.changed == 'true' && steps.breaking.outputs.breaking == 'true' && !inputs.acknowledge_breaking
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT: ${{ steps.breaking.outputs.report }}
+        run: |
+          set -euo pipefail
+          body="$(cat <<EOF
+          The upstream OpenAPI schema changed in a way that is **not backwards-compatible**, so the automated release was halted rather than publishing a breaking change as a minor bump.
+
+          A human needs to decide how to proceed, most likely a new major version.
+
+          To release it once you have decided: run this workflow from the Actions tab
+          (**Run workflow**) with **bump: major** and **acknowledge_breaking: true**. Both
+          are required together; setting one without the other is rejected, so an
+          acknowledged break cannot ship as a minor. Close this issue afterwards, or the
+          next genuine breaking change will be deduped against it and file nothing.
+
+          <details><summary>oasdiff report</summary>
+
+          \`\`\`
+          $REPORT
+          \`\`\`
+
+          </details>
+
+          Triggered by run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          EOF
+          )"
+          # Created here rather than assumed: gh issue create fails outright on
+          # a label that doesn't exist, and an unlabelled fallback would be
+          # invisible to the dedup below, filing one issue an hour forever.
+          gh label create breaking-change \
+            --description "Schema changed incompatibly; release halted" \
+            --color B60205 2>/dev/null || true
+
+          # We stop without committing the new schema, so every later run sees
+          # the same diff and lands here again. Only file one issue.
+          # `|| true` and then test the text: under pipefail a gh outage would
+          # make the pipeline fail rather than report "none open", and the
+          # dedup would file one issue an hour on top of the outage.
+          open_issue="$(gh issue list --label breaking-change --state open --limit 1 \
+            --json number --jq '.[0].number // empty' || true)"
+          if [ -n "$open_issue" ]; then
+            echo "::error::Breaking change detected; an issue is already open."
+            exit 1
+          fi
+
+          gh issue create \
+            --title "Breaking API change detected — manual release required" \
+            --body "$body" \
+            --label breaking-change
+          echo "::error::Breaking change detected; opened an issue and stopped."
+          exit 1
+
+      # acknowledge_breaking only makes sense alongside a major: shipping an
+      # acknowledged break as a minor is what every gate here exists to prevent.
+      - name: Reject acknowledging a break without a major bump
+        id: reject
+        if: inputs.acknowledge_breaking && inputs.bump != 'major'
+        run: |
+          echo "::error::acknowledge_breaking requires bump: major."
+          exit 1
+
+      # Scheduled runs only ever bump minor, since anything breaking has
+      # already stopped the run. Patch is for hand-fixes; major needs a human
+      # dispatch with both bump: major and acknowledge_breaking.
+      - name: Decide next version
+        if: steps.changed.outputs.changed == 'true'
+        id: version
+        run: |
+          set -euo pipefail
+          BUMP="${{ inputs.bump || 'minor' }}"
+          # Highest version, not `git describe`'s nearest-by-commit-distance: a
+          # hand-cut patch tag would otherwise make us recompute a version that
+          # already exists. The pattern also skips any non-semver tag, which
+          # awk would silently turn into v1.0.0.
+          BASE="$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -1)"
+
+          if [ -z "$BASE" ]; then
+            NEXT="v1.0.0"
+          elif [ "$BUMP" = "major" ]; then
+            NEXT="$(echo "${BASE#v}" | awk -F. '{printf "v%d.0.0", $1+1}')"
+          else
+            NEXT="$(echo "${BASE#v}" | awk -F. '{printf "v%d.%d.0", $1, $2+1}')"
+          fi
+
+          if git rev-parse -q --verify "refs/tags/$NEXT" >/dev/null; then
+            echo "::error::$NEXT already exists. A previous run tagged without"
+            echo "::error::publishing, or a tag was cut by hand. Resolve before releasing."
+            exit 1
+          fi
+
+          # npm versions cannot be reused, even after an unpublish, so a
+          # version already on the registry is as final as a tag. Checked
+          # here rather than left to `npm publish`, which would find out after
+          # the tag was pushed.
+          #
+          # By output, not only exit status: npm view exits non-zero both for
+          # a package or version that does not exist (E404, which is what we
+          # want) and for a registry it could not reach, and only the first
+          # means go ahead. stderr is kept apart, so a warning npm prints
+          # there is never read as a version.
+          if published="$(npm view "@incident-io/sdk@${NEXT#v}" version 2>/tmp/npm-view.err)"; then
+            if [ -n "$published" ]; then
+              echo "::error::${NEXT#v} is already on npm. Resolve before releasing."
+              exit 1
+            fi
+          elif ! grep -q E404 /tmp/npm-view.err; then
+            cat /tmp/npm-view.err
+            echo "::error::Could not ask npm whether ${NEXT#v} exists."
+            exit 1
+          fi
+
+          echo "Next version: $NEXT (base: ${BASE:-none}, bump: $BUMP)"
+          echo "next=$NEXT" >> "$GITHUB_OUTPUT"
+
+      # Before verification, so what we check is what we publish: the build
+      # writes this version into the User-Agent.
+      - name: Set the release version
+        if: steps.changed.outputs.changed == 'true'
+        env:
+          NEXT: ${{ steps.version.outputs.next }}
+        run: |
+          set -euo pipefail
+          # Rewrites package.json and package-lock.json together, and exits
+          # non-zero if it cannot.
+          npm version "${NEXT#v}" --no-git-tag-version --allow-same-version
+
+          # Trusted publishing needs npm 11.5.1 or later, and an older one
+          # fails only at `npm publish`, after the tag is pushed and the
+          # version spent. setup-node takes whichever Node 24 the runner has
+          # cached, and early 24.x releases bundled an older npm.
+          npm_version="$(npm --version)"
+          node -e '
+            const [major, minor, patch] = process.argv[1].split(".").map(Number);
+            if (major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) process.exit(1);
+          ' "$npm_version" \
+            || (echo "::error::npm $npm_version is too old for trusted publishing; it needs 11.5.1." && exit 1)
+
+      - name: Regenerate and check
+        if: steps.changed.outputs.changed == 'true'
+        env:
+          ACKNOWLEDGE_BREAKING: ${{ inputs.acknowledge_breaking }}
+        run: |
+          set -euo pipefail
+          mv openapi.json.new openapi.json
+          make template-drift
+          make generate
+          # An acknowledged break accepts the new surface before it is checked.
+          # Otherwise a break only the surface check sees, a renamed export
+          # with an unchanged wire contract, could never be released: every
+          # run, dispatched or scheduled, would stop at the same removal.
+          if [ "$ACKNOWLEDGE_BREAKING" = "true" ]; then
+            make build
+            node scripts/api-surface.mjs write dist/esm/index.d.ts api-surface.txt
+          fi
+          # One invocation, so the pack both targets depend on runs once. The
+          # generated code changes on every release, which is exactly when
+          # behaviour needs checking, and an npm version cannot be replaced,
+          # only deprecated, so catching a problem after publishing is too
+          # late.
+          make test consumer
+
+      # make verify checked that nothing left the surface. This records what
+      # the release added, so that removing one of those later is caught too.
+      - name: Record the new API surface
+        if: steps.changed.outputs.changed == 'true'
+        run: node scripts/api-surface.mjs write dist/esm/index.d.ts api-surface.txt
+
+      - name: Report what a dry run would have done
+        if: steps.changed.outputs.changed == 'true' && inputs.dry_run
+        env:
+          NEXT: ${{ steps.version.outputs.next }}
+        run: |
+          {
+            echo "### Dry run — nothing was tagged or published"
+            echo
+            echo "Would have released **$NEXT**:"
+            echo '```'
+            ls -l ./*.tgz
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit, tag and push
+        if: steps.changed.outputs.changed == 'true' && !inputs.dry_run
+        id: push
+        env:
+          NEXT: ${{ steps.version.outputs.next }}
+        run: |
+          set -euo pipefail
+          git config user.name "incident-io-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # .openapi-generator is rewritten by every generate, and src/ is
+          # regenerated whole, so both go in as directories.
+          git add openapi.json package.json package-lock.json api-surface.txt src .openapi-generator
+          # Anything the allowlist above misses would be left out of the
+          # release commit while still being built into the published package.
+          # Catch it here, while the tag is still local and the next run can
+          # retry.
+          #
+          # Only the residue: --porcelain lists staged entries too, with the
+          # status in column 1, so checking it whole would match every file the
+          # add above just staged and fail every run.
+          residue="$(git status --porcelain | grep -v '^[MADRC] ' || true)"
+          if [ -n "$residue" ]; then
+            echo "::error::Files changed that the commit does not stage. Add them"
+            echo "::error::to the git add above, or gitignore them."
+            echo "$residue"
+            exit 1
+          fi
+          git commit -m "Update to schema as of $(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          Regenerated from https://api.incident.io/v1/openapiV3.json"
+          git tag "$NEXT"
+          # --atomic: otherwise the tag can land while the branch push is
+          # refused, and every later run recomputes this version and dies on
+          # "tag already exists".
+          git push --atomic origin HEAD "refs/tags/$NEXT"
+
+      # After the push, never before: an npm version cannot be replaced or
+      # reused, so publishing first and failing to push would burn the number
+      # and leave the repo unable to recompute it.
+      #
+      # Has to live in this job: id-token is job-scoped, and a tag pushed with
+      # GITHUB_TOKEN won't trigger a separate workflow. npm finds the OIDC
+      # token itself and attaches provenance, so there is no token or flag
+      # here. prepack rebuilds dist/ from the tree just committed.
+      - name: Publish to npm
+        if: steps.changed.outputs.changed == 'true' && !inputs.dry_run
+        id: publish
+        run: npm publish
+
+      - name: Create the GitHub release
+        if: steps.changed.outputs.changed == 'true' && !inputs.dry_run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEXT: ${{ steps.version.outputs.next }}
+        run: gh release create "$NEXT" --generate-notes --title "$NEXT"
+
+      # Every other signal in this workflow is a failure() hook, and a loop
+      # that never runs never fails: a disabled cron and a quiet API look
+      # identical in the Actions tab. This is the one line that says the loop
+      # ran and what it decided, so "last successful sync" is answerable from
+      # the run list.
+      #
+      # GitHub disables a scheduled workflow after 60 days without repository
+      # activity and emails only whoever last touched the cron. This repo's
+      # activity is its own release commits, which stop exactly when the schema
+      # stops changing, so the disable lands precisely when nothing else would
+      # show it.
+      - name: Record what this run did
+        if: always() && steps.changed.outputs.changed != ''
+        env:
+          CHANGED: ${{ steps.changed.outputs.changed }}
+          NEXT: ${{ steps.version.outputs.next }}
+          # NEXT alone says nothing about what happened: it is set on a dry run
+          # and on a run that fails after choosing a version, and empty on one
+          # that halted before choosing. Keying the wording on it would report
+          # a release that never happened, on the one line this repo has for
+          # "what did this run do".
+          PUBLISHED: ${{ steps.publish.outcome == 'success' }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          JOB_OK: ${{ job.status == 'success' }}
+        run: |
+          if [ "$CHANGED" != "true" ]; then
+            echo "Schema unchanged; nothing to release." >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$PUBLISHED" = "true" ]; then
+            echo "Schema changed; released $NEXT." >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$DRY_RUN" = "true" ] && [ "$JOB_OK" = "true" ]; then
+            echo "Dry run: schema changed, would have released $NEXT. Nothing published." >> "$GITHUB_STEP_SUMMARY"
+          elif [ -z "$NEXT" ]; then
+            echo "Schema changed, but the run halted before choosing a version. See the job log." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Schema changed, but $NEXT was not published: the run halted. See the job log." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Last in the job so it can observe every step, including the commit,
+      # push and publish above: a failure() step cannot see a step declared
+      # after it, and those are the failures that do damage.
+      #
+      # The guards narrow it to a release that actually got going and actually
+      # wedged. Without `changed`, a failed `make fetch` (api.incident.io down,
+      # a truncated body) files an issue claiming the schema changed and that
+      # nothing will retry, when the next hourly run fixes it by itself. Without
+      # `reject`, a dispatch typo does the same. Both then hold the dedup lock
+      # below, suppressing the real issue if a release wedges while one of them
+      # is open.
+      - name: Report a stuck release
+        # `breaking != true` suppresses the report when the run stopped at the
+        # Halt step, which files its own issue. But on an acknowledged break
+        # the run *continues*, so that clause would also suppress a failure
+        # after the tag was pushed, silently stranding a tag on the one path
+        # that deliberately cuts a major. Hence the acknowledge_breaking arm.
+        #
+        # `dry_run` because a dry run that fails has published nothing and
+        # changed nothing; filing an issue there would take the dedup lock and
+        # hide a real stuck release.
+        #
+        # `cancelled()` because the job timeout is a cancellation, and one that
+        # lands between the tag push and `npm publish` strands the tag just as
+        # a failure does. Only after the push, though: a run cancelled before
+        # it, by a person or the timeout, changed nothing and is retried by the
+        # next hourly run.
+        if: >-
+          (failure() || (cancelled() && steps.push.outcome == 'success'))
+          && steps.changed.outputs.changed == 'true'
+          && !inputs.dry_run
+          && (steps.breaking.outputs.breaking != 'true' || inputs.acknowledge_breaking)
+          && steps.reject.outcome != 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # The failures need opposite instructions, and which one happened
+          # turns on whether the push landed.
+          PUSHED: ${{ steps.push.outcome == 'success' }}
+          PUBLISHED: ${{ steps.publish.outcome == 'success' }}
+          NEXT: ${{ steps.version.outputs.next }}
+        run: |
+          set -euo pipefail
+
+          if [ "$PUBLISHED" = "true" ]; then
+            # Published and tagged; only the GitHub release is missing. Telling
+            # the reader to run `npm publish` here would hand them an "already
+            # exists" error at the moment they most need to trust the
+            # instructions.
+            title="Release $NEXT is published but has no GitHub release"
+            body="**$NEXT** is tagged and is on npm. The run then failed before creating the GitHub release, so only that is missing. Nothing is broken for consumers, and the next run proceeds normally.
+
+          To finish it:
+
+          \`\`\`
+          gh release create $NEXT --generate-notes --title $NEXT
+          \`\`\`
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          elif [ "$PUSHED" = "true" ]; then
+            # The schema is committed and the tag is pushed, so the next run
+            # sees no diff and exits in seconds. Nothing retries, and the
+            # version is spent: the tag exists, so "Decide next version" will
+            # never recompute it. Silence here reads as a healthy cron.
+            title="Release $NEXT is tagged but not published"
+            body="The sync pushed the commit and the tag for **$NEXT**, then failed before finishing. The package is **not on npm**.
+
+          This will not fix itself. The next run finds the schema unchanged and exits in seconds, so the cron goes green and nothing retries.
+
+          First check it really is missing, since a run cancelled during the publish may have finished it: \`npm view @incident-io/sdk@${NEXT#v} version\` prints the version if it is there.
+
+          To finish it by hand, from the tag, logged in to npm as a maintainer of @incident-io/sdk:
+
+          \`\`\`
+          git fetch --tags && git switch --detach $NEXT
+          npm ci && npm publish
+          gh release create $NEXT --generate-notes --title $NEXT
+          \`\`\`
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+
+          Likely causes: npm trusted publishing is not configured for this repo and this workflow filename, the configuration only allows staged publishing, or npm was down."
+          else
+            title="Release is stuck — regeneration or verification is failing"
+            body="The hourly sync failed after detecting a schema change, before committing anything. The next run will see the same diff and fail the same way, so this repeats hourly until someone looks.
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+
+          Likely causes: the generator rejected the new schema, \`scripts/fix-generated.mjs\` stopped matching, the template drifted, the API surface check found something removed, or the README examples no longer compile with the oldest supported TypeScript.
+
+          If the job log shows entries that left the public surface and the change is intended, it is a breaking release: run this workflow with **bump: major** and **acknowledge_breaking: true**. CONTRIBUTING.md has the steps for each cause."
+          fi
+
+          gh label create release-stuck \
+            --description "The hourly sync could not complete a release" \
+            --color B60205 2>/dev/null || true
+
+          # Dedup only the pre-commit case. That one repeats hourly, since the
+          # schema is uncommitted and every later run sees the same diff and
+          # dies the same way, and without a dedup it files an issue an hour.
+          #
+          # The post-push cases are never deduped. They cannot repeat, so
+          # there is nothing to suppress, and they are the only failures with
+          # a side effect that does not undo itself: a version number spent,
+          # and possibly a tag with no package behind it. Deduping them against
+          # an unrelated open issue would swallow the one report that matters.
+          open_issue="$(gh issue list --label release-stuck --state open --limit 1 \
+            --json number --jq '.[0].number // empty' || true)"
+          if [ "$PUSHED" != "true" ] && [ -n "$open_issue" ]; then
+            echo "Already reported."
+            exit 0
+          fi
+
+          gh issue create --title "$title" --label release-stuck --body "$body"

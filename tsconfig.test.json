@@ -1,0 +1,11 @@
+{
+  // Compiles tests/ against the built package, imported by its own name, so
+  // the tests go through the exports map the way a consumer does.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "rootDir": "tests",
+    "outDir": "build/tests"
+  },
+  "include": ["tests/*.ts"]
+}

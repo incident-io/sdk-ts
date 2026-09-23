@@ -1,0 +1,35 @@
+# The package has no runtime dependencies, so this only moves the dev tooling:
+# TypeScript, attw and @types/node. package-lock.json is committed so that
+# every gate in CI runs against the same tools, and nothing else updates it.
+#
+# TypeScript is pinned to an exact version on purpose (see CONTRIBUTING.md), so
+# its PRs need reading rather than merging on green.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # One PR for everything, reviewed together.
+    groups:
+      npm:
+        patterns: ["*"]
+    # The floor we promise, not the newest: tests must not come to rely on a
+    # Node API that Node 20 lacks.
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # TypeScript 7 has no programmatic API yet, which scripts/api-surface.mjs
+      # needs, and drops the resolution the CJS build uses. See CONTRIBUTING.md.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+    open-pull-requests-limit: 3
+
+  # The workflows pin every action by SHA, which nothing else can bump.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

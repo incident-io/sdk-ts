@@ -1,0 +1,5 @@
+{
+  "//": "Compiles the README's examples against the packed SDK with the oldest TypeScript we support. See `make consumer`.",
+  "private": true,
+  "type": "module"
+}
