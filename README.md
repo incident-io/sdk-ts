@@ -36,9 +36,9 @@ then:
 import { Configuration, IncidentsV2Api } from "@incident-io/sdk";
 
 const config = new Configuration({ accessToken: "my-api-key" });
-const incidents = new IncidentsV2Api(config);
+const client = new IncidentsV2Api(config);
 
-const result = await incidents.incidentsV2List({ page_size: 25 });
+const result = await client.incidentsV2List({ page_size: 25 });
 for (const incident of result.incidents) {
   console.log(incident.reference, incident.name);
 }
@@ -67,7 +67,7 @@ on, on `APIKeysV1Api`, and the IP allowlist ones are `iPAllowlistsV1...` on
 A request body goes under `body`:
 
 ```ts
-const created = await incidents.incidentsV2Create({
+const created = await client.incidentsV2Create({
   body: {
     idempotency_key: "a-unique-key",
     visibility: "public",
@@ -82,7 +82,7 @@ headers. It returns the `Response` as `raw`, and the parsed body from
 `value()`:
 
 ```ts
-const response = await incidents.incidentsV2ListRaw({ page_size: 25 });
+const response = await client.incidentsV2ListRaw({ page_size: 25 });
 console.log(response.raw.headers.get("X-RateLimit-Remaining"));
 const page = await response.value();
 ```
@@ -93,7 +93,7 @@ List endpoints take filters as nested objects, which are sent as
 `status[one_of]=...` in the query string:
 
 ```ts
-const live = await incidents.incidentsV2List({
+const live = await client.incidentsV2List({
   status_category: { one_of: ["live"] },
   created_at: { gte: ["2026-01-01"] },
   custom_field: { "01ABC...": { one_of: ["01XYZ..."] } },
@@ -111,7 +111,7 @@ List endpoints are cursor-paginated. Read the next cursor from
 ```ts
 let after: string | undefined;
 do {
-  const page = await incidents.incidentsV2List({ page_size: 100, after });
+  const page = await client.incidentsV2List({ page_size: 100, after });
   for (const incident of page.incidents) {
     console.log(incident.reference, incident.name);
   }
@@ -129,7 +129,7 @@ A response with a non-2xx status throws a `ResponseError`, which carries the
 import { ErrorResponseFromJSON, ResponseError } from "@incident-io/sdk";
 
 try {
-  await incidents.incidentsV2Show({ id: "01ABC..." });
+  await client.incidentsV2Show({ id: "01ABC..." });
 } catch (error) {
   if (error instanceof ResponseError) {
     const body = ErrorResponseFromJSON(await error.response.json());
@@ -152,7 +152,7 @@ There is no default timeout. Pass an `AbortSignal` in the request options:
 import { FetchError } from "@incident-io/sdk";
 
 try {
-  await incidents.incidentsV2List({ page_size: 25 }, { signal: AbortSignal.timeout(10_000) });
+  await client.incidentsV2List({ page_size: 25 }, { signal: AbortSignal.timeout(10_000) });
 } catch (error) {
   if (error instanceof FetchError && error.cause.name === "TimeoutError") {
     console.error("gave up after 10 seconds");
@@ -170,7 +170,7 @@ matching constant:
 ```ts
 import { IncidentV2ModeEnum } from "@incident-io/sdk";
 
-const incident = (await incidents.incidentsV2Show({ id: "01ABC..." })).incident;
+const incident = (await client.incidentsV2Show({ id: "01ABC..." })).incident;
 if (incident.mode === IncidentV2ModeEnum.Standard) {
   console.log("a real incident");
 }
@@ -255,9 +255,9 @@ the `authorization` parameter:
 ```ts
 import { AlertEventsV2Api } from "@incident-io/sdk";
 
-const alertEvents = new AlertEventsV2Api(new Configuration());
+const alertEventsClient = new AlertEventsV2Api(new Configuration());
 
-await alertEvents.alertEventsV2CreateHTTP({
+await alertEventsClient.alertEventsV2CreateHTTP({
   alert_source_config_id: "01ABC...",
   authorization: "Bearer my-alert-source-secret",
   body: {
