@@ -11,6 +11,8 @@ export * from './AlertRoutesV2Api.js';
 export * from './AlertRoutesV3Api.js';
 export * from './AlertSourcesV2Api.js';
 export * from './AlertsV2Api.js';
+export * from './AnnouncementRulesV2Api.js';
+export * from './AnnouncementTemplatesV2Api.js';
 export * from './CallRoutesV2Api.js';
 export * from './CallSessionsV2Api.js';
 export * from './CallTranscriptEntriesV2Api.js';

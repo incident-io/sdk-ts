@@ -78,6 +78,7 @@ export const AuditLogTargetV2TypeEnum = {
     IpAllowlist: 'ip_allowlist',
     Nudge: 'nudge',
     OnCallNotificationMethod: 'on_call_notification_method',
+    OnCallNotificationPause: 'on_call_notification_pause',
     Organisation: 'organisation',
     OrganisationSettings: 'organisation_settings',
     ScheduleOverride: 'schedule_override',

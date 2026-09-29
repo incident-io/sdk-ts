@@ -65,6 +65,7 @@ export const PolicyFindingScheduleV2CauseEnum = {
     NobodyScheduled: 'nobody_scheduled',
     NoOnCallSeat: 'no_on_call_seat',
     UserDeactivated: 'user_deactivated',
+    NotificationsPaused: 'notifications_paused',
 } as const;
 export type PolicyFindingScheduleV2CauseEnum = typeof PolicyFindingScheduleV2CauseEnum[keyof typeof PolicyFindingScheduleV2CauseEnum];
 

@@ -40,6 +40,7 @@ export interface PolicyFindingScheduleImpactedUserV2 {
 export const PolicyFindingScheduleImpactedUserV2CauseEnum = {
     NoOnCallSeat: 'no_on_call_seat',
     UserDeactivated: 'user_deactivated',
+    NotificationsPaused: 'notifications_paused',
 } as const;
 export type PolicyFindingScheduleImpactedUserV2CauseEnum = typeof PolicyFindingScheduleImpactedUserV2CauseEnum[keyof typeof PolicyFindingScheduleImpactedUserV2CauseEnum];
 

@@ -99,6 +99,11 @@ import {
     StatusPagesShowStatusPageMaintenanceResultV2ToJSON,
 } from '../models/StatusPagesShowStatusPageMaintenanceResultV2.js';
 import {
+    type StatusPagesShowStatusPageResultV2,
+    StatusPagesShowStatusPageResultV2FromJSON,
+    StatusPagesShowStatusPageResultV2ToJSON,
+} from '../models/StatusPagesShowStatusPageResultV2.js';
+import {
     type StatusPagesShowStatusPageStructureResultV2,
     StatusPagesShowStatusPageStructureResultV2FromJSON,
     StatusPagesShowStatusPageStructureResultV2ToJSON,
@@ -245,6 +250,13 @@ export interface StatusPagesV2ListStatusPagesRequest {
      * An record's ID. This endpoint will return a list of records after this ID in relation to the API response order.
      */
     after?: string;
+}
+
+export interface StatusPagesV2ShowStatusPageRequest {
+    /**
+     * ID of the status page. You can find this by calling the ListStatusPages endpoint.
+     */
+    status_page_id: string;
 }
 
 export interface StatusPagesV2ShowStatusPageComponentAvailabilityRequest {
@@ -877,6 +889,61 @@ export class StatusPagesV2Api extends runtime.BaseAPI {
      */
     async statusPagesV2ListStatusPages(requestParameters: StatusPagesV2ListStatusPagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPagesListStatusPagesResultV2> {
         const response = await this.statusPagesV2ListStatusPagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for statusPagesV2ShowStatusPage without sending the request
+     */
+    async statusPagesV2ShowStatusPageRequestOpts(requestParameters: StatusPagesV2ShowStatusPageRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['status_page_id'] == null) {
+            throw new runtime.RequiredError(
+                'status_page_id',
+                'Required parameter "status_page_id" was null or undefined when calling statusPagesV2ShowStatusPage().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v2/status_pages/{status_page_id}`;
+        urlPath = urlPath.replace('{status_page_id}', encodeURIComponent(String(requestParameters['status_page_id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Show a single status page.  This endpoint requires a valid API key but no specific scopes. Use ShowStatusPageStructure to see the components and groups configured on the page.
+     * ShowStatusPage Status Pages V2
+     */
+    async statusPagesV2ShowStatusPageRaw(requestParameters: StatusPagesV2ShowStatusPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StatusPagesShowStatusPageResultV2>> {
+        const requestOptions = await this.statusPagesV2ShowStatusPageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StatusPagesShowStatusPageResultV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Show a single status page.  This endpoint requires a valid API key but no specific scopes. Use ShowStatusPageStructure to see the components and groups configured on the page.
+     * ShowStatusPage Status Pages V2
+     */
+    async statusPagesV2ShowStatusPage(requestParameters: StatusPagesV2ShowStatusPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPagesShowStatusPageResultV2> {
+        const response = await this.statusPagesV2ShowStatusPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
