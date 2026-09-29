@@ -1,17 +1,14 @@
 name: sync
 
-# Runs hourly once enabled. When the schema hasn't changed the job exits in
-# seconds, which is what makes that affordable.
+# Runs hourly. When the schema hasn't changed the job exits in seconds, which
+# is what makes that affordable.
 #
 # Do not rename this file. npm's trusted-publishing binding is registered
 # against the repo and this exact filename, so a rename breaks publishing.
 on:
-  # Disabled until the package exists on npm: trusted publishing cannot create
-  # it, so the first publish has to be done by hand. Uncomment to start the
-  # hourly loop. Avoid minute 0, which is GitHub's most contended scheduling
-  # slot.
-  # schedule:
-  #   - cron: "29 * * * *" # hourly
+  # Avoid minute 0, which is GitHub's most contended scheduling slot.
+  schedule:
+    - cron: "29 * * * *" # hourly
   workflow_dispatch:
     inputs:
       bump:

@@ -147,8 +147,9 @@ The TypeScript *consumers* can use is a separate question, answered by
 
 ## First release checklist
 
-The package does not exist on npm yet, and the hourly loop is switched off
-until it does. In order:
+Done once, for v1.0.0, and kept for setting up a repo the same way. Until a
+package exists on npm, keep the `schedule:` block in
+`.github/workflows/sync.yml` commented out. In order:
 
 1. **Create `incident-io/sdk-ts` on GitHub, public.** npm attaches provenance
    to trusted publishes only from a public repository. Leave `master`
