@@ -36,6 +36,7 @@ export * from './IncidentRelationshipsV1Api.js';
 export * from './IncidentRolesV1Api.js';
 export * from './IncidentRolesV2Api.js';
 export * from './IncidentStatusesV1Api.js';
+export * from './IncidentTeamMembershipsV1Api.js';
 export * from './IncidentTemplatesV1Api.js';
 export * from './IncidentTimelineItemsV2Api.js';
 export * from './IncidentTimestampsV2Api.js';
