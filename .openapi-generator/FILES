@@ -414,6 +414,7 @@ src/models/AuditLogsOnCallNotificationPauseCreatedV1.ts
 src/models/AuditLogsOnCallNotificationPauseCreatedV2.ts
 src/models/AuditLogsOnCallNotificationPauseDeletedV1.ts
 src/models/AuditLogsOnCallNotificationPauseDeletedV2.ts
+src/models/AuditLogsOnCallNotificationPauseResumedV1.ts
 src/models/AuditLogsOnCallNotificationPauseUpdatedV1.ts
 src/models/AuditLogsOnCallNotificationPauseUpdatedV2.ts
 src/models/AuditLogsOnCallUpsellRequestedV1.ts

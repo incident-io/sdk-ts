@@ -23,11 +23,10 @@ import {
 
 /**
  * A single shift on a schedule, representing who is on-call between a start
- * and end time. When present, `rotation_id` and `layer_id` tell you which
- * rotation and which layer within that rotation the entry belongs to. A
- * schedule may have multiple rotations (for example, a primary and a secondary
- * rotation) and each rotation can be made up of several layers — entries are
- * returned for every rotation and layer on the schedule.
+ * and end time. When present, `rotation_id` tells you which rotation the
+ * entry belongs to. A schedule may have multiple rotations (for example, a
+ * primary and a secondary rotation) and each rotation can be made up of several
+ * layers — entries are returned for every rotation and layer on the schedule.
  * 
  * Entries come from two places: they are either generated from a schedule's
  * rotation configuration (the regular pattern of who is on-call) or created by
@@ -57,10 +56,6 @@ export interface ScheduleEntryV2 {
      * A unique identifier for this entry, used to determine a unique shift
      */
     fingerprint?: string;
-    /**
-     * If present, the layer this entry applies to on the rotation
-     */
-    layer_id?: string;
     /**
      * If present, the rotation this entry applies to on the schedule
      */
@@ -97,7 +92,6 @@ export function ScheduleEntryV2FromJSONTyped(json: any, ignoreDiscriminator: boo
         'end_at': (json['end_at'] == null ? json['end_at'] : parseDateTime(json['end_at'])),
         'entry_id': json['entry_id'] == null ? undefined : json['entry_id'],
         'fingerprint': json['fingerprint'] == null ? undefined : json['fingerprint'],
-        'layer_id': json['layer_id'] == null ? undefined : json['layer_id'],
         'rotation_id': json['rotation_id'] == null ? undefined : json['rotation_id'],
         'start_at': (json['start_at'] == null ? json['start_at'] : parseDateTime(json['start_at'])),
         'user': json['user'] == null ? undefined : UserV2FromJSON(json['user']),
@@ -118,7 +112,6 @@ export function ScheduleEntryV2ToJSONTyped(value?: ScheduleEntryV2 | null, ignor
         'end_at': value['end_at'] == null ? value['end_at'] : serializeDateTime(value['end_at']),
         'entry_id': value['entry_id'],
         'fingerprint': value['fingerprint'],
-        'layer_id': value['layer_id'],
         'rotation_id': value['rotation_id'],
         'start_at': value['start_at'] == null ? value['start_at'] : serializeDateTime(value['start_at']),
         'user': UserV2ToJSON(value['user']),

@@ -353,6 +353,7 @@ export * from './AuditLogsOnCallNotificationPauseCreatedV1.js';
 export * from './AuditLogsOnCallNotificationPauseCreatedV2.js';
 export * from './AuditLogsOnCallNotificationPauseDeletedV1.js';
 export * from './AuditLogsOnCallNotificationPauseDeletedV2.js';
+export * from './AuditLogsOnCallNotificationPauseResumedV1.js';
 export * from './AuditLogsOnCallNotificationPauseUpdatedV1.js';
 export * from './AuditLogsOnCallNotificationPauseUpdatedV2.js';
 export * from './AuditLogsOnCallUpsellRequestedV1.js';
