@@ -27,6 +27,9 @@
 // parameter type as breaking, and TypeScript's printed types churn with the
 // compiler version.
 //
+// `check` exits 3 when the only problem is removed entries, and 1 for anything
+// else. The release reads 3 as "this is a major" and 1 as a broken build.
+//
 //   node scripts/api-surface.mjs write dist/esm/index.d.ts api-surface.txt
 //   node scripts/api-surface.mjs check dist/esm/index.d.ts api-surface.txt
 
@@ -186,11 +189,9 @@ function check(current, recordedPath) {
   printCapped(removed, "-", console.error);
   console.error(
     "\nConsumers import and call these by name, so removing one breaks them even" +
-      " when the wire contract is unchanged. This needs a major version, not the" +
-      " automatic minor bump. After deciding to cut one, run `make surface` to" +
-      " accept the new surface.",
+      " when the wire contract is unchanged. The release cuts a major for it.",
   );
-  return 1;
+  return 3;
 }
 
 const [command, entry, path] = process.argv.slice(2);

@@ -35,37 +35,31 @@ this file.
   (ESM and CommonJS), node10 and bundler resolution.
 - `make template-drift` fails if the generator's templates changed under the
   anchors `scripts/fix-generated.mjs` matches on.
-- `make oasdiff` runs the schema gate that stops a release, by hand.
-- `make surface` accepts the current API surface as the new baseline, after a
-  deliberate breaking change.
+- `make oasdiff` runs the schema gate that makes a release a major, by hand.
+- `make surface` accepts the current API surface as the new baseline. The
+  release does this itself.
 
 ## How a release happens
 
 `.github/workflows/sync.yml`, hourly. When the live schema differs from the
-committed one it regenerates, verifies, bumps the **minor** version, commits,
-tags, and publishes to npm. No human is involved unless a gate trips.
+committed one it regenerates, verifies, bumps the version, commits, tags, and
+publishes to npm. No human is involved unless something fails.
 
-Two gates stop it. `oasdiff` compares the schemas, and
+Two gates decide the version. `oasdiff` compares the schemas, and
 `scripts/api-surface.mjs` compares the package's exported names, properties
-and parameters against `api-surface.txt`, which each release extends. Either
-one reporting a break halts the run and files an issue. A halted run does
-**not** commit the new schema, so every later run sees the same diff and halts
-the same way until someone acts. That is deliberate, and it is why the issues
-are deduped.
+and parameters against `api-surface.txt`, which each release rewrites. If
+either reports a break, the release is a **major**, and its GitHub release
+notes start with the oasdiff report and the list of removed names. Otherwise
+it is a **minor**.
+
+To force a major for a break neither gate sees, run the workflow from the
+Actions tab with **bump: major**. The default, **auto**, picks major or minor
+from the gates. There is no way to release a detected break as a minor.
 
 ## When a release stops
 
-The workflow files one of four issues. Close each as soon as it is resolved:
-while a `release-stuck` issue is open, a new pre-commit failure files nothing,
-and while a `breaking-change` issue is open, the next break files nothing.
-
-**Breaking API change detected — manual release required** (`breaking-change`).
-oasdiff found a change that breaks callers. If it is a mistake upstream, get
-the schema fixed; the loop keeps halting, without filing again, until the live
-schema is compatible. If it is intended, run the workflow from the Actions tab
-with **bump: major** and **acknowledge_breaking: true**. Both are required
-together. The run then accepts the new API surface itself, so there is nothing
-to commit first.
+The workflow files one of three issues. Close each as soon as it is resolved:
+while a `release-stuck` issue is open, a new pre-commit failure files nothing.
 
 **Release is stuck — regeneration or verification is failing**
 (`release-stuck`). The schema changed and something after it failed, before
@@ -76,9 +70,6 @@ it:
 make fetch && make template-drift generate test consumer
 ```
 
-- If the job log lists entries that left the public surface and the change is
-  intended, it is a breaking release: dispatch with **bump: major** and
-  **acknowledge_breaking: true**, as above.
 - If it failed in **Decide next version** or **Set the release version**, the
   cause is not the code and the reproduction above passes. `already exists`
   or `already on npm` means a tag or version from an earlier run is in the
