@@ -124,8 +124,8 @@ consumer: verify ## Compile the README examples against the tarball with the old
 	done
 	@rm -rf $(SCRATCH)
 
-# Accept the current surface as the new baseline. Run after a deliberate
-# breaking change, alongside the major version bump.
+# Accept the current surface as the new baseline. The release records it
+# itself, removals included, when it cuts a major.
 surface: verify ## Rewrite api-surface.txt from the current build
 	node scripts/api-surface.mjs write dist/esm/index.d.ts api-surface.txt
 
@@ -162,7 +162,7 @@ template-drift: $(GENERATOR) ## Fail if the generator's templates moved under us
 	rm -rf $(SCRATCH); \
 	test -z "$$drifted"
 
-# The schema gate that stops an unattended release, runnable by hand.
+# The schema gate that makes a release a major, runnable by hand.
 oasdiff: $(OASDIFF) ## Diff the live schema against the committed one, as the release does
 	curl -sfSL $(SCHEMA_URL) -o /tmp/openapi.json.new
 	@$(MAKE) --no-print-directory check-schema FILE=/tmp/openapi.json.new
