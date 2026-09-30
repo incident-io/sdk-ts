@@ -103,6 +103,7 @@ export const AuditLogTargetV2TypeEnum = {
     TelemetryDataSource: 'telemetry_data_source',
     TwilioConnection: 'twilio_connection',
     User: 'user',
+    UserApiKey: 'user_api_key',
     Workflow: 'workflow',
     ActivityLog: 'activity_log',
     TimelineItem: 'timeline_item',

@@ -513,6 +513,8 @@ src/models/AuditLogsTimelineItemDeletedV1.ts
 src/models/AuditLogsTwilioConnectionCreatedV1.ts
 src/models/AuditLogsTwilioConnectionDeletedV1.ts
 src/models/AuditLogsTwilioConnectionUpdatedV1.ts
+src/models/AuditLogsUserAPIKeyCreatedV1.ts
+src/models/AuditLogsUserAPIKeyDeletedV1.ts
 src/models/AuditLogsUserCreatedV1.ts
 src/models/AuditLogsUserDeactivatedV1.ts
 src/models/AuditLogsUserLoggedInV1.ts

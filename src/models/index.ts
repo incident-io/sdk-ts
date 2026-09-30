@@ -452,6 +452,8 @@ export * from './AuditLogsTimelineItemDeletedV1.js';
 export * from './AuditLogsTwilioConnectionCreatedV1.js';
 export * from './AuditLogsTwilioConnectionDeletedV1.js';
 export * from './AuditLogsTwilioConnectionUpdatedV1.js';
+export * from './AuditLogsUserAPIKeyCreatedV1.js';
+export * from './AuditLogsUserAPIKeyDeletedV1.js';
 export * from './AuditLogsUserCreatedV1.js';
 export * from './AuditLogsUserDeactivatedV1.js';
 export * from './AuditLogsUserLoggedInV1.js';

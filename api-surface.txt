@@ -4142,6 +4142,7 @@ const AuditLogTargetV2TypeEnum.TelemetryDataSource = "telemetry_data_source"
 const AuditLogTargetV2TypeEnum.TimelineItem = "timeline_item"
 const AuditLogTargetV2TypeEnum.TwilioConnection = "twilio_connection"
 const AuditLogTargetV2TypeEnum.User = "user"
+const AuditLogTargetV2TypeEnum.UserApiKey = "user_api_key"
 const AuditLogTargetV2TypeEnum.Workflow = "workflow"
 const BASE_PATH
 const COLLECTION_FORMATS
@@ -12347,6 +12348,30 @@ function AuditLogsTwilioConnectionUpdatedV1ToJSONTyped #0
 function AuditLogsTwilioConnectionUpdatedV1ToJSONTyped #0?
 function AuditLogsTwilioConnectionUpdatedV1ToJSONTyped #1
 function AuditLogsTwilioConnectionUpdatedV1ToJSONTyped #1?
+function AuditLogsUserAPIKeyCreatedV1FromJSON
+function AuditLogsUserAPIKeyCreatedV1FromJSON #0
+function AuditLogsUserAPIKeyCreatedV1FromJSONTyped
+function AuditLogsUserAPIKeyCreatedV1FromJSONTyped #0
+function AuditLogsUserAPIKeyCreatedV1FromJSONTyped #1
+function AuditLogsUserAPIKeyCreatedV1ToJSON
+function AuditLogsUserAPIKeyCreatedV1ToJSON #0
+function AuditLogsUserAPIKeyCreatedV1ToJSONTyped
+function AuditLogsUserAPIKeyCreatedV1ToJSONTyped #0
+function AuditLogsUserAPIKeyCreatedV1ToJSONTyped #0?
+function AuditLogsUserAPIKeyCreatedV1ToJSONTyped #1
+function AuditLogsUserAPIKeyCreatedV1ToJSONTyped #1?
+function AuditLogsUserAPIKeyDeletedV1FromJSON
+function AuditLogsUserAPIKeyDeletedV1FromJSON #0
+function AuditLogsUserAPIKeyDeletedV1FromJSONTyped
+function AuditLogsUserAPIKeyDeletedV1FromJSONTyped #0
+function AuditLogsUserAPIKeyDeletedV1FromJSONTyped #1
+function AuditLogsUserAPIKeyDeletedV1ToJSON
+function AuditLogsUserAPIKeyDeletedV1ToJSON #0
+function AuditLogsUserAPIKeyDeletedV1ToJSONTyped
+function AuditLogsUserAPIKeyDeletedV1ToJSONTyped #0
+function AuditLogsUserAPIKeyDeletedV1ToJSONTyped #0?
+function AuditLogsUserAPIKeyDeletedV1ToJSONTyped #1
+function AuditLogsUserAPIKeyDeletedV1ToJSONTyped #1?
 function AuditLogsUserCreatedV1FromJSON
 function AuditLogsUserCreatedV1FromJSON #0
 function AuditLogsUserCreatedV1FromJSONTyped
@@ -21850,6 +21875,10 @@ function instanceOfAuditLogsTwilioConnectionDeletedV1
 function instanceOfAuditLogsTwilioConnectionDeletedV1 #0
 function instanceOfAuditLogsTwilioConnectionUpdatedV1
 function instanceOfAuditLogsTwilioConnectionUpdatedV1 #0
+function instanceOfAuditLogsUserAPIKeyCreatedV1
+function instanceOfAuditLogsUserAPIKeyCreatedV1 #0
+function instanceOfAuditLogsUserAPIKeyDeletedV1
+function instanceOfAuditLogsUserAPIKeyDeletedV1 #0
 function instanceOfAuditLogsUserCreatedV1
 function instanceOfAuditLogsUserCreatedV1 #0
 function instanceOfAuditLogsUserDeactivatedV1
@@ -26084,6 +26113,20 @@ interface AuditLogsTwilioConnectionUpdatedV1.metadata
 interface AuditLogsTwilioConnectionUpdatedV1.occurred_at
 interface AuditLogsTwilioConnectionUpdatedV1.targets
 interface AuditLogsTwilioConnectionUpdatedV1.version
+interface AuditLogsUserAPIKeyCreatedV1
+interface AuditLogsUserAPIKeyCreatedV1.action
+interface AuditLogsUserAPIKeyCreatedV1.actor
+interface AuditLogsUserAPIKeyCreatedV1.context
+interface AuditLogsUserAPIKeyCreatedV1.occurred_at
+interface AuditLogsUserAPIKeyCreatedV1.targets
+interface AuditLogsUserAPIKeyCreatedV1.version
+interface AuditLogsUserAPIKeyDeletedV1
+interface AuditLogsUserAPIKeyDeletedV1.action
+interface AuditLogsUserAPIKeyDeletedV1.actor
+interface AuditLogsUserAPIKeyDeletedV1.context
+interface AuditLogsUserAPIKeyDeletedV1.occurred_at
+interface AuditLogsUserAPIKeyDeletedV1.targets
+interface AuditLogsUserAPIKeyDeletedV1.version
 interface AuditLogsUserCreatedV1
 interface AuditLogsUserCreatedV1.action
 interface AuditLogsUserCreatedV1.actor
