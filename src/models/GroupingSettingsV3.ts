@@ -28,6 +28,10 @@ import {
  */
 export interface GroupingSettingsV3 {
     /**
+     * Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are grouped by key alone unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.
+     */
+    ai_enabled?: boolean;
+    /**
      * Whether grouping is enabled
      */
     enabled: boolean;
@@ -74,6 +78,7 @@ export function GroupingSettingsV3FromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'ai_enabled': json['ai_enabled'] == null ? undefined : json['ai_enabled'],
         'enabled': json['enabled'],
         'grouping_keys': json['grouping_keys'] == null ? undefined : ((json['grouping_keys'] as Array<any>).map(GroupingKeyV3FromJSON)),
         'window_seconds': json['window_seconds'] == null ? undefined : json['window_seconds'],
@@ -92,6 +97,7 @@ export function GroupingSettingsV3ToJSONTyped(value?: GroupingSettingsV3 | null,
 
     return {
         
+        'ai_enabled': value['ai_enabled'],
         'enabled': value['enabled'],
         'grouping_keys': value['grouping_keys'] == null ? undefined : ((value['grouping_keys'] as Array<any>).map(GroupingKeyV3ToJSON)),
         'window_seconds': value['window_seconds'],

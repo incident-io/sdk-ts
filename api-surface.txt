@@ -27797,6 +27797,7 @@ interface GroupingKeyV2.reference
 interface GroupingKeyV3
 interface GroupingKeyV3.reference
 interface GroupingSettingsV3
+interface GroupingSettingsV3.ai_enabled?
 interface GroupingSettingsV3.enabled
 interface GroupingSettingsV3.grouping_keys?
 interface GroupingSettingsV3.window_seconds?
