@@ -997,6 +997,8 @@ src/models/PolicyFindingPostMortemV2.ts
 src/models/PolicyFindingReadinessRuleV2.ts
 src/models/PolicyFindingScheduleImpactedUserV2.ts
 src/models/PolicyFindingScheduleV2.ts
+src/models/PolicyFindingShiftConflictShiftV2.ts
+src/models/PolicyFindingShiftConflictV2.ts
 src/models/PolicyFindingV2.ts
 src/models/PolicyFindingVacationConflictV2.ts
 src/models/PolicyFindingsDismissPayloadV2.ts

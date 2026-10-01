@@ -1,6 +1,6 @@
 {
   "name": "@incident-io/sdk",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "TypeScript SDK for the incident.io API",
   "license": "MIT",
   "author": "incident.io <support@incident.io>",

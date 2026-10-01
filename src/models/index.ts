@@ -935,6 +935,8 @@ export * from './PolicyFindingPostMortemV2.js';
 export * from './PolicyFindingReadinessRuleV2.js';
 export * from './PolicyFindingScheduleImpactedUserV2.js';
 export * from './PolicyFindingScheduleV2.js';
+export * from './PolicyFindingShiftConflictShiftV2.js';
+export * from './PolicyFindingShiftConflictV2.js';
 export * from './PolicyFindingV2.js';
 export * from './PolicyFindingVacationConflictV2.js';
 export * from './PolicyFindingsDismissPayloadV2.js';

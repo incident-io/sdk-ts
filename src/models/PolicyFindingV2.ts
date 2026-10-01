@@ -48,6 +48,13 @@ import {
     PolicyFindingOnCallReadinessV2ToJSON,
     PolicyFindingOnCallReadinessV2ToJSONTyped,
 } from './PolicyFindingOnCallReadinessV2.js';
+import type { PolicyFindingShiftConflictV2 } from './PolicyFindingShiftConflictV2.js';
+import {
+    PolicyFindingShiftConflictV2FromJSON,
+    PolicyFindingShiftConflictV2FromJSONTyped,
+    PolicyFindingShiftConflictV2ToJSON,
+    PolicyFindingShiftConflictV2ToJSONTyped,
+} from './PolicyFindingShiftConflictV2.js';
 import type { PolicyFindingScheduleV2 } from './PolicyFindingScheduleV2.js';
 import {
     PolicyFindingScheduleV2FromJSON,
@@ -133,6 +140,10 @@ export interface PolicyFindingV2 {
      */
     schedule?: PolicyFindingScheduleV2;
     /**
+     * 
+     */
+    shift_conflict?: PolicyFindingShiftConflictV2;
+    /**
      * Where this finding is in its lifecycle
      */
     state: PolicyFindingV2StateEnum;
@@ -213,6 +224,7 @@ export function PolicyFindingV2FromJSONTyped(json: any, ignoreDiscriminator: boo
         'post_mortem': json['post_mortem'] == null ? undefined : PolicyFindingPostMortemV2FromJSON(json['post_mortem']),
         'responsible_users': ((json['responsible_users'] as Array<any>).map(UserV2FromJSON)),
         'schedule': json['schedule'] == null ? undefined : PolicyFindingScheduleV2FromJSON(json['schedule']),
+        'shift_conflict': json['shift_conflict'] == null ? undefined : PolicyFindingShiftConflictV2FromJSON(json['shift_conflict']),
         'state': json['state'],
         'updated_at': (json['updated_at'] == null ? json['updated_at'] : parseDateTime(json['updated_at'])),
         'vacation_conflict': json['vacation_conflict'] == null ? undefined : PolicyFindingVacationConflictV2FromJSON(json['vacation_conflict']),
@@ -244,6 +256,7 @@ export function PolicyFindingV2ToJSONTyped(value?: PolicyFindingV2 | null, ignor
         'post_mortem': PolicyFindingPostMortemV2ToJSON(value['post_mortem']),
         'responsible_users': ((value['responsible_users'] as Array<any>).map(UserV2ToJSON)),
         'schedule': PolicyFindingScheduleV2ToJSON(value['schedule']),
+        'shift_conflict': PolicyFindingShiftConflictV2ToJSON(value['shift_conflict']),
         'state': value['state'],
         'updated_at': value['updated_at'] == null ? value['updated_at'] : serializeDateTime(value['updated_at']),
         'vacation_conflict': PolicyFindingVacationConflictV2ToJSON(value['vacation_conflict']),
