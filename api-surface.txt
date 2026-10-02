@@ -15959,6 +15959,18 @@ function IncidentAttachmentsListResultV1ToJSONTyped #0
 function IncidentAttachmentsListResultV1ToJSONTyped #0?
 function IncidentAttachmentsListResultV1ToJSONTyped #1
 function IncidentAttachmentsListResultV1ToJSONTyped #1?
+function IncidentDebriefV2FromJSON
+function IncidentDebriefV2FromJSON #0
+function IncidentDebriefV2FromJSONTyped
+function IncidentDebriefV2FromJSONTyped #0
+function IncidentDebriefV2FromJSONTyped #1
+function IncidentDebriefV2ToJSON
+function IncidentDebriefV2ToJSON #0
+function IncidentDebriefV2ToJSONTyped
+function IncidentDebriefV2ToJSONTyped #0
+function IncidentDebriefV2ToJSONTyped #0?
+function IncidentDebriefV2ToJSONTyped #1
+function IncidentDebriefV2ToJSONTyped #1?
 function IncidentDurationMetricV2FromJSON
 function IncidentDurationMetricV2FromJSON #0
 function IncidentDurationMetricV2FromJSONTyped
@@ -22592,6 +22604,8 @@ function instanceOfIncidentAttachmentsCreateResultV1
 function instanceOfIncidentAttachmentsCreateResultV1 #0
 function instanceOfIncidentAttachmentsListResultV1
 function instanceOfIncidentAttachmentsListResultV1 #0
+function instanceOfIncidentDebriefV2
+function instanceOfIncidentDebriefV2 #0
 function instanceOfIncidentDurationMetricV2
 function instanceOfIncidentDurationMetricV2 #0
 function instanceOfIncidentDurationMetricWithValueV2
@@ -27909,6 +27923,10 @@ interface IncidentAttachmentsV1ListRequest
 interface IncidentAttachmentsV1ListRequest.external_id?
 interface IncidentAttachmentsV1ListRequest.incident_id?
 interface IncidentAttachmentsV1ListRequest.resource_type?
+interface IncidentDebriefV2
+interface IncidentDebriefV2.end_at
+interface IncidentDebriefV2.id
+interface IncidentDebriefV2.start_at
 interface IncidentDurationMetricV2
 interface IncidentDurationMetricV2.id
 interface IncidentDurationMetricV2.name
@@ -28365,6 +28383,7 @@ interface IncidentV2.call_url?
 interface IncidentV2.created_at
 interface IncidentV2.creator
 interface IncidentV2.custom_field_entries
+interface IncidentV2.debriefs?
 interface IncidentV2.duration_metrics?
 interface IncidentV2.external_issue_reference?
 interface IncidentV2.has_debrief?
@@ -29968,6 +29987,7 @@ interface WebhookIncidentV2.call_url?
 interface WebhookIncidentV2.created_at
 interface WebhookIncidentV2.creator
 interface WebhookIncidentV2.custom_field_entries
+interface WebhookIncidentV2.debriefs?
 interface WebhookIncidentV2.duration_metrics?
 interface WebhookIncidentV2.external_issue_reference?
 interface WebhookIncidentV2.has_debrief?

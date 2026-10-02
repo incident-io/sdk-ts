@@ -813,6 +813,7 @@ src/models/IncidentAttachmentsCreatePayloadV1.ts
 src/models/IncidentAttachmentsCreatePayloadV1Resource.ts
 src/models/IncidentAttachmentsCreateResultV1.ts
 src/models/IncidentAttachmentsListResultV1.ts
+src/models/IncidentDebriefV2.ts
 src/models/IncidentDurationMetricV2.ts
 src/models/IncidentDurationMetricWithValueV2.ts
 src/models/IncidentEditPayloadV2.ts

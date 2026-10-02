@@ -751,6 +751,7 @@ export * from './IncidentAttachmentsCreatePayloadV1.js';
 export * from './IncidentAttachmentsCreatePayloadV1Resource.js';
 export * from './IncidentAttachmentsCreateResultV1.js';
 export * from './IncidentAttachmentsListResultV1.js';
+export * from './IncidentDebriefV2.js';
 export * from './IncidentDurationMetricV2.js';
 export * from './IncidentDurationMetricWithValueV2.js';
 export * from './IncidentEditPayloadV2.js';

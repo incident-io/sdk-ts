@@ -34,6 +34,13 @@ import {
     CustomFieldEntryV2ToJSON,
     CustomFieldEntryV2ToJSONTyped,
 } from './CustomFieldEntryV2.js';
+import type { IncidentDebriefV2 } from './IncidentDebriefV2.js';
+import {
+    IncidentDebriefV2FromJSON,
+    IncidentDebriefV2FromJSONTyped,
+    IncidentDebriefV2ToJSON,
+    IncidentDebriefV2ToJSONTyped,
+} from './IncidentDebriefV2.js';
 import type { IncidentStatusV2 } from './IncidentStatusV2.js';
 import {
     IncidentStatusV2FromJSON,
@@ -99,6 +106,10 @@ export interface IncidentV2 {
      * Custom field entries for this incident
      */
     custom_field_entries: Array<CustomFieldEntryV2>;
+    /**
+     * Debriefs scheduled for this incident, ordered by start time. Excludes cancelled calendar events.
+     */
+    debriefs?: Array<IncidentDebriefV2>;
     /**
      * Incident duration metrics and their measurements for this incident
      */
@@ -275,6 +286,7 @@ export function IncidentV2FromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'created_at': (json['created_at'] == null ? json['created_at'] : parseDateTime(json['created_at'])),
         'creator': ActorV2FromJSON(json['creator']),
         'custom_field_entries': ((json['custom_field_entries'] as Array<any>).map(CustomFieldEntryV2FromJSON)),
+        'debriefs': json['debriefs'] == null ? undefined : ((json['debriefs'] as Array<any>).map(IncidentDebriefV2FromJSON)),
         'duration_metrics': json['duration_metrics'] == null ? undefined : ((json['duration_metrics'] as Array<any>).map(IncidentDurationMetricWithValueV2FromJSON)),
         'external_issue_reference': json['external_issue_reference'] == null ? undefined : ExternalIssueReferenceV2FromJSON(json['external_issue_reference']),
         'has_debrief': json['has_debrief'] == null ? undefined : json['has_debrief'],
@@ -322,6 +334,7 @@ export function IncidentV2ToJSONTyped(value?: IncidentV2 | null, ignoreDiscrimin
         'created_at': value['created_at'] == null ? value['created_at'] : serializeDateTime(value['created_at']),
         'creator': ActorV2ToJSON(value['creator']),
         'custom_field_entries': ((value['custom_field_entries'] as Array<any>).map(CustomFieldEntryV2ToJSON)),
+        'debriefs': value['debriefs'] == null ? undefined : ((value['debriefs'] as Array<any>).map(IncidentDebriefV2ToJSON)),
         'duration_metrics': value['duration_metrics'] == null ? undefined : ((value['duration_metrics'] as Array<any>).map(IncidentDurationMetricWithValueV2ToJSON)),
         'external_issue_reference': ExternalIssueReferenceV2ToJSON(value['external_issue_reference']),
         'has_debrief': value['has_debrief'],
