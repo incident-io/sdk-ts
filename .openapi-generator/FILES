@@ -376,6 +376,7 @@ src/models/AuditLogsIncidentDurationMetricUpdatedV1.ts
 src/models/AuditLogsIncidentRoleCreatedV1.ts
 src/models/AuditLogsIncidentRoleDeletedV1.ts
 src/models/AuditLogsIncidentRoleUpdatedV1.ts
+src/models/AuditLogsIncidentScrubbedV1.ts
 src/models/AuditLogsIncidentStatusCreatedV1.ts
 src/models/AuditLogsIncidentStatusDeletedV1.ts
 src/models/AuditLogsIncidentStatusUpdatedV1.ts

@@ -314,6 +314,7 @@ export * from './AuditLogsIncidentDurationMetricUpdatedV1.js';
 export * from './AuditLogsIncidentRoleCreatedV1.js';
 export * from './AuditLogsIncidentRoleDeletedV1.js';
 export * from './AuditLogsIncidentRoleUpdatedV1.js';
+export * from './AuditLogsIncidentScrubbedV1.js';
 export * from './AuditLogsIncidentStatusCreatedV1.js';
 export * from './AuditLogsIncidentStatusDeletedV1.js';
 export * from './AuditLogsIncidentStatusUpdatedV1.js';
