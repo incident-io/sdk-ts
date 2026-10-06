@@ -54,6 +54,7 @@ export * from './ScheduleSyncTargetsV2Api.js';
 export * from './SchedulesV2Api.js';
 export * from './SecretsV2Api.js';
 export * from './SeveritiesV1Api.js';
+export * from './StatusPageComponentsV2Api.js';
 export * from './StatusPagesV1Api.js';
 export * from './StatusPagesV2Api.js';
 export * from './TeamsV3Api.js';

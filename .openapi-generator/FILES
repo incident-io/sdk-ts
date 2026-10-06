@@ -52,6 +52,7 @@ src/apis/ScheduleSyncTargetsV2Api.ts
 src/apis/SchedulesV2Api.ts
 src/apis/SecretsV2Api.ts
 src/apis/SeveritiesV1Api.ts
+src/apis/StatusPageComponentsV2Api.ts
 src/apis/StatusPagesV1Api.ts
 src/apis/StatusPagesV2Api.ts
 src/apis/TeamsV3Api.ts
@@ -1110,6 +1111,13 @@ src/models/SeveritiesUpdateResultV1.ts
 src/models/SeverityV1.ts
 src/models/SeverityV2.ts
 src/models/StatusPageComponentAvailabilityV2.ts
+src/models/StatusPageComponentV2.ts
+src/models/StatusPageComponentsCreatePayloadV2.ts
+src/models/StatusPageComponentsCreateResultV2.ts
+src/models/StatusPageComponentsListResultV2.ts
+src/models/StatusPageComponentsShowResultV2.ts
+src/models/StatusPageComponentsUpdatePayloadV2.ts
+src/models/StatusPageComponentsUpdateResultV2.ts
 src/models/StatusPageIncidentAffectedComponentV2.ts
 src/models/StatusPageIncidentComponentImpactV2.ts
 src/models/StatusPageIncidentUpdateV2.ts
