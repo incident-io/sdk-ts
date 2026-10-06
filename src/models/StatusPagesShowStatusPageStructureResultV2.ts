@@ -20,6 +20,13 @@ import {
     StatusPageStructureV2ToJSON,
     StatusPageStructureV2ToJSONTyped,
 } from './StatusPageStructureV2.js';
+import type { ManagementMetaV2 } from './ManagementMetaV2.js';
+import {
+    ManagementMetaV2FromJSON,
+    ManagementMetaV2FromJSONTyped,
+    ManagementMetaV2ToJSON,
+    ManagementMetaV2ToJSONTyped,
+} from './ManagementMetaV2.js';
 
 /**
  * 
@@ -35,6 +42,10 @@ export interface StatusPagesShowStatusPageStructureResultV2 {
      * How the page shows uptime against its components
      */
     display_uptime_mode: StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum;
+    /**
+     * 
+     */
+    management_meta: ManagementMetaV2;
 }
 
 
@@ -55,6 +66,7 @@ export type StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum = ty
 export function instanceOfStatusPagesShowStatusPageStructureResultV2(value: object): value is StatusPagesShowStatusPageStructureResultV2 {
     if (!('current_structure' in value) || value['current_structure'] === undefined) return false;
     if (!('display_uptime_mode' in value) || value['display_uptime_mode'] === undefined) return false;
+    if (!('management_meta' in value) || value['management_meta'] === undefined) return false;
     return true;
 }
 
@@ -70,6 +82,7 @@ export function StatusPagesShowStatusPageStructureResultV2FromJSONTyped(json: an
         
         'current_structure': StatusPageStructureV2FromJSON(json['current_structure']),
         'display_uptime_mode': json['display_uptime_mode'],
+        'management_meta': ManagementMetaV2FromJSON(json['management_meta']),
     };
 }
 
@@ -86,6 +99,7 @@ export function StatusPagesShowStatusPageStructureResultV2ToJSONTyped(value?: St
         
         'current_structure': StatusPageStructureV2ToJSON(value['current_structure']),
         'display_uptime_mode': value['display_uptime_mode'],
+        'management_meta': ManagementMetaV2ToJSON(value['management_meta']),
     };
 }
 
