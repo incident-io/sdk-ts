@@ -32,6 +32,18 @@ export interface StatusPageStructureGroupV2 {
      */
     components: Array<StatusPageStructureComponentV2>;
     /**
+     * A description shown under the group's name
+     */
+    description?: string;
+    /**
+     * Whether the page shows uptime aggregated across the group's components
+     */
+    display_aggregated_uptime: boolean;
+    /**
+     * Whether the group is hidden from the page
+     */
+    hidden: boolean;
+    /**
      * Unique ID of this component group
      */
     id: string;
@@ -46,6 +58,8 @@ export interface StatusPageStructureGroupV2 {
  */
 export function instanceOfStatusPageStructureGroupV2(value: object): value is StatusPageStructureGroupV2 {
     if (!('components' in value) || value['components'] === undefined) return false;
+    if (!('display_aggregated_uptime' in value) || value['display_aggregated_uptime'] === undefined) return false;
+    if (!('hidden' in value) || value['hidden'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     return true;
@@ -62,6 +76,9 @@ export function StatusPageStructureGroupV2FromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'components': ((json['components'] as Array<any>).map(StatusPageStructureComponentV2FromJSON)),
+        'description': json['description'] == null ? undefined : json['description'],
+        'display_aggregated_uptime': json['display_aggregated_uptime'],
+        'hidden': json['hidden'],
         'id': json['id'],
         'name': json['name'],
     };
@@ -79,6 +96,9 @@ export function StatusPageStructureGroupV2ToJSONTyped(value?: StatusPageStructur
     return {
         
         'components': ((value['components'] as Array<any>).map(StatusPageStructureComponentV2ToJSON)),
+        'description': value['description'],
+        'display_aggregated_uptime': value['display_aggregated_uptime'],
+        'hidden': value['hidden'],
         'id': value['id'],
         'name': value['name'],
     };

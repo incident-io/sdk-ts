@@ -24,6 +24,14 @@ export interface StatusPageStructureComponentV2 {
      */
     component_id: string;
     /**
+     * Whether the page shows this component's uptime
+     */
+    display_uptime: boolean;
+    /**
+     * Whether the component is hidden from the page
+     */
+    hidden: boolean;
+    /**
      * The name of this component
      */
     name: string;
@@ -34,6 +42,8 @@ export interface StatusPageStructureComponentV2 {
  */
 export function instanceOfStatusPageStructureComponentV2(value: object): value is StatusPageStructureComponentV2 {
     if (!('component_id' in value) || value['component_id'] === undefined) return false;
+    if (!('display_uptime' in value) || value['display_uptime'] === undefined) return false;
+    if (!('hidden' in value) || value['hidden'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
@@ -49,6 +59,8 @@ export function StatusPageStructureComponentV2FromJSONTyped(json: any, ignoreDis
     return {
         
         'component_id': json['component_id'],
+        'display_uptime': json['display_uptime'],
+        'hidden': json['hidden'],
         'name': json['name'],
     };
 }
@@ -65,6 +77,8 @@ export function StatusPageStructureComponentV2ToJSONTyped(value?: StatusPageStru
     return {
         
         'component_id': value['component_id'],
+        'display_uptime': value['display_uptime'],
+        'hidden': value['hidden'],
         'name': value['name'],
     };
 }

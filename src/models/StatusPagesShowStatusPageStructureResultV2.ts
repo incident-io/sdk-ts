@@ -31,13 +31,30 @@ export interface StatusPagesShowStatusPageStructureResultV2 {
      * 
      */
     current_structure: StatusPageStructureV2;
+    /**
+     * How the page shows uptime against its components
+     */
+    display_uptime_mode: StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum = {
+    ChartAndPercentage: 'chart_and_percentage',
+    ChartOnly: 'chart_only',
+    Nothing: 'nothing',
+} as const;
+export type StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum = typeof StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum[keyof typeof StatusPagesShowStatusPageStructureResultV2DisplayUptimeModeEnum];
+
 
 /**
  * Check if a given object implements the StatusPagesShowStatusPageStructureResultV2 interface.
  */
 export function instanceOfStatusPagesShowStatusPageStructureResultV2(value: object): value is StatusPagesShowStatusPageStructureResultV2 {
     if (!('current_structure' in value) || value['current_structure'] === undefined) return false;
+    if (!('display_uptime_mode' in value) || value['display_uptime_mode'] === undefined) return false;
     return true;
 }
 
@@ -52,6 +69,7 @@ export function StatusPagesShowStatusPageStructureResultV2FromJSONTyped(json: an
     return {
         
         'current_structure': StatusPageStructureV2FromJSON(json['current_structure']),
+        'display_uptime_mode': json['display_uptime_mode'],
     };
 }
 
@@ -67,6 +85,7 @@ export function StatusPagesShowStatusPageStructureResultV2ToJSONTyped(value?: St
     return {
         
         'current_structure': StatusPageStructureV2ToJSON(value['current_structure']),
+        'display_uptime_mode': value['display_uptime_mode'],
     };
 }
 

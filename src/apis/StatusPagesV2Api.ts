@@ -1178,7 +1178,7 @@ export class StatusPagesV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Show the structure of a status page.  This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
+     * Show the structure of a status page.  This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page, with their display settings, and how the page shows uptime. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
      * ShowStatusPageStructure Status Pages V2
      */
     async statusPagesV2ShowStatusPageStructureRaw(requestParameters: StatusPagesV2ShowStatusPageStructureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StatusPagesShowStatusPageStructureResultV2>> {
@@ -1189,7 +1189,7 @@ export class StatusPagesV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Show the structure of a status page.  This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
+     * Show the structure of a status page.  This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page, with their display settings, and how the page shows uptime. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
      * ShowStatusPageStructure Status Pages V2
      */
     async statusPagesV2ShowStatusPageStructure(requestParameters: StatusPagesV2ShowStatusPageStructureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPagesShowStatusPageStructureResultV2> {
