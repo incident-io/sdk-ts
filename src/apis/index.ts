@@ -29,6 +29,7 @@ export * from './HeartbeatV2Api.js';
 export * from './IPAllowlistsV1Api.js';
 export * from './IncidentActivityLogEntriesV2Api.js';
 export * from './IncidentAttachmentsV1Api.js';
+export * from './IncidentFormsV3Api.js';
 export * from './IncidentMembershipsV1Api.js';
 export * from './IncidentParticipantWorkloadsV2Api.js';
 export * from './IncidentParticipantsV2Api.js';

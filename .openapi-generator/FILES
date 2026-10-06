@@ -27,6 +27,7 @@ src/apis/HeartbeatV2Api.ts
 src/apis/IPAllowlistsV1Api.ts
 src/apis/IncidentActivityLogEntriesV2Api.ts
 src/apis/IncidentAttachmentsV1Api.ts
+src/apis/IncidentFormsV3Api.ts
 src/apis/IncidentMembershipsV1Api.ts
 src/apis/IncidentParticipantWorkloadsV2Api.ts
 src/apis/IncidentParticipantsV2Api.ts
@@ -819,6 +820,16 @@ src/models/IncidentDebriefV2.ts
 src/models/IncidentDurationMetricV2.ts
 src/models/IncidentDurationMetricWithValueV2.ts
 src/models/IncidentEditPayloadV2.ts
+src/models/IncidentFormLifecycleElementConfigV3.ts
+src/models/IncidentFormLifecycleElementPayloadV3.ts
+src/models/IncidentFormLifecycleElementV3.ts
+src/models/IncidentFormV3.ts
+src/models/IncidentFormsCreatePayloadV3.ts
+src/models/IncidentFormsCreateResultV3.ts
+src/models/IncidentFormsListResultV3.ts
+src/models/IncidentFormsShowResultV3.ts
+src/models/IncidentFormsUpdatePayloadV3.ts
+src/models/IncidentFormsUpdateResultV3.ts
 src/models/IncidentMembershipV1.ts
 src/models/IncidentMembershipsCreatePayloadV1.ts
 src/models/IncidentMembershipsCreateResultV1.ts
