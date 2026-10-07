@@ -70,6 +70,10 @@ import {
  */
 export interface WorkflowV2 {
     /**
+     * Whether the workflow is configured to run immediately or ask for confirmation in the incident channel
+     */
+    auto_run_mode: WorkflowV2AutoRunModeEnum;
+    /**
      * Conditions that apply to the workflow trigger
      */
     condition_groups: Array<ConditionGroupV2>;
@@ -90,7 +94,7 @@ export interface WorkflowV2 {
      */
     folder?: string;
     /**
-     * User-configured form fields available in the workflow scope (manual triggers only)
+     * User-configured form fields available in the workflow scope. Allowed on manually-triggered workflows, and on workflows with an `auto_run_mode` of `confirm_before_running`.
      */
     form_fields?: Array<WorkflowFormFieldV2>;
     /**
@@ -159,6 +163,15 @@ export interface WorkflowV2 {
 /**
  * @export
  */
+export const WorkflowV2AutoRunModeEnum = {
+    RunAutomatically: 'run_automatically',
+    ConfirmBeforeRunning: 'confirm_before_running',
+} as const;
+export type WorkflowV2AutoRunModeEnum = typeof WorkflowV2AutoRunModeEnum[keyof typeof WorkflowV2AutoRunModeEnum];
+
+/**
+ * @export
+ */
 export const WorkflowV2PrivateIncidentScopeEnum = {
     All: 'all',
     OwningTeams: 'owning_teams',
@@ -201,6 +214,7 @@ export type WorkflowV2StateEnum = typeof WorkflowV2StateEnum[keyof typeof Workfl
  * Check if a given object implements the WorkflowV2 interface.
  */
 export function instanceOfWorkflowV2(value: object): value is WorkflowV2 {
+    if (!('auto_run_mode' in value) || value['auto_run_mode'] === undefined) return false;
     if (!('condition_groups' in value) || value['condition_groups'] === undefined) return false;
     if (!('continue_on_step_error' in value) || value['continue_on_step_error'] === undefined) return false;
     if (!('expressions' in value) || value['expressions'] === undefined) return false;
@@ -229,6 +243,7 @@ export function WorkflowV2FromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'auto_run_mode': json['auto_run_mode'],
         'condition_groups': ((json['condition_groups'] as Array<any>).map(ConditionGroupV2FromJSON)),
         'continue_on_step_error': json['continue_on_step_error'],
         'delay': json['delay'] == null ? undefined : WorkflowDelayV2FromJSON(json['delay']),
@@ -264,6 +279,7 @@ export function WorkflowV2ToJSONTyped(value?: WorkflowV2 | null, ignoreDiscrimin
 
     return {
         
+        'auto_run_mode': value['auto_run_mode'],
         'condition_groups': ((value['condition_groups'] as Array<any>).map(ConditionGroupV2ToJSON)),
         'continue_on_step_error': value['continue_on_step_error'],
         'delay': WorkflowDelayV2ToJSON(value['delay']),

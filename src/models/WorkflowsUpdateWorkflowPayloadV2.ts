@@ -60,6 +60,10 @@ export interface WorkflowsUpdateWorkflowPayloadV2 {
      */
     annotations?: { [key: string]: string; };
     /**
+     * Whether the workflow runs immediately, or asks for confirmation in the incident channel first. Defaults to `run_automatically` on create. If omitted on update, the workflow keeps its current mode.
+     */
+    auto_run_mode?: WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum;
+    /**
      * Conditions that apply to the workflow trigger
      */
     condition_groups: Array<ConditionGroupPayloadV2>;
@@ -80,7 +84,7 @@ export interface WorkflowsUpdateWorkflowPayloadV2 {
      */
     folder?: string;
     /**
-     * User-configured form fields available in the workflow scope (manual triggers only)
+     * User-configured form fields available in the workflow scope. Allowed on manually-triggered workflows, and on workflows with an `auto_run_mode` of `confirm_before_running`.
      */
     form_fields?: Array<WorkflowFormFieldPayloadV2>;
     /**
@@ -133,6 +137,15 @@ export interface WorkflowsUpdateWorkflowPayloadV2 {
     steps: Array<StepConfigPayloadV2>;
 }
 
+
+/**
+ * @export
+ */
+export const WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum = {
+    RunAutomatically: 'run_automatically',
+    ConfirmBeforeRunning: 'confirm_before_running',
+} as const;
+export type WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum = typeof WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum[keyof typeof WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum];
 
 /**
  * @export
@@ -201,6 +214,7 @@ export function WorkflowsUpdateWorkflowPayloadV2FromJSONTyped(json: any, ignoreD
     return {
         
         'annotations': json['annotations'] == null ? undefined : json['annotations'],
+        'auto_run_mode': json['auto_run_mode'] == null ? undefined : json['auto_run_mode'],
         'condition_groups': ((json['condition_groups'] as Array<any>).map(ConditionGroupPayloadV2FromJSON)),
         'continue_on_step_error': json['continue_on_step_error'],
         'delay': json['delay'] == null ? undefined : WorkflowDelayV2FromJSON(json['delay']),
@@ -234,6 +248,7 @@ export function WorkflowsUpdateWorkflowPayloadV2ToJSONTyped(value?: WorkflowsUpd
     return {
         
         'annotations': value['annotations'],
+        'auto_run_mode': value['auto_run_mode'],
         'condition_groups': ((value['condition_groups'] as Array<any>).map(ConditionGroupPayloadV2ToJSON)),
         'continue_on_step_error': value['continue_on_step_error'],
         'delay': WorkflowDelayV2ToJSON(value['delay']),

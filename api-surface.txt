@@ -7064,6 +7064,9 @@ const WeekdayIntervalV2WeekdayEnum.Sunday = "sunday"
 const WeekdayIntervalV2WeekdayEnum.Thursday = "thursday"
 const WeekdayIntervalV2WeekdayEnum.Tuesday = "tuesday"
 const WeekdayIntervalV2WeekdayEnum.Wednesday = "wednesday"
+const WorkflowSlimV2AutoRunModeEnum
+const WorkflowSlimV2AutoRunModeEnum.ConfirmBeforeRunning = "confirm_before_running"
+const WorkflowSlimV2AutoRunModeEnum.RunAutomatically = "run_automatically"
 const WorkflowSlimV2PrivateIncidentScopeEnum
 const WorkflowSlimV2PrivateIncidentScopeEnum.All = "all"
 const WorkflowSlimV2PrivateIncidentScopeEnum.None = "none"
@@ -7080,6 +7083,9 @@ const WorkflowSlimV2StateEnum.Active = "active"
 const WorkflowSlimV2StateEnum.Disabled = "disabled"
 const WorkflowSlimV2StateEnum.Draft = "draft"
 const WorkflowSlimV2StateEnum.Error = "error"
+const WorkflowV2AutoRunModeEnum
+const WorkflowV2AutoRunModeEnum.ConfirmBeforeRunning = "confirm_before_running"
+const WorkflowV2AutoRunModeEnum.RunAutomatically = "run_automatically"
 const WorkflowV2PrivateIncidentScopeEnum
 const WorkflowV2PrivateIncidentScopeEnum.All = "all"
 const WorkflowV2PrivateIncidentScopeEnum.None = "none"
@@ -7096,6 +7102,9 @@ const WorkflowV2StateEnum.Active = "active"
 const WorkflowV2StateEnum.Disabled = "disabled"
 const WorkflowV2StateEnum.Draft = "draft"
 const WorkflowV2StateEnum.Error = "error"
+const WorkflowsCreateWorkflowPayloadV2AutoRunModeEnum
+const WorkflowsCreateWorkflowPayloadV2AutoRunModeEnum.ConfirmBeforeRunning = "confirm_before_running"
+const WorkflowsCreateWorkflowPayloadV2AutoRunModeEnum.RunAutomatically = "run_automatically"
 const WorkflowsCreateWorkflowPayloadV2PrivateIncidentScopeEnum
 const WorkflowsCreateWorkflowPayloadV2PrivateIncidentScopeEnum.All = "all"
 const WorkflowsCreateWorkflowPayloadV2PrivateIncidentScopeEnum.None = "none"
@@ -7112,6 +7121,9 @@ const WorkflowsCreateWorkflowPayloadV2StateEnum.Active = "active"
 const WorkflowsCreateWorkflowPayloadV2StateEnum.Disabled = "disabled"
 const WorkflowsCreateWorkflowPayloadV2StateEnum.Draft = "draft"
 const WorkflowsCreateWorkflowPayloadV2StateEnum.Error = "error"
+const WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum
+const WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum.ConfirmBeforeRunning = "confirm_before_running"
+const WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum.RunAutomatically = "run_automatically"
 const WorkflowsUpdateWorkflowPayloadV2PrivateIncidentScopeEnum
 const WorkflowsUpdateWorkflowPayloadV2PrivateIncidentScopeEnum.All = "all"
 const WorkflowsUpdateWorkflowPayloadV2PrivateIncidentScopeEnum.None = "none"
@@ -30743,6 +30755,7 @@ interface WorkflowRunsV2ListRequest.workflow_id?
 interface WorkflowRunsV2ShowRequest
 interface WorkflowRunsV2ShowRequest.id
 interface WorkflowSlimV2
+interface WorkflowSlimV2.auto_run_mode
 interface WorkflowSlimV2.condition_groups
 interface WorkflowSlimV2.continue_on_step_error
 interface WorkflowSlimV2.delay?
@@ -30764,6 +30777,7 @@ interface WorkflowSlimV2.steps
 interface WorkflowSlimV2.trigger
 interface WorkflowSlimV2.version
 interface WorkflowV2
+interface WorkflowV2.auto_run_mode
 interface WorkflowV2.condition_groups
 interface WorkflowV2.continue_on_step_error
 interface WorkflowV2.delay?
@@ -30787,6 +30801,7 @@ interface WorkflowV2.trigger
 interface WorkflowV2.version
 interface WorkflowsCreateWorkflowPayloadV2
 interface WorkflowsCreateWorkflowPayloadV2.annotations?
+interface WorkflowsCreateWorkflowPayloadV2.auto_run_mode?
 interface WorkflowsCreateWorkflowPayloadV2.condition_groups
 interface WorkflowsCreateWorkflowPayloadV2.continue_on_step_error
 interface WorkflowsCreateWorkflowPayloadV2.delay?
@@ -30815,6 +30830,7 @@ interface WorkflowsShowWorkflowResultV2.management_meta
 interface WorkflowsShowWorkflowResultV2.workflow
 interface WorkflowsUpdateWorkflowPayloadV2
 interface WorkflowsUpdateWorkflowPayloadV2.annotations?
+interface WorkflowsUpdateWorkflowPayloadV2.auto_run_mode?
 interface WorkflowsUpdateWorkflowPayloadV2.condition_groups
 interface WorkflowsUpdateWorkflowPayloadV2.continue_on_step_error
 interface WorkflowsUpdateWorkflowPayloadV2.delay?
@@ -31197,18 +31213,22 @@ type WebhooksScheduleShiftChangeV1ResponseBodyEventTypeEnum
 type WebhooksScheduleUpdatedV1ResponseBodyEventTypeEnum
 type WebhooksStatusPageIncidentUpdateSharedV1ResponseBodyEventTypeEnum
 type WeekdayIntervalV2WeekdayEnum
+type WorkflowSlimV2AutoRunModeEnum
 type WorkflowSlimV2PrivateIncidentScopeEnum
 type WorkflowSlimV2RunsOnIncidentModesEnum
 type WorkflowSlimV2RunsOnIncidentsEnum
 type WorkflowSlimV2StateEnum
+type WorkflowV2AutoRunModeEnum
 type WorkflowV2PrivateIncidentScopeEnum
 type WorkflowV2RunsOnIncidentModesEnum
 type WorkflowV2RunsOnIncidentsEnum
 type WorkflowV2StateEnum
+type WorkflowsCreateWorkflowPayloadV2AutoRunModeEnum
 type WorkflowsCreateWorkflowPayloadV2PrivateIncidentScopeEnum
 type WorkflowsCreateWorkflowPayloadV2RunsOnIncidentModesEnum
 type WorkflowsCreateWorkflowPayloadV2RunsOnIncidentsEnum
 type WorkflowsCreateWorkflowPayloadV2StateEnum
+type WorkflowsUpdateWorkflowPayloadV2AutoRunModeEnum
 type WorkflowsUpdateWorkflowPayloadV2PrivateIncidentScopeEnum
 type WorkflowsUpdateWorkflowPayloadV2RunsOnIncidentModesEnum
 type WorkflowsUpdateWorkflowPayloadV2RunsOnIncidentsEnum
