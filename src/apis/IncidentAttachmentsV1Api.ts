@@ -258,6 +258,7 @@ export const IncidentAttachmentsV1ListResourceTypeEnum = {
     OutlookCalendarEvent: 'outlook_calendar_event',
     SlackFile: 'slack_file',
     SalesforceCase: 'salesforce_case',
+    PylonIssue: 'pylon_issue',
     ArbitraryUrl: 'arbitrary_url',
     Scrubbed: 'scrubbed',
     StatuspageIncident: 'statuspage_incident',
