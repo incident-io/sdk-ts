@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface PostmortemDocumentsAttachPayloadV1 {
     /**
-     * The provider hosting the document. Set this when it can't be inferred from the permalink so the link renders correctly.
+     * The provider hosting the document. This is informational only: the document is always stored as a link to the permalink.
      */
     document_provider?: PostmortemDocumentsAttachPayloadV1DocumentProviderEnum;
     /**
