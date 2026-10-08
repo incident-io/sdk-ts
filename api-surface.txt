@@ -5802,6 +5802,7 @@ const StepProgressSlimV2StatusEnum
 const StepProgressSlimV2StatusEnum.Complete = "complete"
 const StepProgressSlimV2StatusEnum.Error = "error"
 const StepProgressSlimV2StatusEnum.Pending = "pending"
+const StepProgressSlimV2StatusEnum.Suspended = "suspended"
 const StepProgressSlimV2WebhookDeliveryStateEnum
 const StepProgressSlimV2WebhookDeliveryStateEnum.Available = "available"
 const StepProgressSlimV2WebhookDeliveryStateEnum.Expired = "expired"
@@ -5810,6 +5811,7 @@ const StepProgressV2StatusEnum
 const StepProgressV2StatusEnum.Complete = "complete"
 const StepProgressV2StatusEnum.Error = "error"
 const StepProgressV2StatusEnum.Pending = "pending"
+const StepProgressV2StatusEnum.Suspended = "suspended"
 const StepProgressV2WebhookDeliveryStateEnum
 const StepProgressV2WebhookDeliveryStateEnum.Available = "available"
 const StepProgressV2WebhookDeliveryStateEnum.Expired = "expired"
