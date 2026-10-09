@@ -44,6 +44,7 @@ src/apis/IncidentUpdatesV2Api.ts
 src/apis/IncidentsV1Api.ts
 src/apis/IncidentsV2Api.ts
 src/apis/MaintenanceWindowsV1Api.ts
+src/apis/OnCallNotificationPausesV2Api.ts
 src/apis/PayConfigsV2Api.ts
 src/apis/PayReportsV2Api.ts
 src/apis/PoliciesV2Api.ts
@@ -958,6 +959,9 @@ src/models/ManagementMetaV2.ts
 src/models/NewSlackUserGroupPayloadV2.ts
 src/models/OnCallNotificationMethodPhoneDetailsPublicV2.ts
 src/models/OnCallNotificationMethodPublicV2.ts
+src/models/OnCallNotificationPauseV2.ts
+src/models/OnCallNotificationPausesListResultV2.ts
+src/models/OnCallNotificationPausesShowResultV2.ts
 src/models/OnCallNotificationRuleAppDetailsPublicV2.ts
 src/models/OnCallNotificationRuleMethodTargetPublicV2.ts
 src/models/OnCallNotificationRuleMethodTargetSpecificPublicV2.ts

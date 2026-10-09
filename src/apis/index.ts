@@ -46,6 +46,7 @@ export * from './IncidentUpdatesV2Api.js';
 export * from './IncidentsV1Api.js';
 export * from './IncidentsV2Api.js';
 export * from './MaintenanceWindowsV1Api.js';
+export * from './OnCallNotificationPausesV2Api.js';
 export * from './PayConfigsV2Api.js';
 export * from './PayReportsV2Api.js';
 export * from './PoliciesV2Api.js';
