@@ -48,7 +48,7 @@ export interface StatusPagesCreateStatusPageIncidentPayloadV2 {
      */
     name: string;
     /**
-     * Whether to notify subscribers about this status page incident. This will not work if your status page has more than 1000 subscribers.
+     * Whether to notify subscribers about this status page incident. If your status page has more than 1000 subscribers, requests that set this to true are rejected. This limit applies only to the public API: publishing from the incident.io dashboard or Slack always notifies every subscriber.
      */
     notify_subscribers: boolean;
     /**
