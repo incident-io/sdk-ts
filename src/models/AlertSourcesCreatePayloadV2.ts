@@ -158,6 +158,7 @@ export const AlertSourcesCreatePayloadV2SourceTypeEnum = {
     Elasticsearch: 'elasticsearch',
     Email: 'email',
     Expel: 'expel',
+    GitGuardian: 'git_guardian',
     GithubIssue: 'github_issue',
     GoogleCloud: 'google_cloud',
     GoogleSecops: 'google_secops',
