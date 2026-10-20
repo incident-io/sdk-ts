@@ -58,6 +58,7 @@ export const IdentityV1RolesEnum = {
     IncidentCreator: 'incident_creator',
     IncidentEditor: 'incident_editor',
     ManageSettings: 'manage_settings',
+    GlossaryEntriesManage: 'glossary_entries_manage',
     GlobalAccess: 'global_access',
     CatalogViewer: 'catalog_viewer',
     CatalogEditor: 'catalog_editor',
