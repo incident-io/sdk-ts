@@ -44,6 +44,7 @@ src/apis/IncidentUpdatesV2Api.ts
 src/apis/IncidentsV1Api.ts
 src/apis/IncidentsV2Api.ts
 src/apis/MaintenanceWindowsV1Api.ts
+src/apis/ManagedResourcesV2Api.ts
 src/apis/OnCallNotificationPausesV2Api.ts
 src/apis/PayConfigsV2Api.ts
 src/apis/PayReportsV2Api.ts
@@ -959,6 +960,9 @@ src/models/MaintenanceWindowsListResultV1.ts
 src/models/MaintenanceWindowsShowResultV1.ts
 src/models/MaintenanceWindowsUpdatePayloadV1.ts
 src/models/MaintenanceWindowsUpdateResultV1.ts
+src/models/ManagedResourceV2.ts
+src/models/ManagedResourcesCreateManagedResourcePayloadV2.ts
+src/models/ManagedResourcesCreateManagedResourceResultV2.ts
 src/models/ManagementMetaV2.ts
 src/models/NewSlackUserGroupPayloadV2.ts
 src/models/OnCallNotificationMethodPhoneDetailsPublicV2.ts
