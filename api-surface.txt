@@ -2230,6 +2230,16 @@ class IncidentsV1Api.incidentsV1ShowRequestOpts #0
 class IncidentsV2Api
 class IncidentsV2Api constructor #0
 class IncidentsV2Api constructor #0?
+class IncidentsV2Api.incidentsV2ConnectExternalIssue
+class IncidentsV2Api.incidentsV2ConnectExternalIssue #0
+class IncidentsV2Api.incidentsV2ConnectExternalIssue #1
+class IncidentsV2Api.incidentsV2ConnectExternalIssue #1?
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRaw
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRaw #0
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRaw #1
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRaw #1?
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRequestOpts
+class IncidentsV2Api.incidentsV2ConnectExternalIssueRequestOpts #0
 class IncidentsV2Api.incidentsV2Create
 class IncidentsV2Api.incidentsV2Create #0
 class IncidentsV2Api.incidentsV2Create #1
@@ -5469,6 +5479,20 @@ const IncidentV2ModeEnum.Tutorial = "tutorial"
 const IncidentV2VisibilityEnum
 const IncidentV2VisibilityEnum.Private = "private"
 const IncidentV2VisibilityEnum.Public = "public"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Asana = "asana"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.AzureDevops = "azure_devops"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.ClickUp = "click_up"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Freshservice = "freshservice"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Github = "github"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Gitlab = "gitlab"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Jira = "jira"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.JiraServer = "jira_server"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Linear = "linear"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Notion = "notion"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Salesforce = "salesforce"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.ServiceNow = "service_now"
+const IncidentsConnectExternalIssuePayloadV2ProviderEnum.Shortcut = "shortcut"
 const IncidentsCreatePayloadV1ModeEnum
 const IncidentsCreatePayloadV1ModeEnum.Real = "real"
 const IncidentsCreatePayloadV1ModeEnum.Test = "test"
@@ -17670,6 +17694,18 @@ function IncidentWithStatusChangeV2ToJSONTyped #0
 function IncidentWithStatusChangeV2ToJSONTyped #0?
 function IncidentWithStatusChangeV2ToJSONTyped #1
 function IncidentWithStatusChangeV2ToJSONTyped #1?
+function IncidentsConnectExternalIssuePayloadV2FromJSON
+function IncidentsConnectExternalIssuePayloadV2FromJSON #0
+function IncidentsConnectExternalIssuePayloadV2FromJSONTyped
+function IncidentsConnectExternalIssuePayloadV2FromJSONTyped #0
+function IncidentsConnectExternalIssuePayloadV2FromJSONTyped #1
+function IncidentsConnectExternalIssuePayloadV2ToJSON
+function IncidentsConnectExternalIssuePayloadV2ToJSON #0
+function IncidentsConnectExternalIssuePayloadV2ToJSONTyped
+function IncidentsConnectExternalIssuePayloadV2ToJSONTyped #0
+function IncidentsConnectExternalIssuePayloadV2ToJSONTyped #0?
+function IncidentsConnectExternalIssuePayloadV2ToJSONTyped #1
+function IncidentsConnectExternalIssuePayloadV2ToJSONTyped #1?
 function IncidentsCreatePayloadV1FromJSON
 function IncidentsCreatePayloadV1FromJSON #0
 function IncidentsCreatePayloadV1FromJSONTyped
@@ -23605,6 +23641,8 @@ function instanceOfIncidentV2
 function instanceOfIncidentV2 #0
 function instanceOfIncidentWithStatusChangeV2
 function instanceOfIncidentWithStatusChangeV2 #0
+function instanceOfIncidentsConnectExternalIssuePayloadV2
+function instanceOfIncidentsConnectExternalIssuePayloadV2 #0
 function instanceOfIncidentsCreatePayloadV1
 function instanceOfIncidentsCreatePayloadV1 #0
 function instanceOfIncidentsCreatePayloadV2
@@ -29471,6 +29509,11 @@ interface IncidentWithStatusChangeV2.incident
 interface IncidentWithStatusChangeV2.message?
 interface IncidentWithStatusChangeV2.new_status
 interface IncidentWithStatusChangeV2.previous_status
+interface IncidentsConnectExternalIssuePayloadV2
+interface IncidentsConnectExternalIssuePayloadV2.issue_template_id
+interface IncidentsConnectExternalIssuePayloadV2.provider
+interface IncidentsConnectExternalIssuePayloadV2.replace?
+interface IncidentsConnectExternalIssuePayloadV2.url
 interface IncidentsCreatePayloadV1
 interface IncidentsCreatePayloadV1.custom_field_entries?
 interface IncidentsCreatePayloadV1.idempotency_key
@@ -29532,6 +29575,9 @@ interface IncidentsV1ListRequest.page_size?
 interface IncidentsV1ListRequest.status?
 interface IncidentsV1ShowRequest
 interface IncidentsV1ShowRequest.id
+interface IncidentsV2ConnectExternalIssueRequest
+interface IncidentsV2ConnectExternalIssueRequest.body
+interface IncidentsV2ConnectExternalIssueRequest.id
 interface IncidentsV2CreateRequest
 interface IncidentsV2CreateRequest.body
 interface IncidentsV2EditRequest
@@ -31647,6 +31693,7 @@ type IncidentV1StatusEnum
 type IncidentV1VisibilityEnum
 type IncidentV2ModeEnum
 type IncidentV2VisibilityEnum
+type IncidentsConnectExternalIssuePayloadV2ProviderEnum
 type IncidentsCreatePayloadV1ModeEnum
 type IncidentsCreatePayloadV1StatusEnum
 type IncidentsCreatePayloadV1VisibilityEnum

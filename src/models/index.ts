@@ -870,6 +870,7 @@ export * from './IncidentUpdatesListResultV2.js';
 export * from './IncidentV1.js';
 export * from './IncidentV2.js';
 export * from './IncidentWithStatusChangeV2.js';
+export * from './IncidentsConnectExternalIssuePayloadV2.js';
 export * from './IncidentsCreatePayloadV1.js';
 export * from './IncidentsCreatePayloadV2.js';
 export * from './IncidentsCreateResultV1.js';

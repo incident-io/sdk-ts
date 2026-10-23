@@ -19,6 +19,11 @@ import {
     ErrorResponseToJSON,
 } from '../models/ErrorResponse.js';
 import {
+    type IncidentsConnectExternalIssuePayloadV2,
+    IncidentsConnectExternalIssuePayloadV2FromJSON,
+    IncidentsConnectExternalIssuePayloadV2ToJSON,
+} from '../models/IncidentsConnectExternalIssuePayloadV2.js';
+import {
     type IncidentsCreatePayloadV2,
     IncidentsCreatePayloadV2FromJSON,
     IncidentsCreatePayloadV2ToJSON,
@@ -58,6 +63,17 @@ import {
     IncidentsShowResultV2FromJSON,
     IncidentsShowResultV2ToJSON,
 } from '../models/IncidentsShowResultV2.js';
+
+export interface IncidentsV2ConnectExternalIssueRequest {
+    /**
+     * The unique identifier of the incident
+     */
+    id: string;
+    /**
+     * 
+     */
+    body: IncidentsConnectExternalIssuePayloadV2;
+}
 
 export interface IncidentsV2CreateRequest {
     /**
@@ -154,6 +170,70 @@ export interface IncidentsV2ShowRequest {
  * 
  */
 export class IncidentsV2Api extends runtime.BaseAPI {
+
+    /**
+     * Creates request options for incidentsV2ConnectExternalIssue without sending the request
+     */
+    async incidentsV2ConnectExternalIssueRequestOpts(requestParameters: IncidentsV2ConnectExternalIssueRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling incidentsV2ConnectExternalIssue().'
+            );
+        }
+
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling incidentsV2ConnectExternalIssue().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v2/incidents/{id}/actions/connect_external_issue`;
+        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: IncidentsConnectExternalIssuePayloadV2ToJSON(requestParameters['body']),
+        };
+    }
+
+    /**
+     * Connect an existing issue in an issue tracker to an incident, as its external issue.  The issue is synced using the given incident ticket template, as if incident.io had created it from that template. The next sync writes the incident\'s fields into the issue.  This needs the incidents.connect_external_issue scope, either across the organisation or from an incident role on this incident.  This fails if the incident already has a different external issue (unless replace is true), or if the issue is already linked to another incident or follow-up.  The ID supplied can be either the incident\'s full ID, or the numeric part of its reference.
+     * ConnectExternalIssue Incidents V2
+     */
+    async incidentsV2ConnectExternalIssueRaw(requestParameters: IncidentsV2ConnectExternalIssueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.incidentsV2ConnectExternalIssueRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Connect an existing issue in an issue tracker to an incident, as its external issue.  The issue is synced using the given incident ticket template, as if incident.io had created it from that template. The next sync writes the incident\'s fields into the issue.  This needs the incidents.connect_external_issue scope, either across the organisation or from an incident role on this incident.  This fails if the incident already has a different external issue (unless replace is true), or if the issue is already linked to another incident or follow-up.  The ID supplied can be either the incident\'s full ID, or the numeric part of its reference.
+     * ConnectExternalIssue Incidents V2
+     */
+    async incidentsV2ConnectExternalIssue(requestParameters: IncidentsV2ConnectExternalIssueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.incidentsV2ConnectExternalIssueRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Creates request options for incidentsV2Create without sending the request

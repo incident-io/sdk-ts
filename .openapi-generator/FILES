@@ -936,6 +936,7 @@ src/models/IncidentUpdatesListResultV2.ts
 src/models/IncidentV1.ts
 src/models/IncidentV2.ts
 src/models/IncidentWithStatusChangeV2.ts
+src/models/IncidentsConnectExternalIssuePayloadV2.ts
 src/models/IncidentsCreatePayloadV1.ts
 src/models/IncidentsCreatePayloadV2.ts
 src/models/IncidentsCreateResultV1.ts
