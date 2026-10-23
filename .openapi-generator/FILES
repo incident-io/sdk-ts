@@ -23,6 +23,7 @@ src/apis/EscalationPathTemplatesV2Api.ts
 src/apis/EscalationsV2Api.ts
 src/apis/FollowUpsV2Api.ts
 src/apis/FollowUpsV3Api.ts
+src/apis/GlossaryEntriesV2Api.ts
 src/apis/HeartbeatV2Api.ts
 src/apis/IPAllowlistsV1Api.ts
 src/apis/IncidentActivityLogEntriesV2Api.ts
@@ -813,6 +814,16 @@ src/models/FollowUpsUpdatePayloadV2.ts
 src/models/FollowUpsUpdatePayloadV3.ts
 src/models/FollowUpsUpdateResultV2.ts
 src/models/FollowUpsUpdateResultV3.ts
+src/models/GlossaryEntriesCreatePayloadV2.ts
+src/models/GlossaryEntriesCreateResultV2.ts
+src/models/GlossaryEntriesListResultV2.ts
+src/models/GlossaryEntriesShowResultV2.ts
+src/models/GlossaryEntriesUpdatePayloadV2.ts
+src/models/GlossaryEntriesUpdateRanksPayloadV2.ts
+src/models/GlossaryEntriesUpdateRanksResultV2.ts
+src/models/GlossaryEntriesUpdateResultV2.ts
+src/models/GlossaryEntryRankUpdateV2.ts
+src/models/GlossaryEntryV2.ts
 src/models/GroupingKeyV2.ts
 src/models/GroupingKeyV3.ts
 src/models/GroupingSettingsV3.ts

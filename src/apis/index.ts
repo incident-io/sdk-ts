@@ -25,6 +25,7 @@ export * from './EscalationPathTemplatesV2Api.js';
 export * from './EscalationsV2Api.js';
 export * from './FollowUpsV2Api.js';
 export * from './FollowUpsV3Api.js';
+export * from './GlossaryEntriesV2Api.js';
 export * from './HeartbeatV2Api.js';
 export * from './IPAllowlistsV1Api.js';
 export * from './IncidentActivityLogEntriesV2Api.js';
