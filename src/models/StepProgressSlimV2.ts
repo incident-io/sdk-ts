@@ -70,6 +70,7 @@ export const StepProgressSlimV2StatusEnum = {
     Pending: 'pending',
     Error: 'error',
     Suspended: 'suspended',
+    Skipped: 'skipped',
 } as const;
 export type StepProgressSlimV2StatusEnum = typeof StepProgressSlimV2StatusEnum[keyof typeof StepProgressSlimV2StatusEnum];
 
