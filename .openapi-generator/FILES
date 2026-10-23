@@ -301,6 +301,7 @@ src/models/AuditLogTargetV2.ts
 src/models/AuditLogTelemetryDataSourceAccessModeChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceAccessPolicyChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceAccessPolicyChangedMetadataV2V2.ts
+src/models/AuditLogTelemetryDataSourcePassthroughChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceQueriedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceQueriedMetadataV2V2.ts
 src/models/AuditLogTelemetryDataSourceRequestedMetadataV2.ts
@@ -525,6 +526,7 @@ src/models/AuditLogsTelemetryDataSourceAccessModeChangedV1.ts
 src/models/AuditLogsTelemetryDataSourceAccessPolicyChangedV1.ts
 src/models/AuditLogsTelemetryDataSourceAccessPolicyChangedV2.ts
 src/models/AuditLogsTelemetryDataSourceInstalledV1.ts
+src/models/AuditLogsTelemetryDataSourcePassthroughChangedV1.ts
 src/models/AuditLogsTelemetryDataSourceQueriedV1.ts
 src/models/AuditLogsTelemetryDataSourceQueriedV2.ts
 src/models/AuditLogsTelemetryDataSourceRequestedV1.ts
