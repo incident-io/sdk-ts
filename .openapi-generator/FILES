@@ -279,6 +279,7 @@ src/models/AuditLogExtensionPluginUpdatedMetadataV2.ts
 src/models/AuditLogHrisTimeOffPolicyUpdatedMetadataV2.ts
 src/models/AuditLogIPAllowlistUpdatedMetadataV2.ts
 src/models/AuditLogIncidentTypeDefaultTeamsMetadataV2.ts
+src/models/AuditLogInvestigationConfigUpdatedMetadataV2.ts
 src/models/AuditLogInvestigationTriggerMetadataV2.ts
 src/models/AuditLogMicrosoftEntraTenantLinkedMetadataV2.ts
 src/models/AuditLogMobileIntuneEnabledSettingUpdatedMetadataV2.ts
@@ -418,6 +419,7 @@ src/models/AuditLogsIntegrationUninstalledV1.ts
 src/models/AuditLogsInternalStatusPageCreatedV1.ts
 src/models/AuditLogsInternalStatusPageDeletedV1.ts
 src/models/AuditLogsInternalStatusPageUpdatedV1.ts
+src/models/AuditLogsInvestigationConfigUpdatedV1.ts
 src/models/AuditLogsInvestigationTriggerCreatedV1.ts
 src/models/AuditLogsInvestigationTriggerDeletedV1.ts
 src/models/AuditLogsInvestigationTriggerUpdatedV1.ts

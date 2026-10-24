@@ -61,6 +61,7 @@ export const AuditLogTargetV2TypeEnum = {
     ExtensionPlugin: 'extension_plugin',
     GlossaryEntry: 'glossary_entry',
     InvestigationTrigger: 'investigation_trigger',
+    InvestigationConfig: 'investigation_config',
     FollowUpCategory: 'follow_up_category',
     FollowUpPriority: 'follow_up_priority',
     HolidayUserFeed: 'holiday_user_feed',
