@@ -43,6 +43,10 @@ export interface AuditLogActorMetadataV2 {
      * The custom role slugs of the user, separated by commas (if it's a user actor)
      */
     user_custom_role_slugs?: string;
+    /**
+     * How the user made the change, when it wasn't directly (if it's a user actor)
+     */
+    via?: string;
 }
 
 /**
@@ -68,6 +72,7 @@ export function AuditLogActorMetadataV2FromJSONTyped(json: any, ignoreDiscrimina
         'external_resource_type': json['external_resource_type'] == null ? undefined : json['external_resource_type'],
         'user_base_role_slug': json['user_base_role_slug'] == null ? undefined : json['user_base_role_slug'],
         'user_custom_role_slugs': json['user_custom_role_slugs'] == null ? undefined : json['user_custom_role_slugs'],
+        'via': json['via'] == null ? undefined : json['via'],
     };
 }
 
@@ -88,6 +93,7 @@ export function AuditLogActorMetadataV2ToJSONTyped(value?: AuditLogActorMetadata
         'external_resource_type': value['external_resource_type'],
         'user_base_role_slug': value['user_base_role_slug'],
         'user_custom_role_slugs': value['user_custom_role_slugs'],
+        'via': value['via'],
     };
 }
 
