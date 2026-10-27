@@ -273,6 +273,7 @@ src/models/AuditLogAnnouncementPostTemplateOwningTeamsMetadataV2.ts
 src/models/AuditLogAnnouncementRuleMetadataV2.ts
 src/models/AuditLogCatalogAttributeUpdatedMetadataV2.ts
 src/models/AuditLogCatalogAttributeUpdatedMetadataV2V2.ts
+src/models/AuditLogCodeRepositoryAccessedMetadataV2.ts
 src/models/AuditLogEmailOtpLoginSettingUpdatedMetadataV2.ts
 src/models/AuditLogEntryContextV2.ts
 src/models/AuditLogExtensionConnectorCalledMetadataV2.ts
@@ -389,6 +390,7 @@ src/models/AuditLogsCatalogTypeDeletedV1.ts
 src/models/AuditLogsCatalogTypeDeletedV2.ts
 src/models/AuditLogsCatalogTypeUpdatedV1.ts
 src/models/AuditLogsCatalogTypeUpdatedV2.ts
+src/models/AuditLogsCodeRepositoryAccessedV1.ts
 src/models/AuditLogsConnectorConfigCreatedV1.ts
 src/models/AuditLogsConnectorConfigCreatedV2.ts
 src/models/AuditLogsConnectorConfigTokenGeneratedV1.ts
