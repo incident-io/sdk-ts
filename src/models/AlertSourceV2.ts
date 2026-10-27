@@ -204,6 +204,7 @@ export const AlertSourceV2SourceTypeEnum = {
     StatusPageViews: 'status_page_views',
     SumoLogic: 'sumo_logic',
     Uptime: 'uptime',
+    Upwind: 'upwind',
     Vercel: 'vercel',
     Wiz: 'wiz',
     Zendesk: 'zendesk',
