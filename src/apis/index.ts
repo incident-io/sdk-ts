@@ -4,6 +4,7 @@ export * from './APIKeysV1Api.js';
 export * from './ActionsV1Api.js';
 export * from './ActionsV2Api.js';
 export * from './ActionsV3Api.js';
+export * from './AlertAttachmentsV2Api.js';
 export * from './AlertAttributesV2Api.js';
 export * from './AlertEventsV2Api.js';
 export * from './AlertNotesV1Api.js';

@@ -127,6 +127,7 @@ export const IncidentActivityLogEntryV2TypeEnum = {
     ScribeRemoved: 'scribe_removed',
     ExternalIssueCommentSynced: 'external_issue_comment_synced',
     InvestigationHypothesisUpdate: 'investigation_hypothesis_update',
+    InvestigationHeadsUp: 'investigation_heads_up',
     WorkflowRan: 'workflow_ran',
 } as const;
 export type IncidentActivityLogEntryV2TypeEnum = typeof IncidentActivityLogEntryV2TypeEnum[keyof typeof IncidentActivityLogEntryV2TypeEnum];

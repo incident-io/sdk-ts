@@ -2,6 +2,7 @@ src/apis/APIKeysV1Api.ts
 src/apis/ActionsV1Api.ts
 src/apis/ActionsV2Api.ts
 src/apis/ActionsV3Api.ts
+src/apis/AlertAttachmentsV2Api.ts
 src/apis/AlertAttributesV2Api.ts
 src/apis/AlertEventsV2Api.ts
 src/apis/AlertNotesV1Api.ts
@@ -119,6 +120,10 @@ src/models/ActorV1.ts
 src/models/ActorV2.ts
 src/models/AfterPaginationMetaResultV2.ts
 src/models/AlertActorV2.ts
+src/models/AlertAttachmentV2.ts
+src/models/AlertAttachmentsCreatePayloadV2.ts
+src/models/AlertAttachmentsCreateResultV2.ts
+src/models/AlertAttachmentsListResultV2.ts
 src/models/AlertAttributeCatalogEntryV2.ts
 src/models/AlertAttributeEntryV2.ts
 src/models/AlertAttributeV2.ts
@@ -296,6 +301,9 @@ src/models/AuditLogPrivateInsightsExportedMetadataV2.ts
 src/models/AuditLogPrivateInsightsMeasureQueriedMetadataV2.ts
 src/models/AuditLogPrivateInsightsUnderlyingDataQueriedMetadataV2.ts
 src/models/AuditLogQrCodeMobileLoginSettingUpdatedMetadataV2.ts
+src/models/AuditLogReliabilityReviewRepositoryUpdatedMetadataV2.ts
+src/models/AuditLogReliabilityReviewSettingsUpdatedMetadataV2.ts
+src/models/AuditLogReliabilityReviewSpendLimitUpdatedMetadataV2.ts
 src/models/AuditLogSCIMGroupSeatMappingChangedMetadataV2.ts
 src/models/AuditLogScheduleOverrideMetadataV2.ts
 src/models/AuditLogTargetV2.ts
@@ -486,6 +494,9 @@ src/models/AuditLogsQrCodeMobileLoginSettingUpdatedV1.ts
 src/models/AuditLogsRbacRoleCreatedV1.ts
 src/models/AuditLogsRbacRoleDeletedV1.ts
 src/models/AuditLogsRbacRoleUpdatedV1.ts
+src/models/AuditLogsReliabilityReviewRepositoryUpdatedV1.ts
+src/models/AuditLogsReliabilityReviewSettingsUpdatedV1.ts
+src/models/AuditLogsReliabilityReviewSpendLimitUpdatedV1.ts
 src/models/AuditLogsScheduleCreatedV1.ts
 src/models/AuditLogsScheduleDeletedV1.ts
 src/models/AuditLogsScheduleOverrideCreatedV1.ts
