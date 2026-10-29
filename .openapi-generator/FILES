@@ -293,6 +293,7 @@ src/models/AuditLogOnCallNotificationMethodMetadataV2.ts
 src/models/AuditLogOnCallNotificationPauseMetadataV2.ts
 src/models/AuditLogOnCallUpsellRequestedMetadataV2.ts
 src/models/AuditLogOrganisationSettingsUpdatedMetadataV2.ts
+src/models/AuditLogOrganisationSettingsUpdatedMetadataV3V2.ts
 src/models/AuditLogPolicyMetadataV2.ts
 src/models/AuditLogPrivateAlertAccessAttemptedMetadataV2.ts
 src/models/AuditLogPrivateEscalationAccessAttemptedMetadataV2.ts
@@ -572,6 +573,7 @@ src/models/AuditLogsOnCallUpsellRequestedV1.ts
 src/models/AuditLogsOnCallUpsellRequestedV2.ts
 src/models/AuditLogsOrganisationSettingsUpdatedV1.ts
 src/models/AuditLogsOrganisationSettingsUpdatedV2.ts
+src/models/AuditLogsOrganisationSettingsUpdatedV3.ts
 src/models/AuditLogsPolicyCreatedV1.ts
 src/models/AuditLogsPolicyCreatedV2.ts
 src/models/AuditLogsPolicyCreatedV3.ts
