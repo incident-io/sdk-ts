@@ -391,6 +391,7 @@ src/models/AuditLogsCatalogTypeDeletedV2.ts
 src/models/AuditLogsCatalogTypeUpdatedV1.ts
 src/models/AuditLogsCatalogTypeUpdatedV2.ts
 src/models/AuditLogsCodeRepositoryAccessedV1.ts
+src/models/AuditLogsConnectorConfigArchivedV1.ts
 src/models/AuditLogsConnectorConfigCreatedV1.ts
 src/models/AuditLogsConnectorConfigCreatedV2.ts
 src/models/AuditLogsConnectorConfigTokenGeneratedV1.ts

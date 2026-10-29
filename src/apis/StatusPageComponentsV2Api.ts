@@ -133,7 +133,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Create a status page component. Placement on a page is controlled separately via status page structures.
+     * Create a status page component. Placement on a page is controlled separately via status page structures.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Create Status Page Components V2
      */
     async statusPageComponentsV2CreateRaw(requestParameters: StatusPageComponentsV2CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StatusPageComponentsCreateResultV2>> {
@@ -144,7 +144,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Create a status page component. Placement on a page is controlled separately via status page structures.
+     * Create a status page component. Placement on a page is controlled separately via status page structures.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Create Status Page Components V2
      */
     async statusPageComponentsV2Create(requestParameters: StatusPageComponentsV2CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPageComponentsCreateResultV2> {
@@ -188,7 +188,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Archive a status page component.
+     * Archive a status page component.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Destroy Status Page Components V2
      */
     async statusPageComponentsV2DestroyRaw(requestParameters: StatusPageComponentsV2DestroyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -199,7 +199,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Archive a status page component.
+     * Archive a status page component.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Destroy Status Page Components V2
      */
     async statusPageComponentsV2Destroy(requestParameters: StatusPageComponentsV2DestroyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -354,7 +354,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Update a status page component\'s name and description.
+     * Update a status page component\'s name and description.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Update Status Page Components V2
      */
     async statusPageComponentsV2UpdateRaw(requestParameters: StatusPageComponentsV2UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StatusPageComponentsUpdateResultV2>> {
@@ -365,7 +365,7 @@ export class StatusPageComponentsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Update a status page component\'s name and description.
+     * Update a status page component\'s name and description.  This endpoint requires an API key with the \"Manage organization settings (e.g. custom fields)\" scope.
      * Update Status Page Components V2
      */
     async statusPageComponentsV2Update(requestParameters: StatusPageComponentsV2UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPageComponentsUpdateResultV2> {

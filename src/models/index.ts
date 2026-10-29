@@ -323,6 +323,7 @@ export * from './AuditLogsCatalogTypeDeletedV2.js';
 export * from './AuditLogsCatalogTypeUpdatedV1.js';
 export * from './AuditLogsCatalogTypeUpdatedV2.js';
 export * from './AuditLogsCodeRepositoryAccessedV1.js';
+export * from './AuditLogsConnectorConfigArchivedV1.js';
 export * from './AuditLogsConnectorConfigCreatedV1.js';
 export * from './AuditLogsConnectorConfigCreatedV2.js';
 export * from './AuditLogsConnectorConfigTokenGeneratedV1.js';
