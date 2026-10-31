@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface AuditLogTelemetryDataSourceCallerIdentitySharingChangedMetadataV2 {
     /**
-     * Whether tool calls to the connector carry the caller's identity after the change (true, false)
+     * Whether calls to the data source carry the caller's identity after the change (true, false)
      */
     enabled: string;
 }
