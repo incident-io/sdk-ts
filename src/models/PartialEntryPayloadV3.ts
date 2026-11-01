@@ -36,6 +36,10 @@ export interface PartialEntryPayloadV3 {
      */
     attribute_values: { [key: string]: CatalogEngineParamBindingPayloadV3; };
     /**
+     * Aliases your organisation adds to an entry of a catalog type that incident.io syncs, such as a schedule or escalation path, which you can't change aliases on directly. Omit this or send null to keep the entry's current custom aliases, send an empty list to clear them, or send a list to replace them. Only available on catalog types where supports_custom_aliases is true.
+     */
+    custom_aliases?: Array<string>;
+    /**
      * ID of the relevant catalog entry
      */
     entry_id: string;
@@ -74,6 +78,7 @@ export function PartialEntryPayloadV3FromJSONTyped(json: any, ignoreDiscriminato
         
         'aliases': json['aliases'] == null ? undefined : json['aliases'],
         'attribute_values': (mapValues(json['attribute_values'], CatalogEngineParamBindingPayloadV3FromJSON)),
+        'custom_aliases': json['custom_aliases'] == null ? undefined : json['custom_aliases'],
         'entry_id': json['entry_id'],
         'external_id': json['external_id'] == null ? undefined : json['external_id'],
         'name': json['name'] == null ? undefined : json['name'],
@@ -94,6 +99,7 @@ export function PartialEntryPayloadV3ToJSONTyped(value?: PartialEntryPayloadV3 |
         
         'aliases': value['aliases'],
         'attribute_values': (mapValues(value['attribute_values'], CatalogEngineParamBindingPayloadV3ToJSON)),
+        'custom_aliases': value['custom_aliases'],
         'entry_id': value['entry_id'],
         'external_id': value['external_id'],
         'name': value['name'],

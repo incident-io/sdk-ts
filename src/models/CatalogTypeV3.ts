@@ -108,6 +108,10 @@ export interface CatalogTypeV3 {
      */
     source_repo_url?: string;
     /**
+     * Whether entries of this type take custom_aliases. Only catalog types that incident.io syncs do, as you can't change their aliases directly, and not those whose aliases you edit elsewhere, such as alert priorities.
+     */
+    supports_custom_aliases: boolean;
+    /**
      * The type name of this catalog type, to be used when defining attributes. This is immutable once a CatalogType has been created. For non-externally sync types, it must follow the pattern Custom["SomeName"]
      */
     type_name: string;
@@ -202,6 +206,7 @@ export function instanceOfCatalogTypeV3(value: object): value is CatalogTypeV3 {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('ranked' in value) || value['ranked'] === undefined) return false;
     if (!('schema' in value) || value['schema'] === undefined) return false;
+    if (!('supports_custom_aliases' in value) || value['supports_custom_aliases'] === undefined) return false;
     if (!('type_name' in value) || value['type_name'] === undefined) return false;
     if (!('updated_at' in value) || value['updated_at'] === undefined) return false;
     if (!('use_name_as_identifier' in value) || value['use_name_as_identifier'] === undefined) return false;
@@ -238,6 +243,7 @@ export function CatalogTypeV3FromJSONTyped(json: any, ignoreDiscriminator: boole
         'required_integrations': json['required_integrations'] == null ? undefined : json['required_integrations'],
         'schema': CatalogTypeSchemaV3FromJSON(json['schema']),
         'source_repo_url': json['source_repo_url'] == null ? undefined : json['source_repo_url'],
+        'supports_custom_aliases': json['supports_custom_aliases'],
         'type_name': json['type_name'],
         'updated_at': (json['updated_at'] == null ? json['updated_at'] : parseDateTime(json['updated_at'])),
         'use_name_as_identifier': json['use_name_as_identifier'],
@@ -275,6 +281,7 @@ export function CatalogTypeV3ToJSONTyped(value?: CatalogTypeV3 | null, ignoreDis
         'required_integrations': value['required_integrations'],
         'schema': CatalogTypeSchemaV3ToJSON(value['schema']),
         'source_repo_url': value['source_repo_url'],
+        'supports_custom_aliases': value['supports_custom_aliases'],
         'type_name': value['type_name'],
         'updated_at': value['updated_at'] == null ? value['updated_at'] : serializeDateTime(value['updated_at']),
         'use_name_as_identifier': value['use_name_as_identifier'],

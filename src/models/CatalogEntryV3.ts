@@ -48,6 +48,10 @@ export interface CatalogEntryV3 {
      */
     created_at: Date;
     /**
+     * Aliases your organisation has added to an entry of a catalog type that incident.io syncs, such as a schedule or escalation path, which you can't change aliases on directly. Syncs keep them, and they are also listed in aliases. When you update an entry, omit this or send null to keep its current custom aliases, send an empty list to clear them, or send a list to replace them.
+     */
+    custom_aliases: Array<string>;
+    /**
      * An optional alternative ID for this entry, which is ensured to be unique for the type
      */
     external_id?: string;
@@ -77,6 +81,7 @@ export function instanceOfCatalogEntryV3(value: object): value is CatalogEntryV3
     if (!('attribute_values' in value) || value['attribute_values'] === undefined) return false;
     if (!('catalog_type_id' in value) || value['catalog_type_id'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
+    if (!('custom_aliases' in value) || value['custom_aliases'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('rank' in value) || value['rank'] === undefined) return false;
@@ -99,6 +104,7 @@ export function CatalogEntryV3FromJSONTyped(json: any, ignoreDiscriminator: bool
         'attribute_values': (mapValues(json['attribute_values'], CatalogEntryEngineParamBindingV3FromJSON)),
         'catalog_type_id': json['catalog_type_id'],
         'created_at': (json['created_at'] == null ? json['created_at'] : parseDateTime(json['created_at'])),
+        'custom_aliases': json['custom_aliases'],
         'external_id': json['external_id'] == null ? undefined : json['external_id'],
         'id': json['id'],
         'name': json['name'],
@@ -123,6 +129,7 @@ export function CatalogEntryV3ToJSONTyped(value?: CatalogEntryV3 | null, ignoreD
         'attribute_values': (mapValues(value['attribute_values'], CatalogEntryEngineParamBindingV3ToJSON)),
         'catalog_type_id': value['catalog_type_id'],
         'created_at': value['created_at'] == null ? value['created_at'] : serializeDateTime(value['created_at']),
+        'custom_aliases': value['custom_aliases'],
         'external_id': value['external_id'],
         'id': value['id'],
         'name': value['name'],

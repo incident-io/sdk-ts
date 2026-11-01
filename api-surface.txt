@@ -32952,6 +32952,7 @@ interface CatalogEntryV3.archived_at?
 interface CatalogEntryV3.attribute_values
 interface CatalogEntryV3.catalog_type_id
 interface CatalogEntryV3.created_at
+interface CatalogEntryV3.custom_aliases
 interface CatalogEntryV3.external_id?
 interface CatalogEntryV3.id
 interface CatalogEntryV3.name
@@ -33086,6 +33087,7 @@ interface CatalogTypeV3.registry_type?
 interface CatalogTypeV3.required_integrations?
 interface CatalogTypeV3.schema
 interface CatalogTypeV3.source_repo_url?
+interface CatalogTypeV3.supports_custom_aliases
 interface CatalogTypeV3.type_name
 interface CatalogTypeV3.updated_at
 interface CatalogTypeV3.use_name_as_identifier
@@ -33098,6 +33100,7 @@ interface CatalogUpdateEntryPayloadV2.rank?
 interface CatalogUpdateEntryPayloadV3
 interface CatalogUpdateEntryPayloadV3.aliases?
 interface CatalogUpdateEntryPayloadV3.attribute_values
+interface CatalogUpdateEntryPayloadV3.custom_aliases?
 interface CatalogUpdateEntryPayloadV3.external_id?
 interface CatalogUpdateEntryPayloadV3.name
 interface CatalogUpdateEntryPayloadV3.rank?
@@ -35174,6 +35177,7 @@ interface PaginationMetaResultWithTotalV3.total_record_count?
 interface PartialEntryPayloadV3
 interface PartialEntryPayloadV3.aliases?
 interface PartialEntryPayloadV3.attribute_values
+interface PartialEntryPayloadV3.custom_aliases?
 interface PartialEntryPayloadV3.entry_id
 interface PartialEntryPayloadV3.external_id?
 interface PartialEntryPayloadV3.name?

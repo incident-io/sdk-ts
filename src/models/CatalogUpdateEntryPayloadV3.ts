@@ -36,6 +36,10 @@ export interface CatalogUpdateEntryPayloadV3 {
      */
     attribute_values: { [key: string]: CatalogEngineParamBindingPayloadV3; };
     /**
+     * Aliases your organisation has added to an entry of a catalog type that incident.io syncs, such as a schedule or escalation path, which you can't change aliases on directly. Syncs keep them, and they are also listed in aliases. When you update an entry, omit this or send null to keep its current custom aliases, send an empty list to clear them, or send a list to replace them.
+     */
+    custom_aliases?: Array<string>;
+    /**
      * An optional alternative ID for this entry, which is ensured to be unique for the type
      */
     external_id?: string;
@@ -75,6 +79,7 @@ export function CatalogUpdateEntryPayloadV3FromJSONTyped(json: any, ignoreDiscri
         
         'aliases': json['aliases'] == null ? undefined : json['aliases'],
         'attribute_values': (mapValues(json['attribute_values'], CatalogEngineParamBindingPayloadV3FromJSON)),
+        'custom_aliases': json['custom_aliases'] == null ? undefined : json['custom_aliases'],
         'external_id': json['external_id'] == null ? undefined : json['external_id'],
         'name': json['name'],
         'rank': json['rank'] == null ? undefined : json['rank'],
@@ -95,6 +100,7 @@ export function CatalogUpdateEntryPayloadV3ToJSONTyped(value?: CatalogUpdateEntr
         
         'aliases': value['aliases'],
         'attribute_values': (mapValues(value['attribute_values'], CatalogEngineParamBindingPayloadV3ToJSON)),
+        'custom_aliases': value['custom_aliases'],
         'external_id': value['external_id'],
         'name': value['name'],
         'rank': value['rank'],
