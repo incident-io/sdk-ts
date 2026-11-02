@@ -285,7 +285,9 @@ src/models/AuditLogExtensionPluginCreatedMetadataV2.ts
 src/models/AuditLogExtensionPluginUpdatedMetadataV2.ts
 src/models/AuditLogHrisTimeOffPolicyUpdatedMetadataV2.ts
 src/models/AuditLogIPAllowlistUpdatedMetadataV2.ts
+src/models/AuditLogIncidentSummaryConfigUpdatedMetadataV2.ts
 src/models/AuditLogIncidentTypeDefaultTeamsMetadataV2.ts
+src/models/AuditLogIncidentUpdateConfigUpdatedMetadataV2.ts
 src/models/AuditLogIntegrationUpdatedMetadataV2.ts
 src/models/AuditLogInvestigationConfigUpdatedMetadataV2.ts
 src/models/AuditLogInvestigationTriggerMetadataV2.ts
@@ -493,6 +495,7 @@ src/models/AuditLogsIncidentStatusDeletedV1.ts
 src/models/AuditLogsIncidentStatusDeletedV2.ts
 src/models/AuditLogsIncidentStatusUpdatedV1.ts
 src/models/AuditLogsIncidentStatusUpdatedV2.ts
+src/models/AuditLogsIncidentSummaryConfigUpdatedV1.ts
 src/models/AuditLogsIncidentTemplateCreatedV1.ts
 src/models/AuditLogsIncidentTemplateCreatedV2.ts
 src/models/AuditLogsIncidentTemplateDeletedV1.ts
@@ -521,6 +524,7 @@ src/models/AuditLogsIncidentTypeDeletedV2.ts
 src/models/AuditLogsIncidentTypeUpdatedV1.ts
 src/models/AuditLogsIncidentTypeUpdatedV2.ts
 src/models/AuditLogsIncidentTypeUpdatedV3.ts
+src/models/AuditLogsIncidentUpdateConfigUpdatedV1.ts
 src/models/AuditLogsIntegrationInstalledV1.ts
 src/models/AuditLogsIntegrationInstalledV2.ts
 src/models/AuditLogsIntegrationUninstalledV1.ts
