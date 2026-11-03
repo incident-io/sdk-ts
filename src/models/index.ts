@@ -331,6 +331,7 @@ export * from './AuditLogsCodeRepositoryAccessedV1.js';
 export * from './AuditLogsConnectorConfigArchivedV1.js';
 export * from './AuditLogsConnectorConfigCreatedV1.js';
 export * from './AuditLogsConnectorConfigCreatedV2.js';
+export * from './AuditLogsConnectorConfigPreviousTokenRevokedV1.js';
 export * from './AuditLogsConnectorConfigTokenGeneratedV1.js';
 export * from './AuditLogsConnectorConfigTokenGeneratedV2.js';
 export * from './AuditLogsConnectorConfigUpdatedV1.js';
