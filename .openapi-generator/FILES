@@ -313,6 +313,7 @@ src/models/AuditLogReliabilityReviewSpendLimitUpdatedMetadataV2.ts
 src/models/AuditLogSCIMGroupSeatMappingChangedMetadataV2.ts
 src/models/AuditLogScheduleOverrideMetadataV2.ts
 src/models/AuditLogTargetV2.ts
+src/models/AuditLogTelemetryDataSourceAccessInheritanceChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceAccessModeChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceAccessPolicyChangedMetadataV2.ts
 src/models/AuditLogTelemetryDataSourceAccessPolicyChangedMetadataV2V2.ts
@@ -737,6 +738,7 @@ src/models/AuditLogsTeamRoleUpdatedV1.ts
 src/models/AuditLogsTeamRoleUpdatedV2.ts
 src/models/AuditLogsTeamSettingsUpdatedV1.ts
 src/models/AuditLogsTeamSettingsUpdatedV2.ts
+src/models/AuditLogsTelemetryDataSourceAccessInheritanceChangedV1.ts
 src/models/AuditLogsTelemetryDataSourceAccessModeChangedV1.ts
 src/models/AuditLogsTelemetryDataSourceAccessModeChangedV2.ts
 src/models/AuditLogsTelemetryDataSourceAccessPolicyChangedV1.ts
