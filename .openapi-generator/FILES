@@ -1412,6 +1412,10 @@ src/models/StatusPageComponentsListResultV2.ts
 src/models/StatusPageComponentsShowResultV2.ts
 src/models/StatusPageComponentsUpdatePayloadV2.ts
 src/models/StatusPageComponentsUpdateResultV2.ts
+src/models/StatusPageCustomerPageComponentV2.ts
+src/models/StatusPageCustomerPageGroupV2.ts
+src/models/StatusPageCustomerPageItemV2.ts
+src/models/StatusPageCustomerPageV2.ts
 src/models/StatusPageIncidentAffectedComponentV2.ts
 src/models/StatusPageIncidentComponentImpactV2.ts
 src/models/StatusPageIncidentUpdateV2.ts
@@ -1445,6 +1449,7 @@ src/models/StatusPagesListStatusPageIncidentsResultV2.ts
 src/models/StatusPagesListStatusPageMaintenancesResultV2.ts
 src/models/StatusPagesListStatusPagesResultV2.ts
 src/models/StatusPagesShowStatusPageComponentAvailabilityResultV2.ts
+src/models/StatusPagesShowStatusPageCustomerPageResultV2.ts
 src/models/StatusPagesShowStatusPageIncidentResultV2.ts
 src/models/StatusPagesShowStatusPageMaintenanceResultV2.ts
 src/models/StatusPagesShowStatusPageResultV2.ts

@@ -89,6 +89,11 @@ import {
     StatusPagesShowStatusPageComponentAvailabilityResultV2ToJSON,
 } from '../models/StatusPagesShowStatusPageComponentAvailabilityResultV2.js';
 import {
+    type StatusPagesShowStatusPageCustomerPageResultV2,
+    StatusPagesShowStatusPageCustomerPageResultV2FromJSON,
+    StatusPagesShowStatusPageCustomerPageResultV2ToJSON,
+} from '../models/StatusPagesShowStatusPageCustomerPageResultV2.js';
+import {
     type StatusPagesShowStatusPageIncidentResultV2,
     StatusPagesShowStatusPageIncidentResultV2FromJSON,
     StatusPagesShowStatusPageIncidentResultV2ToJSON,
@@ -276,6 +281,17 @@ export interface StatusPagesV2ShowStatusPageComponentAvailabilityRequest {
      * ID of the component. You can find this by calling the ShowStatusPageStructure endpoint.
      */
     component_id: string;
+}
+
+export interface StatusPagesV2ShowStatusPageCustomerPageRequest {
+    /**
+     * ID of the customer status page. You can find this by calling the ListStatusPages endpoint.
+     */
+    status_page_id: string;
+    /**
+     * The external_id of the customer's catalog entry
+     */
+    customer_id: string;
 }
 
 export interface StatusPagesV2ShowStatusPageIncidentRequest {
@@ -1029,6 +1045,69 @@ export class StatusPagesV2Api extends runtime.BaseAPI {
      */
     async statusPagesV2ShowStatusPageComponentAvailability(requestParameters: StatusPagesV2ShowStatusPageComponentAvailabilityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPagesShowStatusPageComponentAvailabilityResultV2> {
         const response = await this.statusPagesV2ShowStatusPageComponentAvailabilityRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for statusPagesV2ShowStatusPageCustomerPage without sending the request
+     */
+    async statusPagesV2ShowStatusPageCustomerPageRequestOpts(requestParameters: StatusPagesV2ShowStatusPageCustomerPageRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['status_page_id'] == null) {
+            throw new runtime.RequiredError(
+                'status_page_id',
+                'Required parameter "status_page_id" was null or undefined when calling statusPagesV2ShowStatusPageCustomerPage().'
+            );
+        }
+
+        if (requestParameters['customer_id'] == null) {
+            throw new runtime.RequiredError(
+                'customer_id',
+                'Required parameter "customer_id" was null or undefined when calling statusPagesV2ShowStatusPageCustomerPage().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v2/status_pages/{status_page_id}/customers/{customer_id}`;
+        urlPath = urlPath.replace('{status_page_id}', encodeURIComponent(String(requestParameters['status_page_id'])));
+        urlPath = urlPath.replace('{customer_id}', encodeURIComponent(String(requestParameters['customer_id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Show one customer\'s page on a customer status page: its current status, its components, and the incidents and maintenance windows that customer sees.  customer_id is the external_id of the catalog entry that defines the customer\'s page. That entry belongs to the catalog type the status page is split by. You can\'t use this endpoint for a customer whose catalog entry has no external_id.  This endpoint requires a valid API key but no specific scopes. Responses can be up to 30 seconds old.
+     * ShowStatusPageCustomerPage Status Pages V2
+     */
+    async statusPagesV2ShowStatusPageCustomerPageRaw(requestParameters: StatusPagesV2ShowStatusPageCustomerPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StatusPagesShowStatusPageCustomerPageResultV2>> {
+        const requestOptions = await this.statusPagesV2ShowStatusPageCustomerPageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StatusPagesShowStatusPageCustomerPageResultV2FromJSON(jsonValue));
+    }
+
+    /**
+     * Show one customer\'s page on a customer status page: its current status, its components, and the incidents and maintenance windows that customer sees.  customer_id is the external_id of the catalog entry that defines the customer\'s page. That entry belongs to the catalog type the status page is split by. You can\'t use this endpoint for a customer whose catalog entry has no external_id.  This endpoint requires a valid API key but no specific scopes. Responses can be up to 30 seconds old.
+     * ShowStatusPageCustomerPage Status Pages V2
+     */
+    async statusPagesV2ShowStatusPageCustomerPage(requestParameters: StatusPagesV2ShowStatusPageCustomerPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StatusPagesShowStatusPageCustomerPageResultV2> {
+        const response = await this.statusPagesV2ShowStatusPageCustomerPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
