@@ -20,7 +20,7 @@ import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime }
  */
 export interface StatusPageComponentAvailabilityV2 {
     /**
-     * Availability over the window as a percentage, floored (for example "99.94"). Omitted when we have no data covering the window.
+     * Availability over the window as a percentage, floored (for example "99.94"). It has at least as many decimal places as the status page's uptime decimal places setting. Above 99.99%, it can have more decimal places, up to six. Omitted when we have no data covering the window.
      */
     availability_percent?: string;
     /**

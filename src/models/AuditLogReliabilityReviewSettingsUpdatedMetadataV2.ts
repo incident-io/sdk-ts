@@ -32,6 +32,10 @@ export interface AuditLogReliabilityReviewSettingsUpdatedMetadataV2 {
      */
     after_draft_reviews?: string;
     /**
+     * Whether a review that finds no issues posts a comment after the change (post, skip)
+     */
+    after_no_issue_reviews?: string;
+    /**
      * Whose pull requests are reviewed after the change (everyone, selected_users)
      */
     after_reviewed_authors?: string;
@@ -44,11 +48,15 @@ export interface AuditLogReliabilityReviewSettingsUpdatedMetadataV2 {
      */
     before_draft_reviews?: string;
     /**
+     * Whether a review that found no issues posted a comment before the change (post, skip)
+     */
+    before_no_issue_reviews?: string;
+    /**
      * Whose pull requests were reviewed before the change (everyone, selected_users)
      */
     before_reviewed_authors?: string;
     /**
-     * What the update changed, comma separated (automatic_reviews, draft_reviews, reviewed_authors, reviewed_users)
+     * What the update changed, comma separated (automatic_reviews, draft_reviews, no_issue_reviews, reviewed_authors, reviewed_users)
      */
     changed: string;
     /**
@@ -78,9 +86,11 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2FromJSONTyped(
         'added_user_ids': json['added_user_ids'] == null ? undefined : json['added_user_ids'],
         'after_automatic_reviews': json['after_automatic_reviews'] == null ? undefined : json['after_automatic_reviews'],
         'after_draft_reviews': json['after_draft_reviews'] == null ? undefined : json['after_draft_reviews'],
+        'after_no_issue_reviews': json['after_no_issue_reviews'] == null ? undefined : json['after_no_issue_reviews'],
         'after_reviewed_authors': json['after_reviewed_authors'] == null ? undefined : json['after_reviewed_authors'],
         'before_automatic_reviews': json['before_automatic_reviews'] == null ? undefined : json['before_automatic_reviews'],
         'before_draft_reviews': json['before_draft_reviews'] == null ? undefined : json['before_draft_reviews'],
+        'before_no_issue_reviews': json['before_no_issue_reviews'] == null ? undefined : json['before_no_issue_reviews'],
         'before_reviewed_authors': json['before_reviewed_authors'] == null ? undefined : json['before_reviewed_authors'],
         'changed': json['changed'],
         'removed_user_ids': json['removed_user_ids'] == null ? undefined : json['removed_user_ids'],
@@ -101,9 +111,11 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2ToJSONTyped(va
         'added_user_ids': value['added_user_ids'],
         'after_automatic_reviews': value['after_automatic_reviews'],
         'after_draft_reviews': value['after_draft_reviews'],
+        'after_no_issue_reviews': value['after_no_issue_reviews'],
         'after_reviewed_authors': value['after_reviewed_authors'],
         'before_automatic_reviews': value['before_automatic_reviews'],
         'before_draft_reviews': value['before_draft_reviews'],
+        'before_no_issue_reviews': value['before_no_issue_reviews'],
         'before_reviewed_authors': value['before_reviewed_authors'],
         'changed': value['changed'],
         'removed_user_ids': value['removed_user_ids'],
