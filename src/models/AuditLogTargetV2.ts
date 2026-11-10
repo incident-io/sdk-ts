@@ -64,6 +64,7 @@ export const AuditLogTargetV2TypeEnum = {
     InvestigationConfig: 'investigation_config',
     CodeRepository: 'code_repository',
     ReliabilityReviewSettings: 'reliability_review_settings',
+    ReliabilityReviewRule: 'reliability_review_rule',
     FollowUpCategory: 'follow_up_category',
     FollowUpPriority: 'follow_up_priority',
     HolidayUserFeed: 'holiday_user_feed',
