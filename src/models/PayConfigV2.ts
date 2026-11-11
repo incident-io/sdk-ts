@@ -40,7 +40,7 @@ import {
  */
 export interface PayConfigV2 {
     /**
-     * Rate paid for any time no rule covers, in the lowest denomination of the currency
+     * Rate paid for one unit of rate_time_unit, for any time no rule covers, in the lowest denomination of the currency
      */
     base_rate_cents: number;
     /**
@@ -68,7 +68,7 @@ export interface PayConfigV2 {
      */
     published_at?: Date;
     /**
-     * The unit of time every rate on this config is quoted per. Pay is pro-rated by the second either way.
+     * The unit of time every rate on this config is quoted per: hour, day, or week. A day is 24 hours of shift time and a week is 7 days. Pay is pro-rated by the second.
      */
     rate_time_unit: PayConfigV2RateTimeUnitEnum;
     /**
@@ -80,7 +80,7 @@ export interface PayConfigV2 {
      */
     updated_at: Date;
     /**
-     * Rules that apply every week, by day of week and time of day, in evaluation order
+     * Rules that apply every week, by day of week and time of day, in evaluation order. Must be empty when rate_time_unit is week.
      */
     weekly_rules: Array<PayConfigWeeklyRuleV2>;
 }
@@ -92,6 +92,7 @@ export interface PayConfigV2 {
 export const PayConfigV2RateTimeUnitEnum = {
     Hour: 'hour',
     Day: 'day',
+    Week: 'week',
 } as const;
 export type PayConfigV2RateTimeUnitEnum = typeof PayConfigV2RateTimeUnitEnum[keyof typeof PayConfigV2RateTimeUnitEnum];
 

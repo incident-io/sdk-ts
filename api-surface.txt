@@ -5714,6 +5714,7 @@ const OnCallNotificationRulePublicV2RuleTypeEnum.LowUrgency = "low_urgency"
 const PayConfigV2RateTimeUnitEnum
 const PayConfigV2RateTimeUnitEnum.Day = "day"
 const PayConfigV2RateTimeUnitEnum.Hour = "hour"
+const PayConfigV2RateTimeUnitEnum.Week = "week"
 const PayConfigWeeklyRulePayloadV2WeekdaysEnum
 const PayConfigWeeklyRulePayloadV2WeekdaysEnum.Friday = "friday"
 const PayConfigWeeklyRulePayloadV2WeekdaysEnum.Monday = "monday"
@@ -5733,6 +5734,7 @@ const PayConfigWeeklyRuleV2WeekdaysEnum.Wednesday = "wednesday"
 const PayConfigsCreatePayloadV2RateTimeUnitEnum
 const PayConfigsCreatePayloadV2RateTimeUnitEnum.Day = "day"
 const PayConfigsCreatePayloadV2RateTimeUnitEnum.Hour = "hour"
+const PayConfigsCreatePayloadV2RateTimeUnitEnum.Week = "week"
 const PayConfigsCreateWeeklyRulePayloadV2WeekdaysEnum
 const PayConfigsCreateWeeklyRulePayloadV2WeekdaysEnum.Friday = "friday"
 const PayConfigsCreateWeeklyRulePayloadV2WeekdaysEnum.Monday = "monday"
@@ -5744,6 +5746,7 @@ const PayConfigsCreateWeeklyRulePayloadV2WeekdaysEnum.Wednesday = "wednesday"
 const PayConfigsUpdatePayloadV2RateTimeUnitEnum
 const PayConfigsUpdatePayloadV2RateTimeUnitEnum.Day = "day"
 const PayConfigsUpdatePayloadV2RateTimeUnitEnum.Hour = "hour"
+const PayConfigsUpdatePayloadV2RateTimeUnitEnum.Week = "week"
 const PayConfigsUpdateWeeklyRulePayloadV2WeekdaysEnum
 const PayConfigsUpdateWeeklyRulePayloadV2WeekdaysEnum.Friday = "friday"
 const PayConfigsUpdateWeeklyRulePayloadV2WeekdaysEnum.Monday = "monday"

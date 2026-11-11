@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface PayConfigsUpdatePayloadV2 {
     /**
-     * Rate paid for any time no rule covers, in the lowest denomination of the currency
+     * Rate paid for one unit of rate_time_unit, for any time no rule covers, in the lowest denomination of the currency
      */
     base_rate_cents: number;
     /**
@@ -32,7 +32,7 @@ export interface PayConfigsUpdatePayloadV2 {
      */
     name: string;
     /**
-     * The unit of time every rate on this config is quoted per. Pay is pro-rated by the second either way.
+     * The unit of time every rate on this config is quoted per: hour, day, or week. A day is 24 hours of shift time and a week is 7 days. Pay is pro-rated by the second.
      */
     rate_time_unit: PayConfigsUpdatePayloadV2RateTimeUnitEnum;
     /**
@@ -48,6 +48,7 @@ export interface PayConfigsUpdatePayloadV2 {
 export const PayConfigsUpdatePayloadV2RateTimeUnitEnum = {
     Hour: 'hour',
     Day: 'day',
+    Week: 'week',
 } as const;
 export type PayConfigsUpdatePayloadV2RateTimeUnitEnum = typeof PayConfigsUpdatePayloadV2RateTimeUnitEnum[keyof typeof PayConfigsUpdatePayloadV2RateTimeUnitEnum];
 

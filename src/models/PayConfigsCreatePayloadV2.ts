@@ -35,7 +35,7 @@ import {
  */
 export interface PayConfigsCreatePayloadV2 {
     /**
-     * Rate paid for any time no rule covers, in the lowest denomination of the currency
+     * Rate paid for one unit of rate_time_unit, for any time no rule covers, in the lowest denomination of the currency
      */
     base_rate_cents: number;
     /**
@@ -51,7 +51,7 @@ export interface PayConfigsCreatePayloadV2 {
      */
     one_off_rules?: Array<PayConfigOneOffRulePayloadV2>;
     /**
-     * The unit of time every rate on this config is quoted per
+     * The unit of time every rate on this config is quoted per: hour, day, or week. A day is 24 hours of shift time and a week is 7 days. Pay is pro-rated by the second.
      */
     rate_time_unit: PayConfigsCreatePayloadV2RateTimeUnitEnum;
     /**
@@ -71,6 +71,7 @@ export interface PayConfigsCreatePayloadV2 {
 export const PayConfigsCreatePayloadV2RateTimeUnitEnum = {
     Hour: 'hour',
     Day: 'day',
+    Week: 'week',
 } as const;
 export type PayConfigsCreatePayloadV2RateTimeUnitEnum = typeof PayConfigsCreatePayloadV2RateTimeUnitEnum[keyof typeof PayConfigsCreatePayloadV2RateTimeUnitEnum];
 
