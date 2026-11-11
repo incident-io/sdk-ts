@@ -45,6 +45,7 @@ export const AuditLogTargetV2TypeEnum = {
     AlertSchema: 'alert_schema',
     AlertSource: 'alert_source',
     AlertPriority: 'alert_priority',
+    EscalationUrgency: 'escalation_urgency',
     AnnouncementRule: 'announcement_rule',
     AnnouncementPostTemplate: 'announcement_post_template',
     CatalogType: 'catalog_type',

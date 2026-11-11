@@ -435,6 +435,9 @@ src/models/AuditLogsEscalationPathUpdatedV1.ts
 src/models/AuditLogsEscalationPathUpdatedV2.ts
 src/models/AuditLogsEscalationScrubbedV1.ts
 src/models/AuditLogsEscalationScrubbedV2.ts
+src/models/AuditLogsEscalationUrgencyCreatedV1.ts
+src/models/AuditLogsEscalationUrgencyDeletedV1.ts
+src/models/AuditLogsEscalationUrgencyUpdatedV1.ts
 src/models/AuditLogsExtensionConnectorCalledV1.ts
 src/models/AuditLogsExtensionConnectorCalledV2.ts
 src/models/AuditLogsExtensionConnectorCalledV3.ts
