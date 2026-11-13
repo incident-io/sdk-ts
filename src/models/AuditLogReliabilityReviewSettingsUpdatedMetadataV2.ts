@@ -20,6 +20,10 @@ import { mapValues } from '../runtime.js';
  */
 export interface AuditLogReliabilityReviewSettingsUpdatedMetadataV2 {
     /**
+     * The GitHub usernames added to those whose pull requests aren't reviewed automatically, comma separated
+     */
+    added_ignored_authors?: string;
+    /**
      * The users added to those whose pull requests are reviewed, comma separated
      */
     added_user_ids?: string;
@@ -56,9 +60,13 @@ export interface AuditLogReliabilityReviewSettingsUpdatedMetadataV2 {
      */
     before_reviewed_authors?: string;
     /**
-     * What the update changed, comma separated (automatic_reviews, draft_reviews, no_issue_reviews, reviewed_authors, reviewed_users)
+     * What the update changed, comma separated (automatic_reviews, draft_reviews, no_issue_reviews, reviewed_authors, reviewed_users, ignored_authors)
      */
     changed: string;
+    /**
+     * The GitHub usernames removed from those whose pull requests aren't reviewed automatically, comma separated
+     */
+    removed_ignored_authors?: string;
     /**
      * The users removed from those whose pull requests are reviewed, comma separated
      */
@@ -83,6 +91,7 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2FromJSONTyped(
     }
     return {
         
+        'added_ignored_authors': json['added_ignored_authors'] == null ? undefined : json['added_ignored_authors'],
         'added_user_ids': json['added_user_ids'] == null ? undefined : json['added_user_ids'],
         'after_automatic_reviews': json['after_automatic_reviews'] == null ? undefined : json['after_automatic_reviews'],
         'after_draft_reviews': json['after_draft_reviews'] == null ? undefined : json['after_draft_reviews'],
@@ -93,6 +102,7 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2FromJSONTyped(
         'before_no_issue_reviews': json['before_no_issue_reviews'] == null ? undefined : json['before_no_issue_reviews'],
         'before_reviewed_authors': json['before_reviewed_authors'] == null ? undefined : json['before_reviewed_authors'],
         'changed': json['changed'],
+        'removed_ignored_authors': json['removed_ignored_authors'] == null ? undefined : json['removed_ignored_authors'],
         'removed_user_ids': json['removed_user_ids'] == null ? undefined : json['removed_user_ids'],
     };
 }
@@ -108,6 +118,7 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2ToJSONTyped(va
 
     return {
         
+        'added_ignored_authors': value['added_ignored_authors'],
         'added_user_ids': value['added_user_ids'],
         'after_automatic_reviews': value['after_automatic_reviews'],
         'after_draft_reviews': value['after_draft_reviews'],
@@ -118,6 +129,7 @@ export function AuditLogReliabilityReviewSettingsUpdatedMetadataV2ToJSONTyped(va
         'before_no_issue_reviews': value['before_no_issue_reviews'],
         'before_reviewed_authors': value['before_reviewed_authors'],
         'changed': value['changed'],
+        'removed_ignored_authors': value['removed_ignored_authors'],
         'removed_user_ids': value['removed_user_ids'],
     };
 }

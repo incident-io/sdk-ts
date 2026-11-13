@@ -669,6 +669,7 @@ src/models/AuditLogsReliabilityReviewRuleDeletedV1.ts
 src/models/AuditLogsReliabilityReviewRuleUpdatedV1.ts
 src/models/AuditLogsReliabilityReviewSettingsUpdatedV1.ts
 src/models/AuditLogsReliabilityReviewSettingsUpdatedV2.ts
+src/models/AuditLogsReliabilityReviewSettingsUpdatedV3.ts
 src/models/AuditLogsReliabilityReviewSpendLimitUpdatedV1.ts
 src/models/AuditLogsReliabilityReviewSpendLimitUpdatedV2.ts
 src/models/AuditLogsScheduleCreatedV1.ts

@@ -601,6 +601,7 @@ export * from './AuditLogsReliabilityReviewRuleDeletedV1.js';
 export * from './AuditLogsReliabilityReviewRuleUpdatedV1.js';
 export * from './AuditLogsReliabilityReviewSettingsUpdatedV1.js';
 export * from './AuditLogsReliabilityReviewSettingsUpdatedV2.js';
+export * from './AuditLogsReliabilityReviewSettingsUpdatedV3.js';
 export * from './AuditLogsReliabilityReviewSpendLimitUpdatedV1.js';
 export * from './AuditLogsReliabilityReviewSpendLimitUpdatedV2.js';
 export * from './AuditLogsScheduleCreatedV1.js';
