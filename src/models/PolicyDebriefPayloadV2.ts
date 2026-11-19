@@ -43,7 +43,7 @@ export interface PolicyDebriefPayloadV2 {
      */
     requirements: Array<ConditionGroupPayloadV2>;
     /**
-     * Requires the policies.run_on_private scope
+     * Requires the policies.run.private_incidents scope
      */
     run_on_private_incidents?: boolean;
 }

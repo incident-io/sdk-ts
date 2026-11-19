@@ -43,7 +43,7 @@ export interface PolicyPostMortemV2 {
      */
     requirements: Array<ConditionGroupV2>;
     /**
-     * Requires the policies.run_on_private scope
+     * Requires the policies.run.private_incidents scope
      */
     run_on_private_incidents?: boolean;
 }

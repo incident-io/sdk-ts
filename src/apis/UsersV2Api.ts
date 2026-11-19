@@ -219,7 +219,7 @@ export class UsersV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List notification methods for a user. Phone numbers are partially redacted unless the API key holds the notification_methods.view_unredacted scope.
+     * List notification methods for a user. Phone numbers are partially redacted unless the API key holds the unredacted_notification_methods.view scope.
      * ListNotificationMethods Users V2
      */
     async usersV2ListNotificationMethodsRaw(requestParameters: UsersV2ListNotificationMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsersListNotificationMethodsResultV2>> {
@@ -230,7 +230,7 @@ export class UsersV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List notification methods for a user. Phone numbers are partially redacted unless the API key holds the notification_methods.view_unredacted scope.
+     * List notification methods for a user. Phone numbers are partially redacted unless the API key holds the unredacted_notification_methods.view scope.
      * ListNotificationMethods Users V2
      */
     async usersV2ListNotificationMethods(requestParameters: UsersV2ListNotificationMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UsersListNotificationMethodsResultV2> {

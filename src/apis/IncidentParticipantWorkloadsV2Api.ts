@@ -75,7 +75,7 @@ export class IncidentParticipantWorkloadsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List the participants of an incident with their workload.  We calculate how much time each participant has spent working on the incident, aggregated per participant. Each participant is annotated with their participant type and, if they have left the incident, when they were archived.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload for private incidents is only returned to API keys with the `incident_workloads.view_private` scope.
+     * List the participants of an incident with their workload.  We calculate how much time each participant has spent working on the incident, aggregated per participant. Each participant is annotated with their participant type and, if they have left the incident, when they were archived.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload for private incidents is only returned to API keys with the `incident_workloads.view.private_incidents` scope.
      * List IncidentParticipantWorkloads V2
      */
     async incidentParticipantWorkloadsV2ListRaw(requestParameters: IncidentParticipantWorkloadsV2ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IncidentParticipantWorkloadsListResultV2>> {
@@ -86,7 +86,7 @@ export class IncidentParticipantWorkloadsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List the participants of an incident with their workload.  We calculate how much time each participant has spent working on the incident, aggregated per participant. Each participant is annotated with their participant type and, if they have left the incident, when they were archived.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload for private incidents is only returned to API keys with the `incident_workloads.view_private` scope.
+     * List the participants of an incident with their workload.  We calculate how much time each participant has spent working on the incident, aggregated per participant. Each participant is annotated with their participant type and, if they have left the incident, when they were archived.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload for private incidents is only returned to API keys with the `incident_workloads.view.private_incidents` scope.
      * List IncidentParticipantWorkloads V2
      */
     async incidentParticipantWorkloadsV2List(requestParameters: IncidentParticipantWorkloadsV2ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IncidentParticipantWorkloadsListResultV2> {
