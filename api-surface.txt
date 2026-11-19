@@ -3581,6 +3581,16 @@ class UsersV2Api.usersV2ListRaw #1
 class UsersV2Api.usersV2ListRaw #1?
 class UsersV2Api.usersV2ListRequestOpts
 class UsersV2Api.usersV2ListRequestOpts #0
+class UsersV2Api.usersV2RevokeSessions
+class UsersV2Api.usersV2RevokeSessions #0
+class UsersV2Api.usersV2RevokeSessions #1
+class UsersV2Api.usersV2RevokeSessions #1?
+class UsersV2Api.usersV2RevokeSessionsRaw
+class UsersV2Api.usersV2RevokeSessionsRaw #0
+class UsersV2Api.usersV2RevokeSessionsRaw #1
+class UsersV2Api.usersV2RevokeSessionsRaw #1?
+class UsersV2Api.usersV2RevokeSessionsRequestOpts
+class UsersV2Api.usersV2RevokeSessionsRequestOpts #0
 class UsersV2Api.usersV2Show
 class UsersV2Api.usersV2Show #0
 class UsersV2Api.usersV2Show #1
@@ -3774,6 +3784,7 @@ const APIKeyRoleV1NameEnum.TeamMembershipsManage = "team_memberships_manage"
 const APIKeyRoleV1NameEnum.TelemetryDataSourceUpdate = "telemetry_data_source_update"
 const APIKeyRoleV1NameEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeyRoleV1NameEnum.TelemetryViewer = "telemetry_viewer"
+const APIKeyRoleV1NameEnum.UserSessionsRevoke = "user_sessions_revoke"
 const APIKeyRoleV1NameEnum.Viewer = "viewer"
 const APIKeyRoleV1NameEnum.WorkflowsEditor = "workflows_editor"
 const APIKeyRoleV1NameEnum.WorkflowsViewer = "workflows_viewer"
@@ -3837,6 +3848,7 @@ const APIKeysCreatePayloadV1RoleNamesEnum.TeamMembershipsManage = "team_membersh
 const APIKeysCreatePayloadV1RoleNamesEnum.TelemetryDataSourceUpdate = "telemetry_data_source_update"
 const APIKeysCreatePayloadV1RoleNamesEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeysCreatePayloadV1RoleNamesEnum.TelemetryViewer = "telemetry_viewer"
+const APIKeysCreatePayloadV1RoleNamesEnum.UserSessionsRevoke = "user_sessions_revoke"
 const APIKeysCreatePayloadV1RoleNamesEnum.Viewer = "viewer"
 const APIKeysCreatePayloadV1RoleNamesEnum.WorkflowsEditor = "workflows_editor"
 const APIKeysCreatePayloadV1RoleNamesEnum.WorkflowsViewer = "workflows_viewer"
@@ -3900,6 +3912,7 @@ const APIKeysUpdatePayloadV1RoleNamesEnum.TeamMembershipsManage = "team_membersh
 const APIKeysUpdatePayloadV1RoleNamesEnum.TelemetryDataSourceUpdate = "telemetry_data_source_update"
 const APIKeysUpdatePayloadV1RoleNamesEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeysUpdatePayloadV1RoleNamesEnum.TelemetryViewer = "telemetry_viewer"
+const APIKeysUpdatePayloadV1RoleNamesEnum.UserSessionsRevoke = "user_sessions_revoke"
 const APIKeysUpdatePayloadV1RoleNamesEnum.Viewer = "viewer"
 const APIKeysUpdatePayloadV1RoleNamesEnum.WorkflowsEditor = "workflows_editor"
 const APIKeysUpdatePayloadV1RoleNamesEnum.WorkflowsViewer = "workflows_viewer"
@@ -5311,6 +5324,7 @@ const IdentityV1RolesEnum.TeamMembershipsManage = "team_memberships_manage"
 const IdentityV1RolesEnum.TelemetryDataSourceUpdate = "telemetry_data_source_update"
 const IdentityV1RolesEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const IdentityV1RolesEnum.TelemetryViewer = "telemetry_viewer"
+const IdentityV1RolesEnum.UserSessionsRevoke = "user_sessions_revoke"
 const IdentityV1RolesEnum.Viewer = "viewer"
 const IdentityV1RolesEnum.WorkflowsEditor = "workflows_editor"
 const IdentityV1RolesEnum.WorkflowsViewer = "workflows_viewer"
@@ -16128,6 +16142,18 @@ function AuditLogsUserRoleMembershipsUpdatedV2ToJSONTyped #0
 function AuditLogsUserRoleMembershipsUpdatedV2ToJSONTyped #0?
 function AuditLogsUserRoleMembershipsUpdatedV2ToJSONTyped #1
 function AuditLogsUserRoleMembershipsUpdatedV2ToJSONTyped #1?
+function AuditLogsUserSessionsRevokedV1FromJSON
+function AuditLogsUserSessionsRevokedV1FromJSON #0
+function AuditLogsUserSessionsRevokedV1FromJSONTyped
+function AuditLogsUserSessionsRevokedV1FromJSONTyped #0
+function AuditLogsUserSessionsRevokedV1FromJSONTyped #1
+function AuditLogsUserSessionsRevokedV1ToJSON
+function AuditLogsUserSessionsRevokedV1ToJSON #0
+function AuditLogsUserSessionsRevokedV1ToJSONTyped
+function AuditLogsUserSessionsRevokedV1ToJSONTyped #0
+function AuditLogsUserSessionsRevokedV1ToJSONTyped #0?
+function AuditLogsUserSessionsRevokedV1ToJSONTyped #1
+function AuditLogsUserSessionsRevokedV1ToJSONTyped #1?
 function AuditLogsUserUpdatedV1FromJSON
 function AuditLogsUserUpdatedV1FromJSON #0
 function AuditLogsUserUpdatedV1FromJSONTyped
@@ -26735,6 +26761,8 @@ function instanceOfAuditLogsUserRoleMembershipsUpdatedV1
 function instanceOfAuditLogsUserRoleMembershipsUpdatedV1 #0
 function instanceOfAuditLogsUserRoleMembershipsUpdatedV2
 function instanceOfAuditLogsUserRoleMembershipsUpdatedV2 #0
+function instanceOfAuditLogsUserSessionsRevokedV1
+function instanceOfAuditLogsUserSessionsRevokedV1 #0
 function instanceOfAuditLogsUserUpdatedV1
 function instanceOfAuditLogsUserUpdatedV1 #0
 function instanceOfAuditLogsUserUpdatedV2
@@ -33085,6 +33113,13 @@ interface AuditLogsUserRoleMembershipsUpdatedV2.metadata
 interface AuditLogsUserRoleMembershipsUpdatedV2.occurred_at
 interface AuditLogsUserRoleMembershipsUpdatedV2.targets
 interface AuditLogsUserRoleMembershipsUpdatedV2.version
+interface AuditLogsUserSessionsRevokedV1
+interface AuditLogsUserSessionsRevokedV1.action
+interface AuditLogsUserSessionsRevokedV1.actor
+interface AuditLogsUserSessionsRevokedV1.context
+interface AuditLogsUserSessionsRevokedV1.occurred_at
+interface AuditLogsUserSessionsRevokedV1.targets
+interface AuditLogsUserSessionsRevokedV1.version
 interface AuditLogsUserUpdatedV1
 interface AuditLogsUserUpdatedV1.action
 interface AuditLogsUserUpdatedV1.actor
@@ -36958,6 +36993,8 @@ interface UsersV2ListRequest.email?
 interface UsersV2ListRequest.include_inactive?
 interface UsersV2ListRequest.page_size?
 interface UsersV2ListRequest.slack_user_id?
+interface UsersV2RevokeSessionsRequest
+interface UsersV2RevokeSessionsRequest.id
 interface UsersV2ShowPagingProviderRequest
 interface UsersV2ShowPagingProviderRequest.user_id
 interface UsersV2ShowRequest

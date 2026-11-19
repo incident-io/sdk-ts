@@ -81,6 +81,7 @@ export const APIKeyRoleV1NameEnum = {
     InvestigationsEditor: 'investigations_editor',
     TelemetryViewer: 'telemetry_viewer',
     DocumentsViewer: 'documents_viewer',
+    UserSessionsRevoke: 'user_sessions_revoke',
 } as const;
 export type APIKeyRoleV1NameEnum = typeof APIKeyRoleV1NameEnum[keyof typeof APIKeyRoleV1NameEnum];
 

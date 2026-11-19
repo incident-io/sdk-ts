@@ -101,6 +101,7 @@ export const IdentityV1RolesEnum = {
     InvestigationsEditor: 'investigations_editor',
     TelemetryViewer: 'telemetry_viewer',
     DocumentsViewer: 'documents_viewer',
+    UserSessionsRevoke: 'user_sessions_revoke',
 } as const;
 export type IdentityV1RolesEnum = typeof IdentityV1RolesEnum[keyof typeof IdentityV1RolesEnum];
 

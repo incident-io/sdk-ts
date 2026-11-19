@@ -796,6 +796,7 @@ src/models/AuditLogsUserReinstatedV1.ts
 src/models/AuditLogsUserReinstatedV2.ts
 src/models/AuditLogsUserRoleMembershipsUpdatedV1.ts
 src/models/AuditLogsUserRoleMembershipsUpdatedV2.ts
+src/models/AuditLogsUserSessionsRevokedV1.ts
 src/models/AuditLogsUserUpdatedV1.ts
 src/models/AuditLogsUserUpdatedV2.ts
 src/models/AuditLogsWorkflowCreatedV1.ts

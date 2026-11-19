@@ -728,6 +728,7 @@ export * from './AuditLogsUserReinstatedV1.js';
 export * from './AuditLogsUserReinstatedV2.js';
 export * from './AuditLogsUserRoleMembershipsUpdatedV1.js';
 export * from './AuditLogsUserRoleMembershipsUpdatedV2.js';
+export * from './AuditLogsUserSessionsRevokedV1.js';
 export * from './AuditLogsUserUpdatedV1.js';
 export * from './AuditLogsUserUpdatedV2.js';
 export * from './AuditLogsWorkflowCreatedV1.js';

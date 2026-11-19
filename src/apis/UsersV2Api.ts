@@ -86,6 +86,13 @@ export interface UsersV2ListNotificationRulesRequest {
     user_id: string;
 }
 
+export interface UsersV2RevokeSessionsRequest {
+    /**
+     * Unique identifier of the user
+     */
+    id: string;
+}
+
 export interface UsersV2ShowRequest {
     /**
      * Unique identifier of the user
@@ -291,6 +298,60 @@ export class UsersV2Api extends runtime.BaseAPI {
     async usersV2ListNotificationRules(requestParameters: UsersV2ListNotificationRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UsersListNotificationRulesResultV2> {
         const response = await this.usersV2ListNotificationRulesRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for usersV2RevokeSessions without sending the request
+     */
+    async usersV2RevokeSessionsRequestOpts(requestParameters: UsersV2RevokeSessionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling usersV2RevokeSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v2/users/{id}/actions/revoke_sessions`;
+        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * End every active session for a user.  Dashboard sessions stop working on the next request. Mobile, desktop app, and MCP sessions end as well: each registered device is signed out. The user remains active and can sign in again. Personal API keys are not revoked. A user cannot end sessions for someone with a higher role. An API key with this scope can.  Use this during deprovisioning when sessions need to end before a SCIM deactivation arrives. Deactivating a user also ends their sessions.
+     * RevokeSessions Users V2
+     */
+    async usersV2RevokeSessionsRaw(requestParameters: UsersV2RevokeSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.usersV2RevokeSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * End every active session for a user.  Dashboard sessions stop working on the next request. Mobile, desktop app, and MCP sessions end as well: each registered device is signed out. The user remains active and can sign in again. Personal API keys are not revoked. A user cannot end sessions for someone with a higher role. An API key with this scope can.  Use this during deprovisioning when sessions need to end before a SCIM deactivation arrives. Deactivating a user also ends their sessions.
+     * RevokeSessions Users V2
+     */
+    async usersV2RevokeSessions(requestParameters: UsersV2RevokeSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.usersV2RevokeSessionsRaw(requestParameters, initOverrides);
     }
 
     /**
