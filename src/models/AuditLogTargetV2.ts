@@ -78,6 +78,7 @@ export const AuditLogTargetV2TypeEnum = {
     IncidentSummaryConfig: 'incident_summary_config',
     IncidentUpdateConfig: 'incident_update_config',
     MaintenanceWindow: 'maintenance_window',
+    MobileKey: 'mobile_key',
     IncidentRole: 'incident_role',
     IncidentStatus: 'incident_status',
     IncidentTimestamp: 'incident_timestamp',

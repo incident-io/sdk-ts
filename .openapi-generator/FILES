@@ -293,6 +293,8 @@ src/models/AuditLogInvestigationConfigUpdatedMetadataV2.ts
 src/models/AuditLogInvestigationTriggerMetadataV2.ts
 src/models/AuditLogMicrosoftEntraTenantLinkedMetadataV2.ts
 src/models/AuditLogMobileIntuneEnabledSettingUpdatedMetadataV2.ts
+src/models/AuditLogMobileKeyArchivedMetadataV2.ts
+src/models/AuditLogMobileKeyCreatedMetadataV2.ts
 src/models/AuditLogOnCallNotificationMethodMetadataV2.ts
 src/models/AuditLogOnCallNotificationPauseMetadataV2.ts
 src/models/AuditLogOnCallUpsellRequestedMetadataV2.ts
@@ -561,6 +563,8 @@ src/models/AuditLogsMicrosoftEntraTenantLinkedV1.ts
 src/models/AuditLogsMicrosoftEntraTenantLinkedV2.ts
 src/models/AuditLogsMobileIntuneEnabledSettingUpdatedV1.ts
 src/models/AuditLogsMobileIntuneEnabledSettingUpdatedV2.ts
+src/models/AuditLogsMobileKeyArchivedV1.ts
+src/models/AuditLogsMobileKeyCreatedV1.ts
 src/models/AuditLogsNudgeCreatedV1.ts
 src/models/AuditLogsNudgeCreatedV2.ts
 src/models/AuditLogsNudgeDeletedV1.ts
