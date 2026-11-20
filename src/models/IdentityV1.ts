@@ -102,6 +102,7 @@ export const IdentityV1RolesEnum = {
     TelemetryViewer: 'telemetry_viewer',
     DocumentsViewer: 'documents_viewer',
     UserSessionsRevoke: 'user_sessions_revoke',
+    UsersViewer: 'users_viewer',
 } as const;
 export type IdentityV1RolesEnum = typeof IdentityV1RolesEnum[keyof typeof IdentityV1RolesEnum];
 
