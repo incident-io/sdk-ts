@@ -567,6 +567,7 @@ src/models/AuditLogsNudgeDeletedV1.ts
 src/models/AuditLogsNudgeDeletedV2.ts
 src/models/AuditLogsNudgeUpdatedV1.ts
 src/models/AuditLogsNudgeUpdatedV2.ts
+src/models/AuditLogsOauthSessionRevokedV1.ts
 src/models/AuditLogsOnCallNotificationMethodCreatedV1.ts
 src/models/AuditLogsOnCallNotificationMethodCreatedV2.ts
 src/models/AuditLogsOnCallNotificationMethodCreatedV3.ts

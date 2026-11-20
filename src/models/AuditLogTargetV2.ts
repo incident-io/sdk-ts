@@ -87,6 +87,7 @@ export const AuditLogTargetV2TypeEnum = {
     InternalStatusPage: 'internal_status_page',
     IpAllowlist: 'ip_allowlist',
     Nudge: 'nudge',
+    OauthSession: 'oauth_session',
     OnCallNotificationMethod: 'on_call_notification_method',
     OnCallNotificationPause: 'on_call_notification_pause',
     Organisation: 'organisation',

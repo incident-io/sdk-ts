@@ -4433,6 +4433,7 @@ const AuditLogTargetV2TypeEnum.InvestigationTrigger = "investigation_trigger"
 const AuditLogTargetV2TypeEnum.IpAllowlist = "ip_allowlist"
 const AuditLogTargetV2TypeEnum.MaintenanceWindow = "maintenance_window"
 const AuditLogTargetV2TypeEnum.Nudge = "nudge"
+const AuditLogTargetV2TypeEnum.OauthSession = "oauth_session"
 const AuditLogTargetV2TypeEnum.OnCallNotificationMethod = "on_call_notification_method"
 const AuditLogTargetV2TypeEnum.OnCallNotificationPause = "on_call_notification_pause"
 const AuditLogTargetV2TypeEnum.OnCallUpsellRequest = "on_call_upsell_request"
@@ -13398,6 +13399,18 @@ function AuditLogsNudgeUpdatedV2ToJSONTyped #0
 function AuditLogsNudgeUpdatedV2ToJSONTyped #0?
 function AuditLogsNudgeUpdatedV2ToJSONTyped #1
 function AuditLogsNudgeUpdatedV2ToJSONTyped #1?
+function AuditLogsOauthSessionRevokedV1FromJSON
+function AuditLogsOauthSessionRevokedV1FromJSON #0
+function AuditLogsOauthSessionRevokedV1FromJSONTyped
+function AuditLogsOauthSessionRevokedV1FromJSONTyped #0
+function AuditLogsOauthSessionRevokedV1FromJSONTyped #1
+function AuditLogsOauthSessionRevokedV1ToJSON
+function AuditLogsOauthSessionRevokedV1ToJSON #0
+function AuditLogsOauthSessionRevokedV1ToJSONTyped
+function AuditLogsOauthSessionRevokedV1ToJSONTyped #0
+function AuditLogsOauthSessionRevokedV1ToJSONTyped #0?
+function AuditLogsOauthSessionRevokedV1ToJSONTyped #1
+function AuditLogsOauthSessionRevokedV1ToJSONTyped #1?
 function AuditLogsOnCallNotificationMethodCreatedV1FromJSON
 function AuditLogsOnCallNotificationMethodCreatedV1FromJSON #0
 function AuditLogsOnCallNotificationMethodCreatedV1FromJSONTyped
@@ -26307,6 +26320,8 @@ function instanceOfAuditLogsNudgeUpdatedV1
 function instanceOfAuditLogsNudgeUpdatedV1 #0
 function instanceOfAuditLogsNudgeUpdatedV2
 function instanceOfAuditLogsNudgeUpdatedV2 #0
+function instanceOfAuditLogsOauthSessionRevokedV1
+function instanceOfAuditLogsOauthSessionRevokedV1 #0
 function instanceOfAuditLogsOnCallNotificationMethodCreatedV1
 function instanceOfAuditLogsOnCallNotificationMethodCreatedV1 #0
 function instanceOfAuditLogsOnCallNotificationMethodCreatedV2
@@ -31426,6 +31441,13 @@ interface AuditLogsNudgeUpdatedV2.context
 interface AuditLogsNudgeUpdatedV2.occurred_at
 interface AuditLogsNudgeUpdatedV2.targets
 interface AuditLogsNudgeUpdatedV2.version
+interface AuditLogsOauthSessionRevokedV1
+interface AuditLogsOauthSessionRevokedV1.action
+interface AuditLogsOauthSessionRevokedV1.actor
+interface AuditLogsOauthSessionRevokedV1.context
+interface AuditLogsOauthSessionRevokedV1.occurred_at
+interface AuditLogsOauthSessionRevokedV1.targets
+interface AuditLogsOauthSessionRevokedV1.version
 interface AuditLogsOnCallNotificationMethodCreatedV1
 interface AuditLogsOnCallNotificationMethodCreatedV1.action
 interface AuditLogsOnCallNotificationMethodCreatedV1.actor

@@ -499,6 +499,7 @@ export * from './AuditLogsNudgeDeletedV1.js';
 export * from './AuditLogsNudgeDeletedV2.js';
 export * from './AuditLogsNudgeUpdatedV1.js';
 export * from './AuditLogsNudgeUpdatedV2.js';
+export * from './AuditLogsOauthSessionRevokedV1.js';
 export * from './AuditLogsOnCallNotificationMethodCreatedV1.js';
 export * from './AuditLogsOnCallNotificationMethodCreatedV2.js';
 export * from './AuditLogsOnCallNotificationMethodCreatedV3.js';
