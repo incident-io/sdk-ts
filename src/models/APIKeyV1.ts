@@ -54,6 +54,10 @@ export interface APIKeyV1 {
      */
     creator: ActorV1;
     /**
+     * When this API key stops working. If it's not set, the key never expires.
+     */
+    expires_at?: Date;
+    /**
      * Unique identifier for this API key
      */
     id: string;
@@ -111,6 +115,7 @@ export function APIKeyV1FromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'comments': json['comments'] == null ? undefined : json['comments'],
         'created_at': (json['created_at'] == null ? json['created_at'] : parseDateTime(json['created_at'])),
         'creator': ActorV1FromJSON(json['creator']),
+        'expires_at': json['expires_at'] == null ? undefined : (parseDateTime(json['expires_at'])),
         'id': json['id'],
         'last_used_at': json['last_used_at'] == null ? undefined : (parseDateTime(json['last_used_at'])),
         'name': json['name'],
@@ -135,6 +140,7 @@ export function APIKeyV1ToJSONTyped(value?: APIKeyV1 | null, ignoreDiscriminator
         'comments': value['comments'],
         'created_at': value['created_at'] == null ? value['created_at'] : serializeDateTime(value['created_at']),
         'creator': ActorV1ToJSON(value['creator']),
+        'expires_at': value['expires_at'] == null ? value['expires_at'] : serializeDateTime(value['expires_at']),
         'id': value['id'],
         'last_used_at': value['last_used_at'] == null ? value['last_used_at'] : serializeDateTime(value['last_used_at']),
         'name': value['name'],

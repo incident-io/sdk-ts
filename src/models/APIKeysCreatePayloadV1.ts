@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime.js';
 /**
  * 
  * @export
@@ -23,6 +23,10 @@ export interface APIKeysCreatePayloadV1 {
      * Freeform notes about the API key
      */
     comments?: string;
+    /**
+     * When the API key stops working. Leave it out for a key that never expires. It must be in the future and within your organization's maximum lifetime for API keys.
+     */
+    expires_at?: Date;
     /**
      * Human-readable name for the new API key
      */
@@ -142,6 +146,7 @@ export function APIKeysCreatePayloadV1FromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'expires_at': json['expires_at'] == null ? undefined : (parseDateTime(json['expires_at'])),
         'name': json['name'],
         'role_names': json['role_names'],
         'team_ids': json['team_ids'],
@@ -161,6 +166,7 @@ export function APIKeysCreatePayloadV1ToJSONTyped(value?: APIKeysCreatePayloadV1
     return {
         
         'comments': value['comments'],
+        'expires_at': value['expires_at'] == null ? value['expires_at'] : serializeDateTime(value['expires_at']),
         'name': value['name'],
         'role_names': value['role_names'],
         'team_ids': value['team_ids'],

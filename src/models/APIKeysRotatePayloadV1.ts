@@ -12,13 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime.js';
 /**
  * 
  * @export
  * @interface APIKeysRotatePayloadV1
  */
 export interface APIKeysRotatePayloadV1 {
+    /**
+     * A new expiry for the API key. Leave it blank to keep its current expiry. It must be in the future and within your organization's maximum lifetime for API keys.
+     */
+    expires_at?: Date;
     /**
      * How many minutes to keep the old access token alive.
      */
@@ -43,6 +47,7 @@ export function APIKeysRotatePayloadV1FromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'expires_at': json['expires_at'] == null ? undefined : (parseDateTime(json['expires_at'])),
         'grace_period_minutes': json['grace_period_minutes'],
     };
 }
@@ -58,6 +63,7 @@ export function APIKeysRotatePayloadV1ToJSONTyped(value?: APIKeysRotatePayloadV1
 
     return {
         
+        'expires_at': value['expires_at'] == null ? value['expires_at'] : serializeDateTime(value['expires_at']),
         'grace_period_minutes': value['grace_period_minutes'],
     };
 }

@@ -28478,6 +28478,7 @@ interface APIKeyV1
 interface APIKeyV1.comments?
 interface APIKeyV1.created_at
 interface APIKeyV1.creator
+interface APIKeyV1.expires_at?
 interface APIKeyV1.id
 interface APIKeyV1.last_used_at?
 interface APIKeyV1.name
@@ -28487,6 +28488,7 @@ interface APIKeyV1.team_roles
 interface APIKeyV1.token_last_issued_at
 interface APIKeysCreatePayloadV1
 interface APIKeysCreatePayloadV1.comments?
+interface APIKeysCreatePayloadV1.expires_at?
 interface APIKeysCreatePayloadV1.name
 interface APIKeysCreatePayloadV1.role_names
 interface APIKeysCreatePayloadV1.team_ids
@@ -28498,6 +28500,7 @@ interface APIKeysListResultV1
 interface APIKeysListResultV1.api_keys
 interface APIKeysListResultV1.pagination_meta
 interface APIKeysRotatePayloadV1
+interface APIKeysRotatePayloadV1.expires_at?
 interface APIKeysRotatePayloadV1.grace_period_minutes
 interface APIKeysRotateResultV1
 interface APIKeysRotateResultV1.api_key
