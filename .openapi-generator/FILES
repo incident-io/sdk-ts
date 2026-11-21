@@ -267,6 +267,8 @@ src/models/AnnouncementTemplatesListResultV2.ts
 src/models/AnnouncementTemplatesShowResultV2.ts
 src/models/AnnouncementTemplatesUpdatePayloadV2.ts
 src/models/AnnouncementTemplatesUpdateResultV2.ts
+src/models/AuditLogAPIKeyExpiryMetadataV2.ts
+src/models/AuditLogAPIKeyExpiryPolicyUpdatedMetadataV2.ts
 src/models/AuditLogActorMetadataV2.ts
 src/models/AuditLogActorV2.ts
 src/models/AuditLogAnnouncementPostTemplateOwningTeamsMetadataV2.ts
@@ -335,10 +337,13 @@ src/models/AuditLogUserRoleMembershipChangedMetadataV2.ts
 src/models/AuditLogUserSCIMGroupMappingChangedMetadataV2.ts
 src/models/AuditLogsAPIKeyCreatedV1.ts
 src/models/AuditLogsAPIKeyCreatedV2.ts
+src/models/AuditLogsAPIKeyCreatedV3.ts
 src/models/AuditLogsAPIKeyDeletedV1.ts
 src/models/AuditLogsAPIKeyDeletedV2.ts
+src/models/AuditLogsAPIKeyExpiryPolicyUpdatedV1.ts
 src/models/AuditLogsAPIKeyRotatedV1.ts
 src/models/AuditLogsAPIKeyRotatedV2.ts
+src/models/AuditLogsAPIKeyRotatedV3.ts
 src/models/AuditLogsAPIKeyUpdatedV1.ts
 src/models/AuditLogsAPIKeyUpdatedV2.ts
 src/models/AuditLogsActivityLogScrubbedV1.ts
@@ -789,6 +794,7 @@ src/models/AuditLogsTwilioConnectionUpdatedV1.ts
 src/models/AuditLogsTwilioConnectionUpdatedV2.ts
 src/models/AuditLogsUserAPIKeyCreatedV1.ts
 src/models/AuditLogsUserAPIKeyCreatedV2.ts
+src/models/AuditLogsUserAPIKeyCreatedV3.ts
 src/models/AuditLogsUserAPIKeyDeletedV1.ts
 src/models/AuditLogsUserAPIKeyDeletedV2.ts
 src/models/AuditLogsUserCreatedV1.ts
