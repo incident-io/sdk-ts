@@ -95,6 +95,7 @@ export const APIKeysUpdatePayloadV1RoleNamesEnum = {
     DocumentsViewer: 'documents_viewer',
     UserSessionsRevoke: 'user_sessions_revoke',
     UsersViewer: 'users_viewer',
+    AccessControlManage: 'access_control_manage',
 } as const;
 export type APIKeysUpdatePayloadV1RoleNamesEnum = typeof APIKeysUpdatePayloadV1RoleNamesEnum[keyof typeof APIKeysUpdatePayloadV1RoleNamesEnum];
 

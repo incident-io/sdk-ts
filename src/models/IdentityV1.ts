@@ -103,6 +103,7 @@ export const IdentityV1RolesEnum = {
     DocumentsViewer: 'documents_viewer',
     UserSessionsRevoke: 'user_sessions_revoke',
     UsersViewer: 'users_viewer',
+    AccessControlManage: 'access_control_manage',
 } as const;
 export type IdentityV1RolesEnum = typeof IdentityV1RolesEnum[keyof typeof IdentityV1RolesEnum];
 

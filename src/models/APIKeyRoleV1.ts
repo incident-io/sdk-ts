@@ -83,6 +83,7 @@ export const APIKeyRoleV1NameEnum = {
     DocumentsViewer: 'documents_viewer',
     UserSessionsRevoke: 'user_sessions_revoke',
     UsersViewer: 'users_viewer',
+    AccessControlManage: 'access_control_manage',
 } as const;
 export type APIKeyRoleV1NameEnum = typeof APIKeyRoleV1NameEnum[keyof typeof APIKeyRoleV1NameEnum];
 

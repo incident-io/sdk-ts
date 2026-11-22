@@ -3740,6 +3740,7 @@ class WorkflowsV2Api.workflowsV2UpdateWorkflowRaw #1?
 class WorkflowsV2Api.workflowsV2UpdateWorkflowRequestOpts
 class WorkflowsV2Api.workflowsV2UpdateWorkflowRequestOpts #0
 const APIKeyRoleV1NameEnum
+const APIKeyRoleV1NameEnum.AccessControlManage = "access_control_manage"
 const APIKeyRoleV1NameEnum.ActOnBehalfOfUsers = "act_on_behalf_of_users"
 const APIKeyRoleV1NameEnum.ApiKeysManage = "api_keys_manage"
 const APIKeyRoleV1NameEnum.CallTranscriptsViewer = "call_transcripts_viewer"
@@ -3805,6 +3806,7 @@ const APIKeyTeamRoleV1NameEnum.TelemetryDataSourceUpdate = "telemetry_data_sourc
 const APIKeyTeamRoleV1NameEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeyTeamRoleV1NameEnum.WorkflowsEditor = "workflows_editor"
 const APIKeysCreatePayloadV1RoleNamesEnum
+const APIKeysCreatePayloadV1RoleNamesEnum.AccessControlManage = "access_control_manage"
 const APIKeysCreatePayloadV1RoleNamesEnum.ActOnBehalfOfUsers = "act_on_behalf_of_users"
 const APIKeysCreatePayloadV1RoleNamesEnum.ApiKeysManage = "api_keys_manage"
 const APIKeysCreatePayloadV1RoleNamesEnum.CallTranscriptsViewer = "call_transcripts_viewer"
@@ -3870,6 +3872,7 @@ const APIKeysCreatePayloadV1TeamRoleNamesEnum.TelemetryDataSourceUpdate = "telem
 const APIKeysCreatePayloadV1TeamRoleNamesEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeysCreatePayloadV1TeamRoleNamesEnum.WorkflowsEditor = "workflows_editor"
 const APIKeysUpdatePayloadV1RoleNamesEnum
+const APIKeysUpdatePayloadV1RoleNamesEnum.AccessControlManage = "access_control_manage"
 const APIKeysUpdatePayloadV1RoleNamesEnum.ActOnBehalfOfUsers = "act_on_behalf_of_users"
 const APIKeysUpdatePayloadV1RoleNamesEnum.ApiKeysManage = "api_keys_manage"
 const APIKeysUpdatePayloadV1RoleNamesEnum.CallTranscriptsViewer = "call_transcripts_viewer"
@@ -5285,6 +5288,7 @@ const GroupingSettingsV3WindowTypeEnum
 const GroupingSettingsV3WindowTypeEnum.Fixed = "fixed"
 const GroupingSettingsV3WindowTypeEnum.Rolling = "rolling"
 const IdentityV1RolesEnum
+const IdentityV1RolesEnum.AccessControlManage = "access_control_manage"
 const IdentityV1RolesEnum.ActOnBehalfOfUsers = "act_on_behalf_of_users"
 const IdentityV1RolesEnum.ApiKeysManage = "api_keys_manage"
 const IdentityV1RolesEnum.CallTranscriptsViewer = "call_transcripts_viewer"
