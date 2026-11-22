@@ -38,6 +38,8 @@ export interface ManagedResourcesCreateManagedResourcePayloadV2 {
  * @export
  */
 export const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum = {
+    AccessGrant: 'access_grant',
+    AccessGroup: 'access_group',
     AlertRoute: 'alert_route',
     AlertRule: 'alert_rule',
     AlertSource: 'alert_source',

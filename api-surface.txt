@@ -5672,6 +5672,8 @@ const ManagedResourceV2ManagedByEnum.Dashboard = "dashboard"
 const ManagedResourceV2ManagedByEnum.External = "external"
 const ManagedResourceV2ManagedByEnum.Terraform = "terraform"
 const ManagedResourceV2ResourceTypeEnum
+const ManagedResourceV2ResourceTypeEnum.AccessGrant = "access_grant"
+const ManagedResourceV2ResourceTypeEnum.AccessGroup = "access_group"
 const ManagedResourceV2ResourceTypeEnum.AlertRoute = "alert_route"
 const ManagedResourceV2ResourceTypeEnum.AlertRule = "alert_rule"
 const ManagedResourceV2ResourceTypeEnum.AlertSource = "alert_source"
@@ -5690,6 +5692,8 @@ const ManagedResourceV2ResourceTypeEnum.StatusPageStructure = "status_page_struc
 const ManagedResourceV2ResourceTypeEnum.TeamGroupingPreference = "team_grouping_preference"
 const ManagedResourceV2ResourceTypeEnum.Workflow = "workflow"
 const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum
+const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum.AccessGrant = "access_grant"
+const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum.AccessGroup = "access_group"
 const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum.AlertRoute = "alert_route"
 const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum.AlertRule = "alert_rule"
 const ManagedResourcesCreateManagedResourcePayloadV2ResourceTypeEnum.AlertSource = "alert_source"
