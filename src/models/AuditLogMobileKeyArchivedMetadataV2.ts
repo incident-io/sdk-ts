@@ -32,7 +32,7 @@ export interface AuditLogMobileKeyArchivedMetadataV2 {
      */
     platform: string;
     /**
-     * Why the sign-in ended, such as logged_out, user_deleted, user_has_been_deactivated, sessions_revoked, device_unregistered or duplicate_token
+     * Why the sign-in ended, such as logged_out, user_deleted, user_has_been_deactivated, sessions_revoked, admin_revoked, device_unregistered or duplicate_token
      */
     reason: string;
 }
