@@ -32,6 +32,10 @@ export interface GroupingSettingsV3 {
      */
     ai_enabled?: boolean;
     /**
+     * Optional instructions the model follows when AI groups alerts on this route, such as how the systems you run relate to each other. Up to 2000 characters.
+     */
+    ai_instructions?: string;
+    /**
      * Whether grouping is enabled
      */
     enabled: boolean;
@@ -79,6 +83,7 @@ export function GroupingSettingsV3FromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'ai_enabled': json['ai_enabled'] == null ? undefined : json['ai_enabled'],
+        'ai_instructions': json['ai_instructions'] == null ? undefined : json['ai_instructions'],
         'enabled': json['enabled'],
         'grouping_keys': json['grouping_keys'] == null ? undefined : ((json['grouping_keys'] as Array<any>).map(GroupingKeyV3FromJSON)),
         'window_seconds': json['window_seconds'] == null ? undefined : json['window_seconds'],
@@ -98,6 +103,7 @@ export function GroupingSettingsV3ToJSONTyped(value?: GroupingSettingsV3 | null,
     return {
         
         'ai_enabled': value['ai_enabled'],
+        'ai_instructions': value['ai_instructions'],
         'enabled': value['enabled'],
         'grouping_keys': value['grouping_keys'] == null ? undefined : ((value['grouping_keys'] as Array<any>).map(GroupingKeyV3ToJSON)),
         'window_seconds': value['window_seconds'],
