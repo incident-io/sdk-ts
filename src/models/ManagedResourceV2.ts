@@ -58,6 +58,7 @@ export type ManagedResourceV2ManagedByEnum = typeof ManagedResourceV2ManagedByEn
 export const ManagedResourceV2ResourceTypeEnum = {
     AccessGrant: 'access_grant',
     AccessGroup: 'access_group',
+    AlertGroupingPreference: 'alert_grouping_preference',
     AlertRoute: 'alert_route',
     AlertRule: 'alert_rule',
     AlertSource: 'alert_source',
