@@ -19,6 +19,11 @@ import {
     ErrorResponseToJSON,
 } from '../models/ErrorResponse.js';
 import {
+    type IncidentParticipantWorkloadsListHoursResultV2,
+    IncidentParticipantWorkloadsListHoursResultV2FromJSON,
+    IncidentParticipantWorkloadsListHoursResultV2ToJSON,
+} from '../models/IncidentParticipantWorkloadsListHoursResultV2.js';
+import {
     type IncidentParticipantWorkloadsListResultV2,
     IncidentParticipantWorkloadsListResultV2FromJSON,
     IncidentParticipantWorkloadsListResultV2ToJSON,
@@ -29,6 +34,29 @@ export interface IncidentParticipantWorkloadsV2ListRequest {
      * Find participant workload for this incident
      */
     incident_id: string;
+}
+
+export interface IncidentParticipantWorkloadsV2ListHoursRequest {
+    /**
+     * Integer number of records to return
+     */
+    page_size?: number;
+    /**
+     * The cursor from a previous response's `pagination_meta.after`. Returns the rows older than that page.
+     */
+    after?: string;
+    /**
+     * Only return hours that start before this time
+     */
+    before?: Date;
+    /**
+     * Only return workload on this incident
+     */
+    incident_id?: string;
+    /**
+     * Only return workload for this user
+     */
+    user_id?: string;
 }
 
 /**
@@ -91,6 +119,73 @@ export class IncidentParticipantWorkloadsV2Api extends runtime.BaseAPI {
      */
     async incidentParticipantWorkloadsV2List(requestParameters: IncidentParticipantWorkloadsV2ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IncidentParticipantWorkloadsListResultV2> {
         const response = await this.incidentParticipantWorkloadsV2ListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for incidentParticipantWorkloadsV2ListHours without sending the request
+     */
+    async incidentParticipantWorkloadsV2ListHoursRequestOpts(requestParameters: IncidentParticipantWorkloadsV2ListHoursRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['page_size'] != null) {
+            queryParameters['page_size'] = requestParameters['page_size'];
+        }
+
+        if (requestParameters['after'] != null) {
+            queryParameters['after'] = requestParameters['after'];
+        }
+
+        if (requestParameters['before'] != null) {
+            queryParameters['before'] = runtime.serializeDateTime(requestParameters['before'] as any);
+        }
+
+        if (requestParameters['incident_id'] != null) {
+            queryParameters['incident_id'] = requestParameters['incident_id'];
+        }
+
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v2/incident_participant_workload_hours`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * List each user\'s workload on each incident, hour by hour, newest first.  Each row is the time one user spent on one incident in one hour. Sum the rows to get any total you need, such as the time each person spent on incidents last month. Rows come newest first. To cover a period, set `before` to its end, then follow `pagination_meta.after` until you reach rows older than its start. A page can hold fewer rows than `page_size`, so keep following `after` until it is absent.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload on private incidents is only included for API keys with the `incident_workloads.view.private_incidents` scope.
+     * ListHours IncidentParticipantWorkloads V2
+     */
+    async incidentParticipantWorkloadsV2ListHoursRaw(requestParameters: IncidentParticipantWorkloadsV2ListHoursRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IncidentParticipantWorkloadsListHoursResultV2>> {
+        const requestOptions = await this.incidentParticipantWorkloadsV2ListHoursRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IncidentParticipantWorkloadsListHoursResultV2FromJSON(jsonValue));
+    }
+
+    /**
+     * List each user\'s workload on each incident, hour by hour, newest first.  Each row is the time one user spent on one incident in one hour. Sum the rows to get any total you need, such as the time each person spent on incidents last month. Rows come newest first. To cover a period, set `before` to its end, then follow `pagination_meta.after` until you reach rows older than its start. A page can hold fewer rows than `page_size`, so keep following `after` until it is absent.  Workload is calculated periodically, so values can lag real time and the most recent period may still be filling. The metadata reports the time the figures are calculated up to.  Workload on private incidents is only included for API keys with the `incident_workloads.view.private_incidents` scope.
+     * ListHours IncidentParticipantWorkloads V2
+     */
+    async incidentParticipantWorkloadsV2ListHours(requestParameters: IncidentParticipantWorkloadsV2ListHoursRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IncidentParticipantWorkloadsListHoursResultV2> {
+        const response = await this.incidentParticipantWorkloadsV2ListHoursRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

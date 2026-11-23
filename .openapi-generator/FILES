@@ -1132,7 +1132,9 @@ src/models/IncidentMembershipsCreatePayloadV1.ts
 src/models/IncidentMembershipsCreateResultV1.ts
 src/models/IncidentMembershipsRevokePayloadV1.ts
 src/models/IncidentParticipantV2.ts
+src/models/IncidentParticipantWorkloadHourV2.ts
 src/models/IncidentParticipantWorkloadV2.ts
+src/models/IncidentParticipantWorkloadsListHoursResultV2.ts
 src/models/IncidentParticipantWorkloadsListResultV2.ts
 src/models/IncidentParticipantsListResultV2.ts
 src/models/IncidentParticipantsV2.ts
