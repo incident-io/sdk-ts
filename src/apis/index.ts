@@ -23,6 +23,7 @@ export * from './CustomFieldOptionsV1Api.js';
 export * from './CustomFieldsV1Api.js';
 export * from './CustomFieldsV2Api.js';
 export * from './EscalationPathTemplatesV2Api.js';
+export * from './EscalationPathsV2Api.js';
 export * from './EscalationsV2Api.js';
 export * from './FollowUpsV2Api.js';
 export * from './FollowUpsV3Api.js';

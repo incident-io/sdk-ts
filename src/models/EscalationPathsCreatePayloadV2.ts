@@ -45,13 +45,13 @@ import {
 /**
  * 
  * @export
- * @interface EscalationsUpdatePathPayloadV2
+ * @interface EscalationPathsCreatePayloadV2
  */
-export interface EscalationsUpdatePathPayloadV2 {
+export interface EscalationPathsCreatePayloadV2 {
     /**
      * Whether this path carries its own nodes, or is built from an escalation path template.
      */
-    kind?: EscalationsUpdatePathPayloadV2KindEnum;
+    kind?: EscalationPathsCreatePayloadV2KindEnum;
     /**
      * The name of this escalation path, for the user's reference.
      */
@@ -86,27 +86,27 @@ export interface EscalationsUpdatePathPayloadV2 {
 /**
  * @export
  */
-export const EscalationsUpdatePathPayloadV2KindEnum = {
+export const EscalationPathsCreatePayloadV2KindEnum = {
     Standalone: 'standalone',
     Templated: 'templated',
 } as const;
-export type EscalationsUpdatePathPayloadV2KindEnum = typeof EscalationsUpdatePathPayloadV2KindEnum[keyof typeof EscalationsUpdatePathPayloadV2KindEnum];
+export type EscalationPathsCreatePayloadV2KindEnum = typeof EscalationPathsCreatePayloadV2KindEnum[keyof typeof EscalationPathsCreatePayloadV2KindEnum];
 
 
 /**
- * Check if a given object implements the EscalationsUpdatePathPayloadV2 interface.
+ * Check if a given object implements the EscalationPathsCreatePayloadV2 interface.
  */
-export function instanceOfEscalationsUpdatePathPayloadV2(value: object): value is EscalationsUpdatePathPayloadV2 {
+export function instanceOfEscalationPathsCreatePayloadV2(value: object): value is EscalationPathsCreatePayloadV2 {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('path' in value) || value['path'] === undefined) return false;
     return true;
 }
 
-export function EscalationsUpdatePathPayloadV2FromJSON(json: any): EscalationsUpdatePathPayloadV2 {
-    return EscalationsUpdatePathPayloadV2FromJSONTyped(json, false);
+export function EscalationPathsCreatePayloadV2FromJSON(json: any): EscalationPathsCreatePayloadV2 {
+    return EscalationPathsCreatePayloadV2FromJSONTyped(json, false);
 }
 
-export function EscalationsUpdatePathPayloadV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): EscalationsUpdatePathPayloadV2 {
+export function EscalationPathsCreatePayloadV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): EscalationPathsCreatePayloadV2 {
     if (json == null) {
         return json;
     }
@@ -123,11 +123,11 @@ export function EscalationsUpdatePathPayloadV2FromJSONTyped(json: any, ignoreDis
     };
 }
 
-export function EscalationsUpdatePathPayloadV2ToJSON(json: any): EscalationsUpdatePathPayloadV2 {
-    return EscalationsUpdatePathPayloadV2ToJSONTyped(json, false);
+export function EscalationPathsCreatePayloadV2ToJSON(json: any): EscalationPathsCreatePayloadV2 {
+    return EscalationPathsCreatePayloadV2ToJSONTyped(json, false);
 }
 
-export function EscalationsUpdatePathPayloadV2ToJSONTyped(value?: EscalationsUpdatePathPayloadV2 | null, ignoreDiscriminator: boolean = false): any {
+export function EscalationPathsCreatePayloadV2ToJSONTyped(value?: EscalationPathsCreatePayloadV2 | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -73,6 +73,8 @@ export const ManagedResourceV2ResourceTypeEnum = {
     ScheduleSyncRule: 'schedule_sync_rule',
     Secret: 'secret',
     StatusPageComponent: 'status_page_component',
+    StatusPageComponentProperty: 'status_page_component_property',
+    StatusPageComponentPropertyOption: 'status_page_component_property_option',
     StatusPageStructure: 'status_page_structure',
     TeamGroupingPreference: 'team_grouping_preference',
     Workflow: 'workflow',

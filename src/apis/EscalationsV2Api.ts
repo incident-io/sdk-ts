@@ -29,16 +29,6 @@ import {
     EscalationsCheckEscalationPermissionsResultV2ToJSON,
 } from '../models/EscalationsCheckEscalationPermissionsResultV2.js';
 import {
-    type EscalationsCreatePathPayloadV2,
-    EscalationsCreatePathPayloadV2FromJSON,
-    EscalationsCreatePathPayloadV2ToJSON,
-} from '../models/EscalationsCreatePathPayloadV2.js';
-import {
-    type EscalationsCreatePathResultV2,
-    EscalationsCreatePathResultV2FromJSON,
-    EscalationsCreatePathResultV2ToJSON,
-} from '../models/EscalationsCreatePathResultV2.js';
-import {
     type EscalationsCreatePayloadV2,
     EscalationsCreatePayloadV2FromJSON,
     EscalationsCreatePayloadV2ToJSON,
@@ -48,11 +38,6 @@ import {
     EscalationsCreateResultV2FromJSON,
     EscalationsCreateResultV2ToJSON,
 } from '../models/EscalationsCreateResultV2.js';
-import {
-    type EscalationsListPathsResultV2,
-    EscalationsListPathsResultV2FromJSON,
-    EscalationsListPathsResultV2ToJSON,
-} from '../models/EscalationsListPathsResultV2.js';
 import {
     type EscalationsListResultV2,
     EscalationsListResultV2FromJSON,
@@ -74,25 +59,10 @@ import {
     EscalationsRespondEscalationPayloadV2ToJSON,
 } from '../models/EscalationsRespondEscalationPayloadV2.js';
 import {
-    type EscalationsShowPathResultV2,
-    EscalationsShowPathResultV2FromJSON,
-    EscalationsShowPathResultV2ToJSON,
-} from '../models/EscalationsShowPathResultV2.js';
-import {
     type EscalationsShowResultV2,
     EscalationsShowResultV2FromJSON,
     EscalationsShowResultV2ToJSON,
 } from '../models/EscalationsShowResultV2.js';
-import {
-    type EscalationsUpdatePathPayloadV2,
-    EscalationsUpdatePathPayloadV2FromJSON,
-    EscalationsUpdatePathPayloadV2ToJSON,
-} from '../models/EscalationsUpdatePathPayloadV2.js';
-import {
-    type EscalationsUpdatePathResultV2,
-    EscalationsUpdatePathResultV2FromJSON,
-    EscalationsUpdatePathResultV2ToJSON,
-} from '../models/EscalationsUpdatePathResultV2.js';
 
 export interface EscalationsV2CancelEscalationRequest {
     /**
@@ -117,20 +87,6 @@ export interface EscalationsV2CreateRequest {
      * 
      */
     body: EscalationsCreatePayloadV2;
-}
-
-export interface EscalationsV2CreatePathRequest {
-    /**
-     * 
-     */
-    body: EscalationsCreatePathPayloadV2;
-}
-
-export interface EscalationsV2DestroyPathRequest {
-    /**
-     * Unique identifier for this escalation path.
-     */
-    id: string;
 }
 
 export interface EscalationsV2ListRequest {
@@ -172,17 +128,6 @@ export interface EscalationsV2ListRequest {
     idempotency_key?: { [key: string]: Array<string>; };
 }
 
-export interface EscalationsV2ListPathsRequest {
-    /**
-     * Integer number of records to return
-     */
-    page_size?: number;
-    /**
-     * An record's ID. This endpoint will return a list of records after this ID in relation to the API response order.
-     */
-    after?: string;
-}
-
 export interface EscalationsV2ReassignEscalationRequest {
     /**
      * The ID of the escalation to reassign
@@ -210,24 +155,6 @@ export interface EscalationsV2ShowRequest {
      * Unique ID of the escalation
      */
     id: string;
-}
-
-export interface EscalationsV2ShowPathRequest {
-    /**
-     * Unique identifier for this escalation path.
-     */
-    id: string;
-}
-
-export interface EscalationsV2UpdatePathRequest {
-    /**
-     * Unique identifier for this escalation path.
-     */
-    id: string;
-    /**
-     * 
-     */
-    body: EscalationsUpdatePathPayloadV2;
 }
 
 /**
@@ -412,117 +339,6 @@ export class EscalationsV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for escalationsV2CreatePath without sending the request
-     */
-    async escalationsV2CreatePathRequestOpts(requestParameters: EscalationsV2CreatePathRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling escalationsV2CreatePath().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/v2/escalation_paths`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: EscalationsCreatePathPayloadV2ToJSON(requestParameters['body']),
-        };
-    }
-
-    /**
-     * Create an escalation path.  An escalation path is a series of steps that describe how a page should be escalated, represented as graph, supporting conditional branches based on alert priority and working intervals.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * CreatePath Escalations V2
-     */
-    async escalationsV2CreatePathRaw(requestParameters: EscalationsV2CreatePathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EscalationsCreatePathResultV2>> {
-        const requestOptions = await this.escalationsV2CreatePathRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EscalationsCreatePathResultV2FromJSON(jsonValue));
-    }
-
-    /**
-     * Create an escalation path.  An escalation path is a series of steps that describe how a page should be escalated, represented as graph, supporting conditional branches based on alert priority and working intervals.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * CreatePath Escalations V2
-     */
-    async escalationsV2CreatePath(requestParameters: EscalationsV2CreatePathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsCreatePathResultV2> {
-        const response = await this.escalationsV2CreatePathRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for escalationsV2DestroyPath without sending the request
-     */
-    async escalationsV2DestroyPathRequestOpts(requestParameters: EscalationsV2DestroyPathRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling escalationsV2DestroyPath().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/v2/escalation_paths/{id}`;
-        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
-
-        return {
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Archives an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * DestroyPath Escalations V2
-     */
-    async escalationsV2DestroyPathRaw(requestParameters: EscalationsV2DestroyPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.escalationsV2DestroyPathRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Archives an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * DestroyPath Escalations V2
-     */
-    async escalationsV2DestroyPath(requestParameters: EscalationsV2DestroyPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.escalationsV2DestroyPathRaw(requestParameters, initOverrides);
-    }
-
-    /**
      * Creates request options for escalationsV2List without sending the request
      */
     async escalationsV2ListRequestOpts(requestParameters: EscalationsV2ListRequest): Promise<runtime.RequestOpts> {
@@ -602,61 +418,6 @@ export class EscalationsV2Api extends runtime.BaseAPI {
      */
     async escalationsV2List(requestParameters: EscalationsV2ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsListResultV2> {
         const response = await this.escalationsV2ListRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for escalationsV2ListPaths without sending the request
-     */
-    async escalationsV2ListPathsRequestOpts(requestParameters: EscalationsV2ListPathsRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        if (requestParameters['page_size'] != null) {
-            queryParameters['page_size'] = requestParameters['page_size'];
-        }
-
-        if (requestParameters['after'] != null) {
-            queryParameters['after'] = requestParameters['after'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/v2/escalation_paths`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * List all escalation paths in your account.  An escalation path is a series of steps that describe how a page should be escalated, represented as a graph, supporting conditional branches based on alert priority and working intervals. 
-     * ListPaths Escalations V2
-     */
-    async escalationsV2ListPathsRaw(requestParameters: EscalationsV2ListPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EscalationsListPathsResultV2>> {
-        const requestOptions = await this.escalationsV2ListPathsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EscalationsListPathsResultV2FromJSON(jsonValue));
-    }
-
-    /**
-     * List all escalation paths in your account.  An escalation path is a series of steps that describe how a page should be escalated, represented as a graph, supporting conditional branches based on alert priority and working intervals. 
-     * ListPaths Escalations V2
-     */
-    async escalationsV2ListPaths(requestParameters: EscalationsV2ListPathsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsListPathsResultV2> {
-        const response = await this.escalationsV2ListPathsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -841,126 +602,6 @@ export class EscalationsV2Api extends runtime.BaseAPI {
      */
     async escalationsV2Show(requestParameters: EscalationsV2ShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsShowResultV2> {
         const response = await this.escalationsV2ShowRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for escalationsV2ShowPath without sending the request
-     */
-    async escalationsV2ShowPathRequestOpts(requestParameters: EscalationsV2ShowPathRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling escalationsV2ShowPath().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/v2/escalation_paths/{id}`;
-        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * Show an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * ShowPath Escalations V2
-     */
-    async escalationsV2ShowPathRaw(requestParameters: EscalationsV2ShowPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EscalationsShowPathResultV2>> {
-        const requestOptions = await this.escalationsV2ShowPathRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EscalationsShowPathResultV2FromJSON(jsonValue));
-    }
-
-    /**
-     * Show an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * ShowPath Escalations V2
-     */
-    async escalationsV2ShowPath(requestParameters: EscalationsV2ShowPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsShowPathResultV2> {
-        const response = await this.escalationsV2ShowPathRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for escalationsV2UpdatePath without sending the request
-     */
-    async escalationsV2UpdatePathRequestOpts(requestParameters: EscalationsV2UpdatePathRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling escalationsV2UpdatePath().'
-            );
-        }
-
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling escalationsV2UpdatePath().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/v2/escalation_paths/{id}`;
-        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: EscalationsUpdatePathPayloadV2ToJSON(requestParameters['body']),
-        };
-    }
-
-    /**
-     * Updates an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * UpdatePath Escalations V2
-     */
-    async escalationsV2UpdatePathRaw(requestParameters: EscalationsV2UpdatePathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EscalationsUpdatePathResultV2>> {
-        const requestOptions = await this.escalationsV2UpdatePathRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EscalationsUpdatePathResultV2FromJSON(jsonValue));
-    }
-
-    /**
-     * Updates an escalation path.  We recommend you create escalation paths in the incident.io dashboard where our path builder makes it easy to use conditions and visualise the path. 
-     * UpdatePath Escalations V2
-     */
-    async escalationsV2UpdatePath(requestParameters: EscalationsV2UpdatePathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EscalationsUpdatePathResultV2> {
-        const response = await this.escalationsV2UpdatePathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

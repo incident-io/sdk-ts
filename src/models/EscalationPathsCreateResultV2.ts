@@ -24,9 +24,9 @@ import {
 /**
  * 
  * @export
- * @interface EscalationsShowPathResultV2
+ * @interface EscalationPathsCreateResultV2
  */
-export interface EscalationsShowPathResultV2 {
+export interface EscalationPathsCreateResultV2 {
     /**
      * 
      */
@@ -34,18 +34,18 @@ export interface EscalationsShowPathResultV2 {
 }
 
 /**
- * Check if a given object implements the EscalationsShowPathResultV2 interface.
+ * Check if a given object implements the EscalationPathsCreateResultV2 interface.
  */
-export function instanceOfEscalationsShowPathResultV2(value: object): value is EscalationsShowPathResultV2 {
+export function instanceOfEscalationPathsCreateResultV2(value: object): value is EscalationPathsCreateResultV2 {
     if (!('escalation_path' in value) || value['escalation_path'] === undefined) return false;
     return true;
 }
 
-export function EscalationsShowPathResultV2FromJSON(json: any): EscalationsShowPathResultV2 {
-    return EscalationsShowPathResultV2FromJSONTyped(json, false);
+export function EscalationPathsCreateResultV2FromJSON(json: any): EscalationPathsCreateResultV2 {
+    return EscalationPathsCreateResultV2FromJSONTyped(json, false);
 }
 
-export function EscalationsShowPathResultV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): EscalationsShowPathResultV2 {
+export function EscalationPathsCreateResultV2FromJSONTyped(json: any, ignoreDiscriminator: boolean): EscalationPathsCreateResultV2 {
     if (json == null) {
         return json;
     }
@@ -55,11 +55,11 @@ export function EscalationsShowPathResultV2FromJSONTyped(json: any, ignoreDiscri
     };
 }
 
-export function EscalationsShowPathResultV2ToJSON(json: any): EscalationsShowPathResultV2 {
-    return EscalationsShowPathResultV2ToJSONTyped(json, false);
+export function EscalationPathsCreateResultV2ToJSON(json: any): EscalationPathsCreateResultV2 {
+    return EscalationPathsCreateResultV2ToJSONTyped(json, false);
 }
 
-export function EscalationsShowPathResultV2ToJSONTyped(value?: EscalationsShowPathResultV2 | null, ignoreDiscriminator: boolean = false): any {
+export function EscalationPathsCreateResultV2ToJSONTyped(value?: EscalationPathsCreateResultV2 | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
