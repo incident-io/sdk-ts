@@ -36,7 +36,7 @@ export interface CallRouteTargetV2 {
      */
     type: CallRouteTargetV2TypeEnum;
     /**
-     * The urgency of this escalation path target
+     * The interruption level we notify this target at: high or low
      */
     urgency: CallRouteTargetV2UrgencyEnum;
 }

@@ -48,7 +48,7 @@ export interface EscalationPathTargetWithBindingV2 {
      */
     type: EscalationPathTargetWithBindingV2TypeEnum;
     /**
-     * The urgency of this escalation path target
+     * The interruption level we notify this target at: high or low
      */
     urgency: EscalationPathTargetWithBindingV2UrgencyEnum;
 }
