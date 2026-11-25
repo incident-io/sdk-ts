@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { RBACRoleV2 } from './RBACRoleV2.js';
-import {
-    RBACRoleV2FromJSON,
-    RBACRoleV2FromJSONTyped,
-    RBACRoleV2ToJSON,
-    RBACRoleV2ToJSONTyped,
-} from './RBACRoleV2.js';
 import type { UserSeatsV2 } from './UserSeatsV2.js';
 import {
     UserSeatsV2FromJSON,
@@ -27,6 +20,13 @@ import {
     UserSeatsV2ToJSON,
     UserSeatsV2ToJSONTyped,
 } from './UserSeatsV2.js';
+import type { AccessGroupV2 } from './AccessGroupV2.js';
+import {
+    AccessGroupV2FromJSON,
+    AccessGroupV2FromJSONTyped,
+    AccessGroupV2ToJSON,
+    AccessGroupV2ToJSONTyped,
+} from './AccessGroupV2.js';
 
 /**
  * 
@@ -37,11 +37,11 @@ export interface UserWithRolesV2 {
     /**
      * 
      */
-    base_role: RBACRoleV2;
+    base_role: AccessGroupV2;
     /**
-     * 
+     * The custom access groups the user is in
      */
-    custom_roles: Array<RBACRoleV2>;
+    custom_roles: Array<AccessGroupV2>;
     /**
      * Email address of the user.
      */
@@ -110,8 +110,8 @@ export function UserWithRolesV2FromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'base_role': RBACRoleV2FromJSON(json['base_role']),
-        'custom_roles': ((json['custom_roles'] as Array<any>).map(RBACRoleV2FromJSON)),
+        'base_role': AccessGroupV2FromJSON(json['base_role']),
+        'custom_roles': ((json['custom_roles'] as Array<any>).map(AccessGroupV2FromJSON)),
         'email': json['email'] == null ? undefined : json['email'],
         'id': json['id'],
         'is_active': json['is_active'],
@@ -133,8 +133,8 @@ export function UserWithRolesV2ToJSONTyped(value?: UserWithRolesV2 | null, ignor
 
     return {
         
-        'base_role': RBACRoleV2ToJSON(value['base_role']),
-        'custom_roles': ((value['custom_roles'] as Array<any>).map(RBACRoleV2ToJSON)),
+        'base_role': AccessGroupV2ToJSON(value['base_role']),
+        'custom_roles': ((value['custom_roles'] as Array<any>).map(AccessGroupV2ToJSON)),
         'email': value['email'],
         'id': value['id'],
         'is_active': value['is_active'],

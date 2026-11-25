@@ -3951,6 +3951,9 @@ const APIKeysUpdatePayloadV1TeamRoleNamesEnum.SecretsUse = "secrets_use"
 const APIKeysUpdatePayloadV1TeamRoleNamesEnum.TelemetryDataSourceUpdate = "telemetry_data_source_update"
 const APIKeysUpdatePayloadV1TeamRoleNamesEnum.TelemetryQueryRestricted = "telemetry_query_restricted"
 const APIKeysUpdatePayloadV1TeamRoleNamesEnum.WorkflowsEditor = "workflows_editor"
+const AccessGroupV2TypeEnum
+const AccessGroupV2TypeEnum.Base = "base"
+const AccessGroupV2TypeEnum.Custom = "custom"
 const ActionV1StatusEnum
 const ActionV1StatusEnum.Completed = "completed"
 const ActionV1StatusEnum.Deleted = "deleted"
@@ -7596,6 +7599,18 @@ function APIKeysUpdateResultV1ToJSONTyped #0
 function APIKeysUpdateResultV1ToJSONTyped #0?
 function APIKeysUpdateResultV1ToJSONTyped #1
 function APIKeysUpdateResultV1ToJSONTyped #1?
+function AccessGroupV2FromJSON
+function AccessGroupV2FromJSON #0
+function AccessGroupV2FromJSONTyped
+function AccessGroupV2FromJSONTyped #0
+function AccessGroupV2FromJSONTyped #1
+function AccessGroupV2ToJSON
+function AccessGroupV2ToJSON #0
+function AccessGroupV2ToJSONTyped
+function AccessGroupV2ToJSONTyped #0
+function AccessGroupV2ToJSONTyped #0?
+function AccessGroupV2ToJSONTyped #1
+function AccessGroupV2ToJSONTyped #1?
 function ActionV1FromJSON
 function ActionV1FromJSON #0
 function ActionV1FromJSONTyped
@@ -22752,18 +22767,6 @@ function PostmortemDocumentsUpdateStatusResultV1ToJSONTyped #0
 function PostmortemDocumentsUpdateStatusResultV1ToJSONTyped #0?
 function PostmortemDocumentsUpdateStatusResultV1ToJSONTyped #1
 function PostmortemDocumentsUpdateStatusResultV1ToJSONTyped #1?
-function RBACRoleV2FromJSON
-function RBACRoleV2FromJSON #0
-function RBACRoleV2FromJSONTyped
-function RBACRoleV2FromJSONTyped #0
-function RBACRoleV2FromJSONTyped #1
-function RBACRoleV2ToJSON
-function RBACRoleV2ToJSON #0
-function RBACRoleV2ToJSONTyped
-function RBACRoleV2ToJSONTyped #0
-function RBACRoleV2ToJSONTyped #0?
-function RBACRoleV2ToJSONTyped #1
-function RBACRoleV2ToJSONTyped #1?
 function RetrospectiveIncidentOptionsV2FromJSON
 function RetrospectiveIncidentOptionsV2FromJSON #0
 function RetrospectiveIncidentOptionsV2FromJSONTyped
@@ -25521,6 +25524,8 @@ function instanceOfAPIKeysUpdatePayloadV1
 function instanceOfAPIKeysUpdatePayloadV1 #0
 function instanceOfAPIKeysUpdateResultV1
 function instanceOfAPIKeysUpdateResultV1 #0
+function instanceOfAccessGroupV2
+function instanceOfAccessGroupV2 #0
 function instanceOfActionV1
 function instanceOfActionV1 #0
 function instanceOfActionV2
@@ -28047,8 +28052,6 @@ function instanceOfPostmortemDocumentsUpdateStatusPayloadV1
 function instanceOfPostmortemDocumentsUpdateStatusPayloadV1 #0
 function instanceOfPostmortemDocumentsUpdateStatusResultV1
 function instanceOfPostmortemDocumentsUpdateStatusResultV1 #0
-function instanceOfRBACRoleV2
-function instanceOfRBACRoleV2 #0
 function instanceOfRetrospectiveIncidentOptionsV2
 function instanceOfRetrospectiveIncidentOptionsV2 #0
 function instanceOfReturnsMetaV2
@@ -28586,6 +28589,12 @@ interface APIKeysV1ShowRequest.id
 interface APIKeysV1UpdateRequest
 interface APIKeysV1UpdateRequest.body
 interface APIKeysV1UpdateRequest.id
+interface AccessGroupV2
+interface AccessGroupV2.description?
+interface AccessGroupV2.id
+interface AccessGroupV2.name
+interface AccessGroupV2.slug
+interface AccessGroupV2.type
 interface ActionV1
 interface ActionV1.assignee?
 interface ActionV1.completed_at?
@@ -36420,11 +36429,6 @@ interface PostmortemDocumentsV1ShowRequest.id
 interface PostmortemDocumentsV1UpdateStatusRequest
 interface PostmortemDocumentsV1UpdateStatusRequest.body
 interface PostmortemDocumentsV1UpdateStatusRequest.id
-interface RBACRoleV2
-interface RBACRoleV2.description?
-interface RBACRoleV2.id
-interface RBACRoleV2.name
-interface RBACRoleV2.slug
 interface RequestContext
 interface RequestContext.fetch
 interface RequestContext.init
@@ -37677,6 +37681,7 @@ type APIKeysCreatePayloadV1RoleNamesEnum
 type APIKeysCreatePayloadV1TeamRoleNamesEnum
 type APIKeysUpdatePayloadV1RoleNamesEnum
 type APIKeysUpdatePayloadV1TeamRoleNamesEnum
+type AccessGroupV2TypeEnum
 type ActionV1StatusEnum
 type ActionV2StatusEnum
 type ActionV3StatusEnum

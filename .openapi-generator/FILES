@@ -82,6 +82,7 @@ src/models/APIKeysRotateResultV1.ts
 src/models/APIKeysShowResultV1.ts
 src/models/APIKeysUpdatePayloadV1.ts
 src/models/APIKeysUpdateResultV1.ts
+src/models/AccessGroupV2.ts
 src/models/ActionV1.ts
 src/models/ActionV2.ts
 src/models/ActionV3.ts
@@ -1345,7 +1346,6 @@ src/models/PostmortemDocumentsShowContentResultV1.ts
 src/models/PostmortemDocumentsShowResultV1.ts
 src/models/PostmortemDocumentsUpdateStatusPayloadV1.ts
 src/models/PostmortemDocumentsUpdateStatusResultV1.ts
-src/models/RBACRoleV2.ts
 src/models/RetrospectiveIncidentOptionsV2.ts
 src/models/ReturnsMetaV2.ts
 src/models/ReturnsMetaV3.ts
