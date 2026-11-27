@@ -1141,6 +1141,16 @@ class CatalogV2Api.catalogV2UpdateTypeSchemaRequestOpts #0
 class CatalogV3Api
 class CatalogV3Api constructor #0
 class CatalogV3Api constructor #0?
+class CatalogV3Api.catalogV3BulkArchiveEntries
+class CatalogV3Api.catalogV3BulkArchiveEntries #0
+class CatalogV3Api.catalogV3BulkArchiveEntries #1
+class CatalogV3Api.catalogV3BulkArchiveEntries #1?
+class CatalogV3Api.catalogV3BulkArchiveEntriesRaw
+class CatalogV3Api.catalogV3BulkArchiveEntriesRaw #0
+class CatalogV3Api.catalogV3BulkArchiveEntriesRaw #1
+class CatalogV3Api.catalogV3BulkArchiveEntriesRaw #1?
+class CatalogV3Api.catalogV3BulkArchiveEntriesRequestOpts
+class CatalogV3Api.catalogV3BulkArchiveEntriesRequestOpts #0
 class CatalogV3Api.catalogV3BulkUpdateEntries
 class CatalogV3Api.catalogV3BulkUpdateEntries #0
 class CatalogV3Api.catalogV3BulkUpdateEntries #1
@@ -17392,6 +17402,18 @@ function CallTranscriptEntryV2ToJSONTyped #0
 function CallTranscriptEntryV2ToJSONTyped #0?
 function CallTranscriptEntryV2ToJSONTyped #1
 function CallTranscriptEntryV2ToJSONTyped #1?
+function CatalogBulkArchiveEntriesPayloadV3FromJSON
+function CatalogBulkArchiveEntriesPayloadV3FromJSON #0
+function CatalogBulkArchiveEntriesPayloadV3FromJSONTyped
+function CatalogBulkArchiveEntriesPayloadV3FromJSONTyped #0
+function CatalogBulkArchiveEntriesPayloadV3FromJSONTyped #1
+function CatalogBulkArchiveEntriesPayloadV3ToJSON
+function CatalogBulkArchiveEntriesPayloadV3ToJSON #0
+function CatalogBulkArchiveEntriesPayloadV3ToJSONTyped
+function CatalogBulkArchiveEntriesPayloadV3ToJSONTyped #0
+function CatalogBulkArchiveEntriesPayloadV3ToJSONTyped #0?
+function CatalogBulkArchiveEntriesPayloadV3ToJSONTyped #1
+function CatalogBulkArchiveEntriesPayloadV3ToJSONTyped #1?
 function CatalogBulkUpdateEntriesPayloadV3FromJSON
 function CatalogBulkUpdateEntriesPayloadV3FromJSON #0
 function CatalogBulkUpdateEntriesPayloadV3FromJSONTyped
@@ -27809,6 +27831,8 @@ function instanceOfCallTranscriptEntriesListResultV2
 function instanceOfCallTranscriptEntriesListResultV2 #0
 function instanceOfCallTranscriptEntryV2
 function instanceOfCallTranscriptEntryV2 #0
+function instanceOfCatalogBulkArchiveEntriesPayloadV3
+function instanceOfCatalogBulkArchiveEntriesPayloadV3 #0
 function instanceOfCatalogBulkUpdateEntriesPayloadV3
 function instanceOfCatalogBulkUpdateEntriesPayloadV3 #0
 function instanceOfCatalogCreateEntryPayloadV2
@@ -34532,6 +34556,9 @@ interface CallTranscriptEntryV2.id
 interface CallTranscriptEntryV2.medium
 interface CallTranscriptEntryV2.participant_name
 interface CallTranscriptEntryV2.timestamp
+interface CatalogBulkArchiveEntriesPayloadV3
+interface CatalogBulkArchiveEntriesPayloadV3.catalog_type_id
+interface CatalogBulkArchiveEntriesPayloadV3.entry_ids
 interface CatalogBulkUpdateEntriesPayloadV3
 interface CatalogBulkUpdateEntriesPayloadV3.catalog_type_id
 interface CatalogBulkUpdateEntriesPayloadV3.entries
@@ -34851,6 +34878,8 @@ interface CatalogV2UpdateTypeRequest.id
 interface CatalogV2UpdateTypeSchemaRequest
 interface CatalogV2UpdateTypeSchemaRequest.body
 interface CatalogV2UpdateTypeSchemaRequest.id
+interface CatalogV3BulkArchiveEntriesRequest
+interface CatalogV3BulkArchiveEntriesRequest.body
 interface CatalogV3BulkUpdateEntriesRequest
 interface CatalogV3BulkUpdateEntriesRequest.body
 interface CatalogV3CreateEntryRequest

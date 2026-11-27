@@ -14,6 +14,11 @@
 
 import * as runtime from '../runtime.js';
 import {
+    type CatalogBulkArchiveEntriesPayloadV3,
+    CatalogBulkArchiveEntriesPayloadV3FromJSON,
+    CatalogBulkArchiveEntriesPayloadV3ToJSON,
+} from '../models/CatalogBulkArchiveEntriesPayloadV3.js';
+import {
     type CatalogBulkUpdateEntriesPayloadV3,
     CatalogBulkUpdateEntriesPayloadV3FromJSON,
     CatalogBulkUpdateEntriesPayloadV3ToJSON,
@@ -98,6 +103,13 @@ import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models/ErrorResponse.js';
+
+export interface CatalogV3BulkArchiveEntriesRequest {
+    /**
+     * 
+     */
+    body: CatalogBulkArchiveEntriesPayloadV3;
+}
 
 export interface CatalogV3BulkUpdateEntriesRequest {
     /**
@@ -228,6 +240,62 @@ export interface CatalogV3ListTypesRequest {
  * 
  */
 export class CatalogV3Api extends runtime.BaseAPI {
+
+    /**
+     * Creates request options for catalogV3BulkArchiveEntries without sending the request
+     */
+    async catalogV3BulkArchiveEntriesRequestOpts(requestParameters: CatalogV3BulkArchiveEntriesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling catalogV3BulkArchiveEntries().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/v3/catalog_entries/actions/bulk_archive`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CatalogBulkArchiveEntriesPayloadV3ToJSON(requestParameters['body']),
+        };
+    }
+
+    /**
+     * Archive up to 250 entries of one catalog type in a single request. This has the same effect as deleting each entry individually. This operation is atomic: if the request fails, no entries are archived.  Entries that don\'t exist, are already archived, or belong to a different catalog type are skipped and don\'t fail the request. If any of the entries set attributes that you don\'t have permission to clear, the request fails with a 403 that lists those entries, and no entries are archived.
+     * BulkArchiveEntries Catalog V3
+     */
+    async catalogV3BulkArchiveEntriesRaw(requestParameters: CatalogV3BulkArchiveEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.catalogV3BulkArchiveEntriesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Archive up to 250 entries of one catalog type in a single request. This has the same effect as deleting each entry individually. This operation is atomic: if the request fails, no entries are archived.  Entries that don\'t exist, are already archived, or belong to a different catalog type are skipped and don\'t fail the request. If any of the entries set attributes that you don\'t have permission to clear, the request fails with a 403 that lists those entries, and no entries are archived.
+     * BulkArchiveEntries Catalog V3
+     */
+    async catalogV3BulkArchiveEntries(requestParameters: CatalogV3BulkArchiveEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.catalogV3BulkArchiveEntriesRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Creates request options for catalogV3BulkUpdateEntries without sending the request

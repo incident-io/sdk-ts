@@ -873,6 +873,7 @@ src/models/CallSessionV2.ts
 src/models/CallSessionsListResultV2.ts
 src/models/CallTranscriptEntriesListResultV2.ts
 src/models/CallTranscriptEntryV2.ts
+src/models/CatalogBulkArchiveEntriesPayloadV3.ts
 src/models/CatalogBulkUpdateEntriesPayloadV3.ts
 src/models/CatalogCreateEntryPayloadV2.ts
 src/models/CatalogCreateEntryPayloadV3.ts

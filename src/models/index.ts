@@ -801,6 +801,7 @@ export * from './CallSessionV2.js';
 export * from './CallSessionsListResultV2.js';
 export * from './CallTranscriptEntriesListResultV2.js';
 export * from './CallTranscriptEntryV2.js';
+export * from './CatalogBulkArchiveEntriesPayloadV3.js';
 export * from './CatalogBulkUpdateEntriesPayloadV3.js';
 export * from './CatalogCreateEntryPayloadV2.js';
 export * from './CatalogCreateEntryPayloadV3.js';
