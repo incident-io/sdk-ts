@@ -27,6 +27,13 @@ import {
     PolicyAssignmentRulesPayloadV2ToJSON,
     PolicyAssignmentRulesPayloadV2ToJSONTyped,
 } from './PolicyAssignmentRulesPayloadV2.js';
+import type { PolicyOnCallReadinessPayloadV2 } from './PolicyOnCallReadinessPayloadV2.js';
+import {
+    PolicyOnCallReadinessPayloadV2FromJSON,
+    PolicyOnCallReadinessPayloadV2FromJSONTyped,
+    PolicyOnCallReadinessPayloadV2ToJSON,
+    PolicyOnCallReadinessPayloadV2ToJSONTyped,
+} from './PolicyOnCallReadinessPayloadV2.js';
 import type { PolicyScheduleV2 } from './PolicyScheduleV2.js';
 import {
     PolicyScheduleV2FromJSON,
@@ -62,13 +69,6 @@ import {
     PolicyFollowUpPayloadV2ToJSON,
     PolicyFollowUpPayloadV2ToJSONTyped,
 } from './PolicyFollowUpPayloadV2.js';
-import type { PolicyOnCallReadinessV2 } from './PolicyOnCallReadinessV2.js';
-import {
-    PolicyOnCallReadinessV2FromJSON,
-    PolicyOnCallReadinessV2FromJSONTyped,
-    PolicyOnCallReadinessV2ToJSON,
-    PolicyOnCallReadinessV2ToJSONTyped,
-} from './PolicyOnCallReadinessV2.js';
 
 /**
  * 
@@ -107,7 +107,7 @@ export interface PoliciesCreatePayloadV2 {
     /**
      * 
      */
-    on_call_readiness?: PolicyOnCallReadinessV2;
+    on_call_readiness?: PolicyOnCallReadinessPayloadV2;
     /**
      * Type of the policy, specifying what this applies to. Cannot be changed after the policy is created.
      */
@@ -179,7 +179,7 @@ export function PoliciesCreatePayloadV2FromJSONTyped(json: any, ignoreDiscrimina
         'expressions': json['expressions'] == null ? undefined : ((json['expressions'] as Array<any>).map(ExpressionPayloadV2FromJSON)),
         'follow_up': json['follow_up'] == null ? undefined : PolicyFollowUpPayloadV2FromJSON(json['follow_up']),
         'name': json['name'],
-        'on_call_readiness': json['on_call_readiness'] == null ? undefined : PolicyOnCallReadinessV2FromJSON(json['on_call_readiness']),
+        'on_call_readiness': json['on_call_readiness'] == null ? undefined : PolicyOnCallReadinessPayloadV2FromJSON(json['on_call_readiness']),
         'policy_type': json['policy_type'],
         'post_mortem': json['post_mortem'] == null ? undefined : PolicyPostMortemPayloadV2FromJSON(json['post_mortem']),
         'schedule': json['schedule'] == null ? undefined : PolicyScheduleV2FromJSON(json['schedule']),
@@ -205,7 +205,7 @@ export function PoliciesCreatePayloadV2ToJSONTyped(value?: PoliciesCreatePayload
         'expressions': value['expressions'] == null ? undefined : ((value['expressions'] as Array<any>).map(ExpressionPayloadV2ToJSON)),
         'follow_up': PolicyFollowUpPayloadV2ToJSON(value['follow_up']),
         'name': value['name'],
-        'on_call_readiness': PolicyOnCallReadinessV2ToJSON(value['on_call_readiness']),
+        'on_call_readiness': PolicyOnCallReadinessPayloadV2ToJSON(value['on_call_readiness']),
         'policy_type': value['policy_type'],
         'post_mortem': PolicyPostMortemPayloadV2ToJSON(value['post_mortem']),
         'schedule': PolicyScheduleV2ToJSON(value['schedule']),

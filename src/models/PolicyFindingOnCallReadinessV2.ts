@@ -28,11 +28,19 @@ import {
  */
 export interface PolicyFindingOnCallReadinessV2 {
     /**
-     * The high urgency rules the policy requires, and whether each was met
+     * The high interruption level rules the policy requires, and whether each was met.
+     */
+    high_interruption_level: Array<PolicyFindingReadinessRuleV2>;
+    /**
+     * Deprecated: use high_interruption_level, which always has the same value.
      */
     high_urgency: Array<PolicyFindingReadinessRuleV2>;
     /**
-     * The low urgency rules the policy requires, and whether each was met
+     * The low interruption level rules the policy requires, and whether each was met.
+     */
+    low_interruption_level: Array<PolicyFindingReadinessRuleV2>;
+    /**
+     * Deprecated: use low_interruption_level, which always has the same value.
      */
     low_urgency: Array<PolicyFindingReadinessRuleV2>;
     /**
@@ -45,7 +53,9 @@ export interface PolicyFindingOnCallReadinessV2 {
  * Check if a given object implements the PolicyFindingOnCallReadinessV2 interface.
  */
 export function instanceOfPolicyFindingOnCallReadinessV2(value: object): value is PolicyFindingOnCallReadinessV2 {
+    if (!('high_interruption_level' in value) || value['high_interruption_level'] === undefined) return false;
     if (!('high_urgency' in value) || value['high_urgency'] === undefined) return false;
+    if (!('low_interruption_level' in value) || value['low_interruption_level'] === undefined) return false;
     if (!('low_urgency' in value) || value['low_urgency'] === undefined) return false;
     if (!('user_id' in value) || value['user_id'] === undefined) return false;
     return true;
@@ -61,7 +71,9 @@ export function PolicyFindingOnCallReadinessV2FromJSONTyped(json: any, ignoreDis
     }
     return {
         
+        'high_interruption_level': ((json['high_interruption_level'] as Array<any>).map(PolicyFindingReadinessRuleV2FromJSON)),
         'high_urgency': ((json['high_urgency'] as Array<any>).map(PolicyFindingReadinessRuleV2FromJSON)),
+        'low_interruption_level': ((json['low_interruption_level'] as Array<any>).map(PolicyFindingReadinessRuleV2FromJSON)),
         'low_urgency': ((json['low_urgency'] as Array<any>).map(PolicyFindingReadinessRuleV2FromJSON)),
         'user_id': json['user_id'],
     };
@@ -78,7 +90,9 @@ export function PolicyFindingOnCallReadinessV2ToJSONTyped(value?: PolicyFindingO
 
     return {
         
+        'high_interruption_level': ((value['high_interruption_level'] as Array<any>).map(PolicyFindingReadinessRuleV2ToJSON)),
         'high_urgency': ((value['high_urgency'] as Array<any>).map(PolicyFindingReadinessRuleV2ToJSON)),
+        'low_interruption_level': ((value['low_interruption_level'] as Array<any>).map(PolicyFindingReadinessRuleV2ToJSON)),
         'low_urgency': ((value['low_urgency'] as Array<any>).map(PolicyFindingReadinessRuleV2ToJSON)),
         'user_id': value['user_id'],
     };

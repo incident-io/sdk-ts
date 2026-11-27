@@ -1287,6 +1287,7 @@ export * from './PolicyFindingsRestoreResultV2.js';
 export * from './PolicyFindingsShowResultV2.js';
 export * from './PolicyFollowUpPayloadV2.js';
 export * from './PolicyFollowUpV2.js';
+export * from './PolicyOnCallReadinessPayloadV2.js';
 export * from './PolicyOnCallReadinessV2.js';
 export * from './PolicyPostMortemPayloadV2.js';
 export * from './PolicyPostMortemV2.js';

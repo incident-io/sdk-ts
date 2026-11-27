@@ -32,11 +32,19 @@ export interface PolicyOnCallReadinessV2 {
      */
     enforcement?: PolicyOnCallReadinessV2EnforcementEnum;
     /**
-     * 
+     * The high interruption level rules the policy requires.
+     */
+    high_interruption_level: Array<PolicyReadinessRuleV2>;
+    /**
+     * Deprecated: use high_interruption_level, which always has the same value.
      */
     high_urgency?: Array<PolicyReadinessRuleV2>;
     /**
-     * 
+     * The low interruption level rules the policy requires.
+     */
+    low_interruption_level: Array<PolicyReadinessRuleV2>;
+    /**
+     * Deprecated: use low_interruption_level, which always has the same value.
      */
     low_urgency?: Array<PolicyReadinessRuleV2>;
 }
@@ -56,6 +64,8 @@ export type PolicyOnCallReadinessV2EnforcementEnum = typeof PolicyOnCallReadines
  * Check if a given object implements the PolicyOnCallReadinessV2 interface.
  */
 export function instanceOfPolicyOnCallReadinessV2(value: object): value is PolicyOnCallReadinessV2 {
+    if (!('high_interruption_level' in value) || value['high_interruption_level'] === undefined) return false;
+    if (!('low_interruption_level' in value) || value['low_interruption_level'] === undefined) return false;
     return true;
 }
 
@@ -70,7 +80,9 @@ export function PolicyOnCallReadinessV2FromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'enforcement': json['enforcement'] == null ? undefined : json['enforcement'],
+        'high_interruption_level': ((json['high_interruption_level'] as Array<any>).map(PolicyReadinessRuleV2FromJSON)),
         'high_urgency': json['high_urgency'] == null ? undefined : ((json['high_urgency'] as Array<any>).map(PolicyReadinessRuleV2FromJSON)),
+        'low_interruption_level': ((json['low_interruption_level'] as Array<any>).map(PolicyReadinessRuleV2FromJSON)),
         'low_urgency': json['low_urgency'] == null ? undefined : ((json['low_urgency'] as Array<any>).map(PolicyReadinessRuleV2FromJSON)),
     };
 }
@@ -87,7 +99,9 @@ export function PolicyOnCallReadinessV2ToJSONTyped(value?: PolicyOnCallReadiness
     return {
         
         'enforcement': value['enforcement'],
+        'high_interruption_level': ((value['high_interruption_level'] as Array<any>).map(PolicyReadinessRuleV2ToJSON)),
         'high_urgency': value['high_urgency'] == null ? undefined : ((value['high_urgency'] as Array<any>).map(PolicyReadinessRuleV2ToJSON)),
+        'low_interruption_level': ((value['low_interruption_level'] as Array<any>).map(PolicyReadinessRuleV2ToJSON)),
         'low_urgency': value['low_urgency'] == null ? undefined : ((value['low_urgency'] as Array<any>).map(PolicyReadinessRuleV2ToJSON)),
     };
 }

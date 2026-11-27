@@ -6115,6 +6115,9 @@ const PolicyFindingV2StateEnum.Cancelled = "cancelled"
 const PolicyFindingV2StateEnum.Dismissed = "dismissed"
 const PolicyFindingV2StateEnum.Pending = "pending"
 const PolicyFindingV2StateEnum.Resolved = "resolved"
+const PolicyOnCallReadinessPayloadV2EnforcementEnum
+const PolicyOnCallReadinessPayloadV2EnforcementEnum.Advisory = "advisory"
+const PolicyOnCallReadinessPayloadV2EnforcementEnum.Blocking = "blocking"
 const PolicyOnCallReadinessV2EnforcementEnum
 const PolicyOnCallReadinessV2EnforcementEnum.Advisory = "advisory"
 const PolicyOnCallReadinessV2EnforcementEnum.Blocking = "blocking"
@@ -23237,6 +23240,18 @@ function PolicyFollowUpV2ToJSONTyped #0
 function PolicyFollowUpV2ToJSONTyped #0?
 function PolicyFollowUpV2ToJSONTyped #1
 function PolicyFollowUpV2ToJSONTyped #1?
+function PolicyOnCallReadinessPayloadV2FromJSON
+function PolicyOnCallReadinessPayloadV2FromJSON #0
+function PolicyOnCallReadinessPayloadV2FromJSONTyped
+function PolicyOnCallReadinessPayloadV2FromJSONTyped #0
+function PolicyOnCallReadinessPayloadV2FromJSONTyped #1
+function PolicyOnCallReadinessPayloadV2ToJSON
+function PolicyOnCallReadinessPayloadV2ToJSON #0
+function PolicyOnCallReadinessPayloadV2ToJSONTyped
+function PolicyOnCallReadinessPayloadV2ToJSONTyped #0
+function PolicyOnCallReadinessPayloadV2ToJSONTyped #0?
+function PolicyOnCallReadinessPayloadV2ToJSONTyped #1
+function PolicyOnCallReadinessPayloadV2ToJSONTyped #1?
 function PolicyOnCallReadinessV2FromJSON
 function PolicyOnCallReadinessV2FromJSON #0
 function PolicyOnCallReadinessV2FromJSONTyped
@@ -28818,6 +28833,8 @@ function instanceOfPolicyFollowUpPayloadV2
 function instanceOfPolicyFollowUpPayloadV2 #0
 function instanceOfPolicyFollowUpV2
 function instanceOfPolicyFollowUpV2 #0
+function instanceOfPolicyOnCallReadinessPayloadV2
+function instanceOfPolicyOnCallReadinessPayloadV2 #0
 function instanceOfPolicyOnCallReadinessV2
 function instanceOfPolicyOnCallReadinessV2 #0
 function instanceOfPolicyPostMortemPayloadV2
@@ -37219,7 +37236,9 @@ interface PolicyFindingFollowUpV2
 interface PolicyFindingFollowUpV2.follow_up_id
 interface PolicyFindingFollowUpV2.incident_id
 interface PolicyFindingOnCallReadinessV2
+interface PolicyFindingOnCallReadinessV2.high_interruption_level
 interface PolicyFindingOnCallReadinessV2.high_urgency
+interface PolicyFindingOnCallReadinessV2.low_interruption_level
 interface PolicyFindingOnCallReadinessV2.low_urgency
 interface PolicyFindingOnCallReadinessV2.user_id
 interface PolicyFindingPostMortemV2
@@ -37307,9 +37326,17 @@ interface PolicyFollowUpV2
 interface PolicyFollowUpV2.due_date_config?
 interface PolicyFollowUpV2.requirements
 interface PolicyFollowUpV2.run_on_private_incidents?
+interface PolicyOnCallReadinessPayloadV2
+interface PolicyOnCallReadinessPayloadV2.enforcement?
+interface PolicyOnCallReadinessPayloadV2.high_interruption_level?
+interface PolicyOnCallReadinessPayloadV2.high_urgency?
+interface PolicyOnCallReadinessPayloadV2.low_interruption_level?
+interface PolicyOnCallReadinessPayloadV2.low_urgency?
 interface PolicyOnCallReadinessV2
 interface PolicyOnCallReadinessV2.enforcement?
+interface PolicyOnCallReadinessV2.high_interruption_level
 interface PolicyOnCallReadinessV2.high_urgency?
+interface PolicyOnCallReadinessV2.low_interruption_level
 interface PolicyOnCallReadinessV2.low_urgency?
 interface PolicyPostMortemPayloadV2
 interface PolicyPostMortemPayloadV2.due_date_config?
@@ -38942,6 +38969,7 @@ type PolicyFindingScheduleImpactedUserV2CauseEnum
 type PolicyFindingScheduleV2CauseEnum
 type PolicyFindingV2PolicyTypeEnum
 type PolicyFindingV2StateEnum
+type PolicyOnCallReadinessPayloadV2EnforcementEnum
 type PolicyOnCallReadinessV2EnforcementEnum
 type PolicyReadinessRuleV2MethodTypesEnum
 type PolicyReminderCadenceV2IntervalEnum
