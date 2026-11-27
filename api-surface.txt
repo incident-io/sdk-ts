@@ -5965,6 +5965,9 @@ const OnCallNotificationRuleMethodTargetPublicV2TypeEnum.Specific = "specific"
 const OnCallNotificationRulePhoneDetailsPublicV2ChannelEnum
 const OnCallNotificationRulePhoneDetailsPublicV2ChannelEnum.Sms = "sms"
 const OnCallNotificationRulePhoneDetailsPublicV2ChannelEnum.Voice = "voice"
+const OnCallNotificationRulePublicV2InterruptionLevelEnum
+const OnCallNotificationRulePublicV2InterruptionLevelEnum.High = "high"
+const OnCallNotificationRulePublicV2InterruptionLevelEnum.Low = "low"
 const OnCallNotificationRulePublicV2MethodTypeEnum
 const OnCallNotificationRulePublicV2MethodTypeEnum.App = "app"
 const OnCallNotificationRulePublicV2MethodTypeEnum.Email = "email"
@@ -36892,6 +36895,7 @@ interface OnCallNotificationRulePublicV2
 interface OnCallNotificationRulePublicV2.app?
 interface OnCallNotificationRulePublicV2.delay_seconds?
 interface OnCallNotificationRulePublicV2.id
+interface OnCallNotificationRulePublicV2.interruption_level
 interface OnCallNotificationRulePublicV2.method_target
 interface OnCallNotificationRulePublicV2.method_type
 interface OnCallNotificationRulePublicV2.phone?
@@ -38909,6 +38913,7 @@ type OnCallNotificationMethodPublicV2MethodTypeEnum
 type OnCallNotificationRuleAppDetailsPublicV2PushNotificationCriticalityEnum
 type OnCallNotificationRuleMethodTargetPublicV2TypeEnum
 type OnCallNotificationRulePhoneDetailsPublicV2ChannelEnum
+type OnCallNotificationRulePublicV2InterruptionLevelEnum
 type OnCallNotificationRulePublicV2MethodTypeEnum
 type OnCallNotificationRulePublicV2RuleTypeEnum
 type PayConfigV2RateTimeUnitEnum

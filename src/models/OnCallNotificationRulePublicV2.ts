@@ -54,6 +54,10 @@ export interface OnCallNotificationRulePublicV2 {
      */
     id: string;
     /**
+     * The interruption level of the pages this rule applies to: high or low.
+     */
+    interruption_level: OnCallNotificationRulePublicV2InterruptionLevelEnum;
+    /**
      * 
      */
     method_target: OnCallNotificationRuleMethodTargetPublicV2;
@@ -66,11 +70,20 @@ export interface OnCallNotificationRulePublicV2 {
      */
     phone?: OnCallNotificationRulePhoneDetailsPublicV2;
     /**
-     * The urgency level this rule applies to
+     * Deprecated: use interruption_level, which always has the same value.
      */
     rule_type: OnCallNotificationRulePublicV2RuleTypeEnum;
 }
 
+
+/**
+ * @export
+ */
+export const OnCallNotificationRulePublicV2InterruptionLevelEnum = {
+    High: 'high',
+    Low: 'low',
+} as const;
+export type OnCallNotificationRulePublicV2InterruptionLevelEnum = typeof OnCallNotificationRulePublicV2InterruptionLevelEnum[keyof typeof OnCallNotificationRulePublicV2InterruptionLevelEnum];
 
 /**
  * @export
@@ -100,6 +113,7 @@ export type OnCallNotificationRulePublicV2RuleTypeEnum = typeof OnCallNotificati
  */
 export function instanceOfOnCallNotificationRulePublicV2(value: object): value is OnCallNotificationRulePublicV2 {
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('interruption_level' in value) || value['interruption_level'] === undefined) return false;
     if (!('method_target' in value) || value['method_target'] === undefined) return false;
     if (!('method_type' in value) || value['method_type'] === undefined) return false;
     if (!('rule_type' in value) || value['rule_type'] === undefined) return false;
@@ -119,6 +133,7 @@ export function OnCallNotificationRulePublicV2FromJSONTyped(json: any, ignoreDis
         'app': json['app'] == null ? undefined : OnCallNotificationRuleAppDetailsPublicV2FromJSON(json['app']),
         'delay_seconds': json['delay_seconds'] == null ? undefined : json['delay_seconds'],
         'id': json['id'],
+        'interruption_level': json['interruption_level'],
         'method_target': OnCallNotificationRuleMethodTargetPublicV2FromJSON(json['method_target']),
         'method_type': json['method_type'],
         'phone': json['phone'] == null ? undefined : OnCallNotificationRulePhoneDetailsPublicV2FromJSON(json['phone']),
@@ -140,6 +155,7 @@ export function OnCallNotificationRulePublicV2ToJSONTyped(value?: OnCallNotifica
         'app': OnCallNotificationRuleAppDetailsPublicV2ToJSON(value['app']),
         'delay_seconds': value['delay_seconds'],
         'id': value['id'],
+        'interruption_level': value['interruption_level'],
         'method_target': OnCallNotificationRuleMethodTargetPublicV2ToJSON(value['method_target']),
         'method_type': value['method_type'],
         'phone': OnCallNotificationRulePhoneDetailsPublicV2ToJSON(value['phone']),

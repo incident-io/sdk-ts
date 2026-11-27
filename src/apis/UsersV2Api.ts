@@ -281,7 +281,7 @@ export class UsersV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List notification rules for a user. Rules define how and when a user is notified for on-call pages. Only includes high_urgency and low_urgency rules; shift_changes rules are not returned.
+     * List notification rules for a user. Rules define how and when a user is notified for on-call pages. Each rule applies to pages at one interruption level, high or low. Only includes rules for pages; shift_changes rules are not returned.
      * ListNotificationRules Users V2
      */
     async usersV2ListNotificationRulesRaw(requestParameters: UsersV2ListNotificationRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsersListNotificationRulesResultV2>> {
@@ -292,7 +292,7 @@ export class UsersV2Api extends runtime.BaseAPI {
     }
 
     /**
-     * List notification rules for a user. Rules define how and when a user is notified for on-call pages. Only includes high_urgency and low_urgency rules; shift_changes rules are not returned.
+     * List notification rules for a user. Rules define how and when a user is notified for on-call pages. Each rule applies to pages at one interruption level, high or low. Only includes rules for pages; shift_changes rules are not returned.
      * ListNotificationRules Users V2
      */
     async usersV2ListNotificationRules(requestParameters: UsersV2ListNotificationRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UsersListNotificationRulesResultV2> {
