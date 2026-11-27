@@ -9782,6 +9782,18 @@ function AlertSlimV2ToJSONTyped #0
 function AlertSlimV2ToJSONTyped #0?
 function AlertSlimV2ToJSONTyped #1
 function AlertSlimV2ToJSONTyped #1?
+function AlertSourceAlertmanagerOptionsV2FromJSON
+function AlertSourceAlertmanagerOptionsV2FromJSON #0
+function AlertSourceAlertmanagerOptionsV2FromJSONTyped
+function AlertSourceAlertmanagerOptionsV2FromJSONTyped #0
+function AlertSourceAlertmanagerOptionsV2FromJSONTyped #1
+function AlertSourceAlertmanagerOptionsV2ToJSON
+function AlertSourceAlertmanagerOptionsV2ToJSON #0
+function AlertSourceAlertmanagerOptionsV2ToJSONTyped
+function AlertSourceAlertmanagerOptionsV2ToJSONTyped #0
+function AlertSourceAlertmanagerOptionsV2ToJSONTyped #0?
+function AlertSourceAlertmanagerOptionsV2ToJSONTyped #1
+function AlertSourceAlertmanagerOptionsV2ToJSONTyped #1?
 function AlertSourceAzureDevopsOptionsV2FromJSON
 function AlertSourceAzureDevopsOptionsV2FromJSON #0
 function AlertSourceAzureDevopsOptionsV2FromJSONTyped
@@ -26561,6 +26573,8 @@ function instanceOfAlertRulesUpdateResultV3
 function instanceOfAlertRulesUpdateResultV3 #0
 function instanceOfAlertSlimV2
 function instanceOfAlertSlimV2 #0
+function instanceOfAlertSourceAlertmanagerOptionsV2
+function instanceOfAlertSourceAlertmanagerOptionsV2 #0
 function instanceOfAlertSourceAzureDevopsOptionsV2
 function instanceOfAlertSourceAzureDevopsOptionsV2 #0
 function instanceOfAlertSourceEmailOptionsPayloadV2
@@ -30210,6 +30224,8 @@ interface AlertSlimV2.source_url?
 interface AlertSlimV2.status
 interface AlertSlimV2.title
 interface AlertSlimV2.updated_at
+interface AlertSourceAlertmanagerOptionsV2
+interface AlertSourceAlertmanagerOptionsV2.one_alert_per_group
 interface AlertSourceAzureDevopsOptionsV2
 interface AlertSourceAzureDevopsOptionsV2.project_ids
 interface AlertSourceEmailOptionsPayloadV2
@@ -30237,6 +30253,7 @@ interface AlertSourceRateLimitShardingV2
 interface AlertSourceRateLimitShardingV2.rate_limit_shard_key_path
 interface AlertSourceV2
 interface AlertSourceV2.alert_events_url?
+interface AlertSourceV2.alertmanager_options?
 interface AlertSourceV2.auto_resolve_incident_alerts?
 interface AlertSourceV2.auto_resolve_timeout_minutes?
 interface AlertSourceV2.azure_devops_options?
@@ -30254,6 +30271,7 @@ interface AlertSourceV2.secret_token?
 interface AlertSourceV2.source_type
 interface AlertSourceV2.template
 interface AlertSourcesCreatePayloadV2
+interface AlertSourcesCreatePayloadV2.alertmanager_options?
 interface AlertSourcesCreatePayloadV2.auto_resolve_incident_alerts?
 interface AlertSourcesCreatePayloadV2.auto_resolve_timeout_minutes?
 interface AlertSourcesCreatePayloadV2.azure_devops_options?
@@ -30275,6 +30293,7 @@ interface AlertSourcesListResultV2.alert_sources
 interface AlertSourcesShowResultV2
 interface AlertSourcesShowResultV2.alert_source
 interface AlertSourcesUpdatePayloadV2
+interface AlertSourcesUpdatePayloadV2.alertmanager_options?
 interface AlertSourcesUpdatePayloadV2.auto_resolve_incident_alerts?
 interface AlertSourcesUpdatePayloadV2.auto_resolve_timeout_minutes?
 interface AlertSourcesUpdatePayloadV2.azure_devops_options?

@@ -238,6 +238,7 @@ src/models/AlertRulesShowResultV3.ts
 src/models/AlertRulesUpdatePayloadV3.ts
 src/models/AlertRulesUpdateResultV3.ts
 src/models/AlertSlimV2.ts
+src/models/AlertSourceAlertmanagerOptionsV2.ts
 src/models/AlertSourceAzureDevopsOptionsV2.ts
 src/models/AlertSourceEmailOptionsPayloadV2.ts
 src/models/AlertSourceEmailOptionsV2.ts

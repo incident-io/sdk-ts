@@ -166,6 +166,7 @@ export * from './AlertRulesShowResultV3.js';
 export * from './AlertRulesUpdatePayloadV3.js';
 export * from './AlertRulesUpdateResultV3.js';
 export * from './AlertSlimV2.js';
+export * from './AlertSourceAlertmanagerOptionsV2.js';
 export * from './AlertSourceAzureDevopsOptionsV2.js';
 export * from './AlertSourceEmailOptionsPayloadV2.js';
 export * from './AlertSourceEmailOptionsV2.js';

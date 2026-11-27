@@ -41,6 +41,13 @@ import {
     AlertSourceRateLimitShardingV2ToJSON,
     AlertSourceRateLimitShardingV2ToJSONTyped,
 } from './AlertSourceRateLimitShardingV2.js';
+import type { AlertSourceAlertmanagerOptionsV2 } from './AlertSourceAlertmanagerOptionsV2.js';
+import {
+    AlertSourceAlertmanagerOptionsV2FromJSON,
+    AlertSourceAlertmanagerOptionsV2FromJSONTyped,
+    AlertSourceAlertmanagerOptionsV2ToJSON,
+    AlertSourceAlertmanagerOptionsV2ToJSONTyped,
+} from './AlertSourceAlertmanagerOptionsV2.js';
 import type { AlertSourceHeartbeatOptionsV2 } from './AlertSourceHeartbeatOptionsV2.js';
 import {
     AlertSourceHeartbeatOptionsV2FromJSON,
@@ -80,6 +87,10 @@ export interface AlertSourceV2 {
      * URL that can be used to send alert events to this source. This is only set for sources that accept webhook/HTTP events; email sources use the email_address field, and integration-based sources (like Jira) receive events through their native integrations.
      */
     alert_events_url?: string;
+    /**
+     * 
+     */
+    alertmanager_options?: AlertSourceAlertmanagerOptionsV2;
     /**
      * Whether alerts from this source keep counting down to auto-resolve while attached to an incident. Defaults to true. Has no effect without auto_resolve_timeout_minutes.
      */
@@ -234,6 +245,7 @@ export function AlertSourceV2FromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'alert_events_url': json['alert_events_url'] == null ? undefined : json['alert_events_url'],
+        'alertmanager_options': json['alertmanager_options'] == null ? undefined : AlertSourceAlertmanagerOptionsV2FromJSON(json['alertmanager_options']),
         'auto_resolve_incident_alerts': json['auto_resolve_incident_alerts'] == null ? undefined : json['auto_resolve_incident_alerts'],
         'auto_resolve_timeout_minutes': json['auto_resolve_timeout_minutes'] == null ? undefined : json['auto_resolve_timeout_minutes'],
         'azure_devops_options': json['azure_devops_options'] == null ? undefined : AlertSourceAzureDevopsOptionsV2FromJSON(json['azure_devops_options']),
@@ -265,6 +277,7 @@ export function AlertSourceV2ToJSONTyped(value?: AlertSourceV2 | null, ignoreDis
     return {
         
         'alert_events_url': value['alert_events_url'],
+        'alertmanager_options': AlertSourceAlertmanagerOptionsV2ToJSON(value['alertmanager_options']),
         'auto_resolve_incident_alerts': value['auto_resolve_incident_alerts'],
         'auto_resolve_timeout_minutes': value['auto_resolve_timeout_minutes'],
         'azure_devops_options': AlertSourceAzureDevopsOptionsV2ToJSON(value['azure_devops_options']),

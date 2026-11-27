@@ -41,6 +41,13 @@ import {
     AlertSourceRateLimitShardingV2ToJSON,
     AlertSourceRateLimitShardingV2ToJSONTyped,
 } from './AlertSourceRateLimitShardingV2.js';
+import type { AlertSourceAlertmanagerOptionsV2 } from './AlertSourceAlertmanagerOptionsV2.js';
+import {
+    AlertSourceAlertmanagerOptionsV2FromJSON,
+    AlertSourceAlertmanagerOptionsV2FromJSONTyped,
+    AlertSourceAlertmanagerOptionsV2ToJSON,
+    AlertSourceAlertmanagerOptionsV2ToJSONTyped,
+} from './AlertSourceAlertmanagerOptionsV2.js';
 import type { ConditionGroupPayloadV2 } from './ConditionGroupPayloadV2.js';
 import {
     ConditionGroupPayloadV2FromJSON,
@@ -76,6 +83,10 @@ import {
  * @interface AlertSourcesUpdatePayloadV2
  */
 export interface AlertSourcesUpdatePayloadV2 {
+    /**
+     * 
+     */
+    alertmanager_options?: AlertSourceAlertmanagerOptionsV2;
     /**
      * Whether alerts from this source keep counting down to auto-resolve while attached to an incident. Defaults to true. Has no effect without auto_resolve_timeout_minutes.
      */
@@ -153,6 +164,7 @@ export function AlertSourcesUpdatePayloadV2FromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+        'alertmanager_options': json['alertmanager_options'] == null ? undefined : AlertSourceAlertmanagerOptionsV2FromJSON(json['alertmanager_options']),
         'auto_resolve_incident_alerts': json['auto_resolve_incident_alerts'] == null ? undefined : json['auto_resolve_incident_alerts'],
         'auto_resolve_timeout_minutes': json['auto_resolve_timeout_minutes'] == null ? undefined : json['auto_resolve_timeout_minutes'],
         'azure_devops_options': json['azure_devops_options'] == null ? undefined : AlertSourceAzureDevopsOptionsV2FromJSON(json['azure_devops_options']),
@@ -181,6 +193,7 @@ export function AlertSourcesUpdatePayloadV2ToJSONTyped(value?: AlertSourcesUpdat
 
     return {
         
+        'alertmanager_options': AlertSourceAlertmanagerOptionsV2ToJSON(value['alertmanager_options']),
         'auto_resolve_incident_alerts': value['auto_resolve_incident_alerts'],
         'auto_resolve_timeout_minutes': value['auto_resolve_timeout_minutes'],
         'azure_devops_options': AlertSourceAzureDevopsOptionsV2ToJSON(value['azure_devops_options']),
